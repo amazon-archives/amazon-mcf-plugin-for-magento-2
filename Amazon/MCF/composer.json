@@ -1,0 +1,20 @@
+{
+  "name": "Amazon/MCF",
+  "description": "Enables connection to Amazon Multi-Channel Fulfillment account.",
+  "require": {
+    "php": "7.0.2|~7.0.6"
+  },
+  "type": "magento2-module",
+  "version": "dev-master",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Amazon\\MCF\\": ""
+    }
+  }
+}

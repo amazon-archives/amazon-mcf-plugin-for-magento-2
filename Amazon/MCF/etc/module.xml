@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Amazon_MCF" setup_version="0.0.9">
+        <sequence>
+            <module name="Magento_Store"/>
+            <module name="Magento_Sales"/>
+            <module name="Magento_Quote"/>
+            <module name="Magento_SalesRule"/>
+        </sequence>
+    </module>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="quote_item">
+        <attribute name="amazon_mcf_asin_enabled"/>
+        <attribute name="amazon_mcf_merchant_sku"/>
+    </group>
+</config>

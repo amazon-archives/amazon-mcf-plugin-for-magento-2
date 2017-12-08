@@ -1,0 +1,201 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <group id="amazonfulfillment" translate="label" type="text" sortOrder="0" showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>Fulfillment By Amazon</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sallowspecific" translate="label" type="select" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specific_country" translate="label" type="multiselect" sortOrder="91" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+        <tab id="amazon_fba" translate="label" sortOrder="1000000">
+            <label>
+                <![CDATA[<span class='amazon-fba-logo' alt='Amazon Services' title='Amazon Services'>&nbsp;</span>]]></label>
+        </tab>
+        <section id="amazon_fba_connect" translate="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Fulfillment By Amazon</label>
+            <tab>amazon_fba</tab>
+            <resource>Amazon_MCF::config_mcf</resource>
+            <group id="amazon_fba_credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Connect Your Store</label>
+                <field id="amazon_fba_enable" translate="label" type="select" sortOrder="0" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Enable Multi-Channel Fulfillment</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[If this is disabled no orders will be submitted to Amazon]]></comment>
+                </field>
+                <field id="amazon_fba_marketplace_endpoint" translate="label" type="select" sortOrder="2" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Marketplace</label>
+                    <source_model>Amazon\MCF\Model\Config\Endpoints</source_model>
+                    <depends>
+                        <field id="*/*/amazon_fba_enable">1</field>
+                    </depends>
+                </field>
+                <field id="amazon_fba_custom_endpoint" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Custom Endpoint</label>
+                    <depends>
+                        <field id="*/*/amazon_fba_marketplace_endpoint">custom</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Retrieve by your region/marketplace from <a href="http://docs.developer.amazonservices.com/en_US/dev_guide/DG_Endpoints.html" target="_blank">Amazon Docs</a>. Enter both MarketplaceId and Endpoint separated by a semicolon, e.g. "ATVPDKIKX0DER;https://mws.amazonservices.com" ]]></comment>
+                </field>
+                <field id="amazon_fba_seller_id" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Seller ID</label>
+                    <depends>
+                        <field id="*/*/amazon_fba_enable">1</field>
+                    </depends>
+                </field>
+                <field id="amazon_fba_access_key_id" translate="label" type="obscure" sortOrder="5" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>AWS Access Key ID</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="*/*/amazon_fba_enable">1</field>
+                    </depends>
+                </field>
+                <field id="amazon_fba_secret_access_key" translate="label" type="obscure" sortOrder="6" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Secret Access Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="*/*/amazon_fba_enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="amazon_fba_delivery_estimates" translate="label" type="text" sortOrder="10" showInDefault="1"
+                   showInWebsite="1"
+                   showInStore="1">
+                <label>On-Site Delivery Estimator</label>
+                <comment>
+                    <![CDATA[
+                            <strong>Note:</strong> To enable Amazon Multi-Channel Fulfillment shipping speeds and <br />
+                            rates for your customers at cart & checkout, please enable the shipping method in <br />
+                            the <strong>Sales > Shipping Methods > Amazon MCF Shipping</strong> section.
+                        ]]>
+                </comment>
+                <field id="amazon_fba_display_estimated_arrival" translate="label" type="select" sortOrder="3" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Include Delivery Date Estimates On Cart and Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Requires use of Amazon shipping methods.]]></comment>
+                </field>
+                <field id="amazon_fba_display_delivery_block" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Display Delivery Date Estimator on Product Detail Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Dependent on store theme.]]></comment>
+                </field>
+                <field id="amazon_fba_display_shipping_cost" translate="label" type="select" sortOrder="4" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Charge Customers Your Amazon Fee In Shipping Costs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Whether to pass through fulfillment costs, if not enabled will only use the Default Shipping Cost and Standard speed]]></comment>
+                </field>
+                <field id="amazon_fba_default_standard_cost" translate="label" type="text" sortOrder="5" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Standard Shipping Cost</label>
+                    <validate>validate-greater-than-zero validate-no-empty</validate>
+                    <comment><![CDATA[Used as the standard shipping method cost when not charging customers your Amazon fee in shipping or unable to fetch rates from Amazon.]]></comment>
+                </field>
+                <field id="amazon_fba_default_expedited_cost" translate="label" type="text" sortOrder="5" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Expedited Shipping Cost</label>
+                    <validate>validate-greater-than-zero validate-no-empty</validate>
+                    <comment><![CDATA[Used as the expedited shipping method cost when not charging customers your Amazon fee in shipping or unable to fetch rates from Amazon.]]></comment>
+                </field>
+                <field id="amazon_fba_default_priority_cost" translate="label" type="text" sortOrder="5" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
+                    <label>Default Priority Shipping Cost (when applicable)</label>
+                    <validate>validate-greater-than-zero validate-no-empty</validate>
+                    <comment><![CDATA[Used as the priority shipping method cost when not charging customers your Amazon fee in shipping or unable to fetch rates from Amazon.]]></comment>
+                </field>
+            </group>
+            <group id="amazon_fba_delivery_options" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Delivery Options</label>
+                <field id="amazon_fba_ship_confirmation" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Send Amazon Ship Confirmation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Send Amazon's Shipping email in addition to Magento one.]]></comment>
+                </field>
+                <field id="amazon_fba_packing_slip_comment" translate="label" type="textarea" sortOrder="3"
+                       showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Amazon Packing Slip Comment</label>
+                    <comment><![CDATA[If filled in, will pass through as a general comment on all orders. Limited to 140 characters.]]></comment>
+                    <validate>validate-length maximum-length-140</validate>
+                </field>
+            </group>
+            <group id="amazon_fba_dev_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Developer Settings</label>
+                <field id="amazon_fba_debug" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Debug Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[No requests will be sent to Amazon, canned responses will be used.]]></comment>
+                </field>
+                <field id="amazon_fba_log_api" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Log API Request/Response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[API request and response details will be logged to amazon_mcf.log.]]></comment>
+                </field>
+                <field id="log_order_inventory_processing" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Log Order and Inventory Processing</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Order and inventory update details will be logged to amazon_mcf.log.]]></comment>
+                </field>
+                <field id="amazon_fba_sync_inventory" translate="label comment tooltip" type="button" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="0">
+                    <frontend_model>Amazon\MCF\Block\System\Config\AmazonSynchronize</frontend_model>
+                    <comment>
+                        <![CDATA[Click here to do a full inventory sync of your FBA-enabled products (the sync that updates Amazon inventory added in the past 24 hours will still automatically run)]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

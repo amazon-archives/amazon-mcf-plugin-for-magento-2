@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_after">
+        <observer name="amazon_mcf_submit_order_observer" instance="Amazon\MCF\Model\Observer\SubmitOrderObserver" />
+    </event>
+    <event name="order_cancel_after">
+        <observer name="amazon_mcf_cancel_order_observer" instance="Amazon\MCF\Model\Observer\CancelOrderObserver" />
+    </event>
+</config>
+
+

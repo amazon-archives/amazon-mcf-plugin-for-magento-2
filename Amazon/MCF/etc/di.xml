@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Amazon\MCF\Data\Helper">
+        <arguments>
+            <argument name="customLogger" xsi:type="object">Amazon\MCF\Logger\Logger</argument>
+        </arguments>
+    </type>
+
+    <type name="Amazon\MCF\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">AmazonM</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="debug" xsi:type="object">Amazon\MCF\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Config\Model\Config">
+        <plugin name="admin_system_config_save_plugin" type="Amazon\MCF\Plugin\ConfigPlugin" sortOrder="1"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="amazon_sku_check_save_plugin" type="Amazon\MCF\Plugin\ProductSkuConfig" sortOrder="1"/>
+    </type>
+</config>

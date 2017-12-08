@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Amazon
+ * @package     Amazon_MCF
+ * @copyright   Copyright (c) 2017 Amazon.com
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amazon_mcf>
+            <credentials></credentials>
+            <options></options>
+        </amazon_mcf>
+        <carriers>
+            <amazonfulfillment>
+                <active>0</active>
+                <sallowspecific>0</sallowspecific>
+                <cutoff_cost>50</cutoff_cost>
+                <model>Amazon\MCF\Model\Carrier\AmazonFulfillment</model>
+                <name>Fulfillment By Amazon</name>
+                <title>Fulfillment By Amazon</title>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </amazonfulfillment>
+        </carriers>
+    </default>
+</config>
