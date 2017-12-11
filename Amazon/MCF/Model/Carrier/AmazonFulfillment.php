@@ -162,7 +162,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
 
                 foreach ($rates as $title => $values) {
 
-                    if ($showDates) {
+                    if ($showDates && isset($values['date'])) {
                         $methodTitle = 'By ' . date('l, M. j', strtotime($values['date'])) . ' - ' . $title;
                     }
                     else {
@@ -247,6 +247,25 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             }
         }
 
+        // check if any item is amazon fulfilled - need to present default pricing if no value returned
+        if (!$rates) {
+            $isFBA = FALSE;
+
+            $items = $request->getAllItems();
+            if ($items) {
+                foreach($items as $item) {
+                    $isFBA = $item->getProduct()->getAmazonMcfAsinEnabled();
+                    if ($isFBA) {
+                        break;
+                    }
+                }
+
+                if ($isFBA) {
+                    $rates = ['Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())]];
+                }
+            }
+        }
+
         return $rates;
     }
 
@@ -257,8 +276,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return array
      */
-    protected
-    function getRatesFromFulfillmentPreview(\FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse $fulfillmentPreview) {
+    protected function getRatesFromFulfillmentPreview(\FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse $fulfillmentPreview) {
         $previews = $fulfillmentPreview->getGetFulfillmentPreviewResult()
             ->getFulfillmentPreviews()
             ->getmember();
@@ -294,8 +312,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return mixed
      */
-    protected
-    function calculateShippingFee($fees) {
+    protected function calculateShippingFee($fees) {
         $feeAmount = 0;
         if ($fees && !empty($fees->getmember())) {
             foreach ($fees->getmember() as $fee) {
@@ -343,7 +360,14 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             $r['CountryCode'] = $request->getDestCountryId();
         }
 
-        if ($request->getDestPostcode() && $request->getDestRegionCode() && $request->getDestCountryId() == 'US') {
+        if (!$r['CountryCode']) {
+            $country = $this->_configHelper->getStoreCountry($request->getStoreId());
+            if ($country) {
+                $r['CountryCode'] = $country;
+            }
+        }
+
+        if (!empty($request->getDestPostcode())) {
             $r['PostalCode'] = $request->getDestPostcode();
         }
 
@@ -360,7 +384,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
         }
 
 
-        if (count($r) >= 3) {
+        if (isset($r['CountryCode']) && (isset($r['PostalCode']) || isset($r['StateOrProvinceCode']))) {
             // API requires a name but all other shipping methods function without out - using placeholder.
             if (!isset($r['Name'])) {
                 $r['Name'] = 'john doe';
@@ -374,6 +398,10 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             // API requires city, but all other shipping methods can function without it - using placeholder.
             if (!isset($r['City'])) {
                 $r['City'] = 'Placeholderville';
+            }
+
+            if (!isset($r['StateOrProvinceCode'])) {
+                $r['StateOrProvinceCode'] = 'WA';
             }
 
             $this->_address = $r;
