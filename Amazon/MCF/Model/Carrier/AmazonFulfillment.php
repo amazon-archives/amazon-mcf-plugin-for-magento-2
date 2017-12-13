@@ -247,22 +247,30 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             }
         }
 
-        // check if any item is amazon fulfilled - need to present default pricing if no value returned
-        if (!$rates) {
-            $isFBA = FALSE;
+        // check for non-FBA items in cart and prevent Amazon rates from being offered.
+        $isFBA = FALSE;
+        $nonFBA = FALSE;
 
-            $items = $request->getAllItems();
-            if ($items) {
-                foreach($items as $item) {
-                    $isFBA = $item->getProduct()->getAmazonMcfAsinEnabled();
-                    if ($isFBA) {
-                        break;
-                    }
-                }
+        $items = $request->getAllItems();
+        if ($items) {
+            foreach ($items as $item) {
 
-                if ($isFBA) {
-                    $rates = ['Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())]];
+                if ($item->getProduct()->getAmazonMcfAsinEnabled()) {
+                    $isFBA = TRUE;
                 }
+                else {
+                    $nonFBA = TRUE;
+                }
+            }
+
+
+            if (!$rates && $isFBA && !$nonFBA) {
+                $rates = ['Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())]];
+            }
+
+            // if any non-fba items are in cart, offer no rates
+            if ($nonFBA) {
+                $rates = [];
             }
         }
 
