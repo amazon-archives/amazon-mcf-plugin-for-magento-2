@@ -10,3 +10,21 @@
     padding-left:55px;
 
 }
+
+table.order-shipment-table tfoot {
+    padding: 0;
+    background: #fff;
+    overflow: hidden;
+}
+
+table.order-shipment-table tfoot td {
+    padding: 0;
+    height: 30px;
+}
+
+#FBA-popup {
+    background-color: #fff8d6;
+    padding: 12px;
+    text-align: center;
+    display: none;
+}

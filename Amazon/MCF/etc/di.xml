@@ -31,4 +31,7 @@
     <type name="Magento\Catalog\Model\Product">
         <plugin name="amazon_sku_check_save_plugin" type="Amazon\MCF\Plugin\ProductSkuConfig" sortOrder="1"/>
     </type>
+
+    <preference for="Magento\Shipping\Block\Adminhtml\Create\Items" type="Amazon\MCF\Block\Adminhtml\Create\Items" />
+
 </config>

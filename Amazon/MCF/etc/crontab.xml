@@ -10,7 +10,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="amazon_mcf_order_update" instance="Amazon\MCF\Cron\GetOrderStatus" method="orderUpdate">
-            <schedule>0 */2 * * *</schedule>
+            <schedule>*/15 * * * *</schedule>
         </job>
         <job name="amazon_mcf_resubmit_orders" instance="Amazon\MCF\Cron\GetOrderStatus" method="resubmitOrdersToAmazon">
             <schedule>*/10 * * * *</schedule>

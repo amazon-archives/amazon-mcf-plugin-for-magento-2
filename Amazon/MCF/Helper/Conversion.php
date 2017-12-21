@@ -14,6 +14,7 @@
  * permissions and limitations under the License.
  *
  */
+
 namespace Amazon\MCF\Helper;
 
 use \Magento\Framework\App\Helper\AbstractHelper;
@@ -35,13 +36,19 @@ class Conversion extends AbstractHelper {
 
     /**
      * List of mail carriers
+     *
      * @var array
      */
-    protected $_carriers = array(
-        'USPS' => array('carrier_code' => 'usps', 'title' => 'United States Postal Service'),
-        'UPS'  => array('carrier_code' => 'ups', 'title' => 'United Parcel Service'),
-        'UPSM' => array('carrier_code' => 'ups', 'title' => 'United Parcel Service')
-    );
+    protected $_carriers = [
+        'USPS' => [
+            'carrier_code' => 'usps',
+            'title' => 'United States Postal Service',
+        ],
+        'UPS' => ['carrier_code' => 'ups', 'title' => 'United Parcel Service'],
+        'UPSM' => ['carrier_code' => 'ups', 'title' => 'United Parcel Service'],
+        'DHL' => ['carrier_code' => 'dhl', 'title' => 'DHL'],
+        'FEDEX' => ['carrier_code' => 'fedex', 'title' => 'Federal Express'],
+    ];
 
     /**
      * Conversion constructor.
@@ -168,7 +175,7 @@ class Conversion extends AbstractHelper {
             'amazonfulfillment_expedited' => 'Expedited',
             'tablerate_bestway' => 'Standard',
             'freeshipping_freeshipping' => 'Standard',
-            'flatrate_flatrate' => 'Standard'
+            'flatrate_flatrate' => 'Standard',
         ];
 
         if (isset($methods[$shippingMethod])) {
