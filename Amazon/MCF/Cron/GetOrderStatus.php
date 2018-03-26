@@ -185,7 +185,7 @@ class GetOrderStatus
                 );
 
 
-            if ($ordersToProcess->count()) {
+            if (!empty($ordersToProcess) && $ordersToProcess->count()) {
                 $this->helper->logOrder('Beginning Order Update for ' . $ordersToProcess->count() . ' orders.');
 
 
@@ -228,10 +228,12 @@ class GetOrderStatus
                         }
                     }
                 }
+
+                $this->helper->logOrder(__('Get Order status called. Orders to process: ') . $ordersToProcess->count());
+            } else {
+                $this->helper->logOrder(__('Get Order status called. No orders to process'));
             }
         }
-
-        $this->helper->logOrder('Get Order status called. Orders to process: ' . $ordersToProcess->count());
     }
 
     /**
