@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -36,15 +37,16 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_GetServiceStatusResult extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_GetServiceStatusResult extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Timestamp' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Timestamp' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -60,7 +62,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Status property.
      *
-     * @param string status
+     * @param  string status
      * @return this instance
      */
     public function setStatus($value)
@@ -77,7 +79,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetStatus()
     {
                 return !is_null($this->_fields['Status']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Status, return this.
@@ -106,7 +108,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Timestamp property.
      *
-     * @param string timestamp
+     * @param  string timestamp
      * @return this instance
      */
     public function setTimestamp($value)
@@ -123,7 +125,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetTimestamp()
     {
                 return !is_null($this->_fields['Timestamp']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Timestamp, return this.

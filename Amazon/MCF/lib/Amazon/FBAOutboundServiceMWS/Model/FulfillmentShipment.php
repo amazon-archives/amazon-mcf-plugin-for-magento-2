@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -41,20 +42,21 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_FulfillmentShipment extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_FulfillmentShipment extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'AmazonShipmentId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentShipmentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ShippingDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentShipmentItem' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentShipmentItemList'),
-    'FulfillmentShipmentPackage' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'AmazonShipmentId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentShipmentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ShippingDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentShipmentItem' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentShipmentItemList'),
+        'FulfillmentShipmentPackage' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -70,7 +72,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the AmazonShipmentId property.
      *
-     * @param string amazonShipmentId
+     * @param  string amazonShipmentId
      * @return this instance
      */
     public function setAmazonShipmentId($value)
@@ -87,7 +89,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAmazonShipmentId()
     {
                 return !is_null($this->_fields['AmazonShipmentId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of AmazonShipmentId, return this.
@@ -116,7 +118,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentCenterId property.
      *
-     * @param string fulfillmentCenterId
+     * @param  string fulfillmentCenterId
      * @return this instance
      */
     public function setFulfillmentCenterId($value)
@@ -133,7 +135,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentCenterId()
     {
                 return !is_null($this->_fields['FulfillmentCenterId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentCenterId, return this.
@@ -162,7 +164,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentShipmentStatus property.
      *
-     * @param string fulfillmentShipmentStatus
+     * @param  string fulfillmentShipmentStatus
      * @return this instance
      */
     public function setFulfillmentShipmentStatus($value)
@@ -179,7 +181,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentShipmentStatus()
     {
                 return !is_null($this->_fields['FulfillmentShipmentStatus']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentShipmentStatus, return this.
@@ -208,7 +210,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShippingDateTime property.
      *
-     * @param string shippingDateTime
+     * @param  string shippingDateTime
      * @return this instance
      */
     public function setShippingDateTime($value)
@@ -225,7 +227,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShippingDateTime()
     {
                 return !is_null($this->_fields['ShippingDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShippingDateTime, return this.
@@ -254,7 +256,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedArrivalDateTime property.
      *
-     * @param string estimatedArrivalDateTime
+     * @param  string estimatedArrivalDateTime
      * @return this instance
      */
     public function setEstimatedArrivalDateTime($value)
@@ -271,7 +273,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedArrivalDateTime()
     {
                 return !is_null($this->_fields['EstimatedArrivalDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedArrivalDateTime, return this.
@@ -300,7 +302,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentShipmentItem property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentShipmentItemList fulfillmentShipmentItem
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentShipmentItemList fulfillmentShipmentItem
      * @return this instance
      */
     public function setFulfillmentShipmentItem($value)
@@ -317,7 +319,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentShipmentItem()
     {
                 return !is_null($this->_fields['FulfillmentShipmentItem']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentShipmentItem, return this.
@@ -346,7 +348,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentShipmentPackage property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList fulfillmentShipmentPackage
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList fulfillmentShipmentPackage
      * @return this instance
      */
     public function setFulfillmentShipmentPackage($value)
@@ -363,7 +365,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentShipmentPackage()
     {
                 return !is_null($this->_fields['FulfillmentShipmentPackage']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentShipmentPackage, return this.

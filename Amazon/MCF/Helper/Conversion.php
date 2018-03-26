@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -27,19 +27,20 @@ use \Magento\Framework\App\Helper\AbstractHelper;
  *
  * @package Amazon\MCF\Helper
  */
-class Conversion extends AbstractHelper {
+class Conversion extends AbstractHelper
+{
 
     /**
      * @var \Magento\Framework\App\ObjectManager
      */
-    private $_objectManager;
+    private $objectManager;
 
     /**
      * List of mail carriers
      *
      * @var array
      */
-    protected $_carriers = [
+    private $carriers = [
         'USPS' => [
             'carrier_code' => 'usps',
             'title' => 'United States Postal Service',
@@ -55,20 +56,28 @@ class Conversion extends AbstractHelper {
      *
      * @param \Magento\Framework\App\Helper\Context $context
      */
-    public function __construct(\Magento\Framework\App\Helper\Context $context) {
-
+    public function __construct(\Magento\Framework\App\Helper\Context $context)
+    {
         parent::__construct($context);
 
         $om = \Magento\Framework\App\ObjectManager::getInstance();
         $reader = $om->get('Magento\Framework\Module\Dir\Reader');
         $modulePath = $reader->getModuleDir('', 'Amazon_MCF');
-        $this->_objectManager = $om;
+        $this->objectManager = $om;
 
+        $path = $modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR
+            . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Address.php';
+        include_once $path;
 
-        require_once($modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'Address.php');
-        require_once($modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'GetFulfillmentPreviewItem.php');
-        require_once($modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR . 'GetFulfillmentPreviewItemList.php');
+        $path = $modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR
+            . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR
+            . 'GetFulfillmentPreviewItem.php';
+        include_once $path;
 
+        $path = $modulePath . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR
+            . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Model' . DIRECTORY_SEPARATOR
+            . 'GetFulfillmentPreviewItemList.php';
+        include_once $path;
     }
 
     /**
@@ -76,7 +85,8 @@ class Conversion extends AbstractHelper {
      *
      * @return \Amazon\MCF\Helper\FBAOutboundServiceMWS_Model_Address
      */
-    public function getAmazonAddress(\Magento\Quote\Model\Quote\Address $address) {
+    public function getAmazonAddress(\Magento\Quote\Model\Quote\Address $address)
+    {
         $amazonAddress = new FBAOutboundServiceMWS_Model_Address($this->getAmazonAddressArray($address));
         return $amazonAddress;
     }
@@ -88,8 +98,8 @@ class Conversion extends AbstractHelper {
      *
      * @return array
      */
-    public function getAmazonAddressArray(\Magento\Framework\DataObject $address) {
-
+    public function getAmazonAddressArray(\Magento\Framework\DataObject $address)
+    {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $region = $objectManager->create('Magento\Directory\Model\Region')
             ->load($address->getRegionId());
@@ -117,14 +127,14 @@ class Conversion extends AbstractHelper {
      *
      * @return array
      */
-    public function getAmazonItemsArrayFromRateRequest(array $items) {
+    public function getAmazonItemsArrayFromRateRequest(array $items)
+    {
         $data = [];
 
         foreach ($items as $item) {
             $enabled = $item->getProduct()->getData('amazon_mcf_asin_enabled');
             $sku = $item->getProduct()->getData('amazon_mcf_merchant_sku');
             if ($enabled) {
-
                 $qty = 0;
                 $id = '';
 
@@ -154,7 +164,8 @@ class Conversion extends AbstractHelper {
      *
      * @return false|string
      */
-    public function getIso8601Timestamp($timestamp) {
+    public function getIso8601Timestamp($timestamp)
+    {
         $timestamp = strtotime($timestamp);
         $converted = date('Y-m-d\TH:i:s.Z\Z', $timestamp);
         return $converted;
@@ -167,8 +178,8 @@ class Conversion extends AbstractHelper {
      *
      * @return mixed|null
      */
-    public function getShippingSpeed($shippingMethod) {
-
+    public function getShippingSpeed($shippingMethod)
+    {
         $methods = [
             'amazonfulfillment_standard' => 'Standard',
             'amazonfulfillment_priority' => 'Priority',
@@ -182,7 +193,7 @@ class Conversion extends AbstractHelper {
             return $methods[$shippingMethod];
         }
 
-        return NULL;
+        return null;
     }
 
     /**
@@ -190,8 +201,9 @@ class Conversion extends AbstractHelper {
      *
      * @return mixed
      */
-    public function getCarrierCodeFromPackage($package) {
-        return $this->_carriers[$package->getCarrierCode()]['carrier_code'];
+    public function getCarrierCodeFromPackage($package)
+    {
+        return $this->carriers[$package->getCarrierCode()]['carrier_code'];
     }
 
     /**
@@ -199,8 +211,8 @@ class Conversion extends AbstractHelper {
      *
      * @return mixed
      */
-    public function getCarrierTitleFromPackage($package) {
-        return $this->_carriers[$package->getCarrierCode()]['title'];
+    public function getCarrierTitleFromPackage($package)
+    {
+        return $this->carriers[$package->getCarrierCode()]['title'];
     }
-
 }

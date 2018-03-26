@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -38,17 +39,18 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_FulfillmentShipmentPackage extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_FulfillmentShipmentPackage extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'CarrierCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TrackingNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'CarrierCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'TrackingNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -64,7 +66,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PackageNumber property.
      *
-     * @param int packageNumber
+     * @param  int packageNumber
      * @return this instance
      */
     public function setPackageNumber($value)
@@ -81,7 +83,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPackageNumber()
     {
                 return !is_null($this->_fields['PackageNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PackageNumber, return this.
@@ -110,7 +112,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CarrierCode property.
      *
-     * @param string carrierCode
+     * @param  string carrierCode
      * @return this instance
      */
     public function setCarrierCode($value)
@@ -127,7 +129,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCarrierCode()
     {
                 return !is_null($this->_fields['CarrierCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CarrierCode, return this.
@@ -156,7 +158,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the TrackingNumber property.
      *
-     * @param string trackingNumber
+     * @param  string trackingNumber
      * @return this instance
      */
     public function setTrackingNumber($value)
@@ -173,7 +175,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetTrackingNumber()
     {
                 return !is_null($this->_fields['TrackingNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of TrackingNumber, return this.
@@ -202,7 +204,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedArrivalDateTime property.
      *
-     * @param string estimatedArrivalDateTime
+     * @param  string estimatedArrivalDateTime
      * @return this instance
      */
     public function setEstimatedArrivalDateTime($value)
@@ -219,7 +221,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedArrivalDateTime()
     {
                 return !is_null($this->_fields['EstimatedArrivalDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedArrivalDateTime, return this.

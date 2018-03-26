@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,7 +12,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Model\Service;
@@ -28,7 +27,8 @@ use Magento\Framework\Logger\Monolog;
  *
  * @package Amazon\MCF\Model\Service
  */
-class Outbound extends MCFAbstract {
+class Outbound extends MCFAbstract
+{
 
     const SERVICE_NAME = '/FulfillmentOutboundShipment/';
 
@@ -37,53 +37,56 @@ class Outbound extends MCFAbstract {
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_helper;
+    protected $helper;
 
     /**
      * @var \Amazon\MCF\Helper\Conversion
      */
-    protected $_conversionHelper;
+    private $conversionHelper;
 
     /**
      * @var \Magento\Framework\Notification\NotifierPool
      */
-    protected $_notifierPool;
+    private $notifierPool;
 
     /**
      * Outbound constructor.
      *
-     * @param \Amazon\MCF\Helper\Data $helper
-     * @param \Amazon\MCF\Helper\Conversion $conversionHelper
+     * @param \Amazon\MCF\Helper\Data                      $helper
+     * @param \Amazon\MCF\Helper\Conversion                $conversionHelper
      * @param \Magento\Framework\Notification\NotifierPool $notifierPool
      */
-    public function __construct(\Amazon\MCF\Helper\Data $helper,
-                                \Amazon\MCF\Helper\Conversion $conversionHelper,
-                                \Magento\Framework\Notification\NotifierPool $notifierPool) {
-
+    public function __construct(
+        \Amazon\MCF\Helper\Data $helper,
+        \Amazon\MCF\Helper\Conversion $conversionHelper,
+        \Magento\Framework\Notification\NotifierPool $notifierPool
+    ) {
         parent::__construct($helper);
+        $this->helper = $helper;
+        $this->conversionHelper = $conversionHelper;
+        $this->notifierPool = $notifierPool;
 
-        $this->_helper = $helper;
-        $this->_conversionHelper = $conversionHelper;
-        $this->_notifierPool = $notifierPool;
-
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Exception.php');
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Client.php');
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Mock.php');
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Exception.php';
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Client.php';
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAOutboundServiceMWS' . DIRECTORY_SEPARATOR . 'Mock.php';
     }
 
     /**
      * Gets a shipping preview from Amazon MCF API
      *
-     * @param $quote
-     *
-     * @return mixed
+     * @param  $address
+     * @param  $items
+     * @return null
      */
-    public function getFulfillmentPreview($address, $items) {
-
+    public function getFulfillmentPreview($address, $items)
+    {
         $client = $this->getClient();
 
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'Address' => $address,
             'Items' => $items
         ];
@@ -91,8 +94,8 @@ class Outbound extends MCFAbstract {
         try {
             $preview = $client->getFulfillmentPreview($request);
         } catch (\FBAOutboundServiceMWS_Exception $e) {
-            $this->_helper->logOrder($this->_getErrorDebugMessage($e));
-            $preview = NULL;
+            $this->helper->logOrder($this->getErrorDebugMessage($e));
+            $preview = null;
         }
 
         return $preview;
@@ -107,7 +110,9 @@ class Outbound extends MCFAbstract {
      *
      * @return array|null
      */
-    public function getProductEstimate($address, $items) {
+    public function getProductEstimate($address, $items)
+    {
+
         $fulfillmentPreview = $this->getFulfillmentPreview($address, $items);
         $rates = [];
 
@@ -118,7 +123,9 @@ class Outbound extends MCFAbstract {
 
             $dates = [];
 
-            /** @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview */
+            /**
+         * @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview
+         */
             $counter = 0;
             foreach ($previews as $preview) {
                 $shipDate = 0;
@@ -137,7 +144,7 @@ class Outbound extends MCFAbstract {
 
                         if (!empty($preview->getEstimatedFees()->getmember())) {
                             foreach ($preview->getEstimatedFees()
-                                         ->getmember() as $fee) {
+                                ->getmember() as $fee) {
                                 $shippingFee = $fee->getAmount()
                                     ->getValue(); // just returning the first fee amount for now
                                 break;
@@ -185,40 +192,43 @@ class Outbound extends MCFAbstract {
      *
      * @return null|mixed
      */
-    public function createFulfillmentOrder(\Magento\Sales\Model\Order $order) {
+    public function createFulfillmentOrder(\Magento\Sales\Model\Order $order)
+    {
         $client = $this->getClient();
 
-        $shipping = $this->_conversionHelper->getShippingSpeed($order->getShippingMethod());
-        $address = $this->_conversionHelper->getAmazonAddressArray($order->getShippingAddress());
-        $items = $this->_conversionHelper->getAmazonItemsArrayFromRateRequest($order->getAllItems());
+        $shipping = $this->conversionHelper->getShippingSpeed($order->getShippingMethod());
+        $address = $this->conversionHelper->getAmazonAddressArray($order->getShippingAddress());
+        $items = $this->conversionHelper->getAmazonItemsArrayFromRateRequest($order->getAllItems());
         $timestamp = date('Y-m-d\TH:i:s.Z\Z');
 
-
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'FulfillmentPolicy' => 'FillOrKill',
             'DestinationAddress' => $address,
             'SellerFulfillmentOrderId' => $order->getIncrementId(),
             'DisplayableOrderId' => $order->getIncrementId(),
             'DisplayableOrderDateTime' => $timestamp,
-            'DisplayableOrderComment' => $this->_helper->getPackingSlipComment(),
+            'DisplayableOrderComment' => $this->helper->getPackingSlipComment(),
             'ShippingSpeedCategory' => $shipping,
             'Items' => $items
         ];
 
-        if ($this->_helper->sendAmazonShipConfirmation($order->getStoreId())) {
+        if ($this->helper->sendAmazonShipConfirmation($order->getStoreId())) {
             $request['NotificationEmailList'] = ['member' => [$order->getCustomerEmail()]];
         }
 
-        $response = NULL;
+        $response = null;
 
         // Attempt to create fulfillment order via Amazon MCF API
         try {
             $response = $client->createFulfillmentOrder($request);
         } catch (\FBAOutboundServiceMWS_Exception $e) {
-            $this->_helper->logOrder($this->_getErrorDebugMessage($e));
-            $response = NULL;
-            $this->_notifierPool->addNotice('Amazon Multi-Channel Fulfillment', 'Unable to create a Fulfillment Order for order: '.$order->getIncrementId().'.');
+            $this->helper->logOrder($this->getErrorDebugMessage($e));
+            $response = null;
+            $this->notifierPool->addNotice(
+                'Amazon Multi-Channel Fulfillment',
+                'Unable to create a Fulfillment Order for order: ' . $order->getIncrementId() . '.'
+            );
         }
 
         return $response;
@@ -231,7 +241,8 @@ class Outbound extends MCFAbstract {
      *
      * @return null|mixed
      */
-    public function getFulfillmentOrder(\Magento\Sales\Model\Order $order) {
+    public function getFulfillmentOrder(\Magento\Sales\Model\Order $order)
+    {
 
         $client = $this->getClient();
 
@@ -245,10 +256,12 @@ class Outbound extends MCFAbstract {
         try {
             $response = $client->getFulfillmentOrder($request);
         } catch (\FBAOutboundServiceMWS_Exception $e) {
-            $this->_helper->logOrder($this->_getErrorDebugMessage($e));
-            $response = NULL;
-            $this->_notifierPool->addNotice('Amazon Multi-Channel Fulfillment', 'Unable to retrieve Amazon FBA data for order: '.$order->getIncrementId().'.');
-
+            $this->helper->logOrder($this->getErrorDebugMessage($e));
+            $response = null;
+            $this->notifierPool->addNotice(
+                'Amazon Multi-Channel Fulfillment',
+                'Unable to retrieve Amazon FBA data for order: ' . $order->getIncrementId() . '.'
+            );
         }
 
         return $response;
@@ -261,15 +274,16 @@ class Outbound extends MCFAbstract {
      *
      * @return null|mixed
      */
-    public function cancelFulfillmentOrder(\Magento\Sales\Model\Order $order) {
-        $response = NULL;
+    public function cancelFulfillmentOrder(\Magento\Sales\Model\Order $order)
+    {
+        $response = null;
 
         $client = $this->getClient();
 
         $id = $order->getIncrementId();
 
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'SellerFulfillmentOrderId' => $id
         ];
 
@@ -277,10 +291,12 @@ class Outbound extends MCFAbstract {
         try {
             $response = $client->getFulfillmentOrder($request);
         } catch (\FBAOutboundServiceMWS_Exception $e) {
-            $this->_helper->logOrder($this->_getErrorDebugMessage($e));
-            $response = NULL;
-            $this->_notifierPool->addNotice('Amazon Multi-Channel Fulfillment', 'Fulfillment Order for order: '.$order->getIncrementId().' does not exist.');
-
+            $this->helper->logOrder($this->getErrorDebugMessage($e));
+            $response = null;
+            $this->notifierPool->addNotice(
+                'Amazon Multi-Channel Fulfillment',
+                'Fulfillment Order for order: ' . $order->getIncrementId() . ' does not exist.'
+            );
         }
 
         // If it exists, cancel it.
@@ -289,10 +305,12 @@ class Outbound extends MCFAbstract {
             try {
                 $response = $client->cancelFulfillmentOrder($request);
             } catch (\FBAOutboundServiceMWS_Exception $e) {
-                $this->_helper->logOrder($this->_getErrorDebugMessage($e));
-                $response = NULL;
-                $this->_notifierPool->addNotice('Amazon Multi-Channel Fulfillment', 'Unable to cancel Fulfillment Order for order: '.$order->getIncrementId().'.');
-
+                $this->helper->logOrder($this->getErrorDebugMessage($e));
+                $response = null;
+                $this->notifierPool->addNotice(
+                    'Amazon Multi-Channel Fulfillment',
+                    'Unable to cancel Fulfillment Order for order: ' . $order->getIncrementId() . '.'
+                );
             }
         }
 
@@ -306,7 +324,8 @@ class Outbound extends MCFAbstract {
      *
      * @return string
      */
-    private function _getErrorDebugMessage(\FBAOutboundServiceMWS_Exception $e) {
+    private function getErrorDebugMessage(\FBAOutboundServiceMWS_Exception $e)
+    {
 
         $message = "Caught Exception: " . $e->getMessage() . ' ';
         $message .= "Response Status Code: " . $e->getStatusCode() . ' ';
@@ -317,5 +336,4 @@ class Outbound extends MCFAbstract {
 
         return $message;
     }
-
 }

@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_ListInventorySupplyResult extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_ListInventorySupplyResult extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'InventorySupplyList' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_InventorySupplyList'),
-    'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'InventorySupplyList' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_InventorySupplyList'),
+        'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MarketplaceId property.
      *
-     * @param string marketplaceId
+     * @param  string marketplaceId
      * @return this instance
      */
     public function setMarketplaceId($value)
@@ -79,7 +81,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplaceId()
     {
                 return !is_null($this->_fields['MarketplaceId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MarketplaceId, return this.
@@ -108,7 +110,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the InventorySupplyList property.
      *
-     * @param FBAInventoryServiceMWS_Model_InventorySupplyList inventorySupplyList
+     * @param  FBAInventoryServiceMWS_Model_InventorySupplyList inventorySupplyList
      * @return this instance
      */
     public function setInventorySupplyList($value)
@@ -125,7 +127,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetInventorySupplyList()
     {
                 return !is_null($this->_fields['InventorySupplyList']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of InventorySupplyList, return this.
@@ -154,7 +156,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the NextToken property.
      *
-     * @param string nextToken
+     * @param  string nextToken
      * @return this instance
      */
     public function setNextToken($value)
@@ -171,7 +173,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetNextToken()
     {
                 return !is_null($this->_fields['NextToken']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of NextToken, return this.

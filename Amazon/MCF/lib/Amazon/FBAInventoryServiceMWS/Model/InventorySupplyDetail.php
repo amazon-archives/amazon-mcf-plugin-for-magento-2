@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -38,17 +39,18 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_InventorySupplyDetail extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_InventorySupplyDetail extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'Quantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'SupplyType' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EarliestAvailableToPick' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
-    'LatestAvailableToPick' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'Quantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'SupplyType' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EarliestAvailableToPick' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
+        'LatestAvailableToPick' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -64,7 +66,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Quantity property.
      *
-     * @param int quantity
+     * @param  int quantity
      * @return this instance
      */
     public function setQuantity($value)
@@ -81,7 +83,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetQuantity()
     {
                 return !is_null($this->_fields['Quantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Quantity, return this.
@@ -110,7 +112,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SupplyType property.
      *
-     * @param string supplyType
+     * @param  string supplyType
      * @return this instance
      */
     public function setSupplyType($value)
@@ -127,7 +129,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetSupplyType()
     {
                 return !is_null($this->_fields['SupplyType']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SupplyType, return this.
@@ -156,7 +158,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EarliestAvailableToPick property.
      *
-     * @param FBAInventoryServiceMWS_Model_Timepoint earliestAvailableToPick
+     * @param  FBAInventoryServiceMWS_Model_Timepoint earliestAvailableToPick
      * @return this instance
      */
     public function setEarliestAvailableToPick($value)
@@ -173,7 +175,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetEarliestAvailableToPick()
     {
                 return !is_null($this->_fields['EarliestAvailableToPick']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EarliestAvailableToPick, return this.
@@ -202,7 +204,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the LatestAvailableToPick property.
      *
-     * @param FBAInventoryServiceMWS_Model_Timepoint latestAvailableToPick
+     * @param  FBAInventoryServiceMWS_Model_Timepoint latestAvailableToPick
      * @return this instance
      */
     public function setLatestAvailableToPick($value)
@@ -219,7 +221,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetLatestAvailableToPick()
     {
                 return !is_null($this->_fields['LatestAvailableToPick']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of LatestAvailableToPick, return this.

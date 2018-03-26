@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -11,7 +11,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 define(
@@ -22,30 +21,32 @@ define(
       'mage/translate'
     ],
     function ($, utils, validationRules, $t) {
-      'use strict';
-      var checkoutConfig = window.checkoutConfig;
+        'use strict';
+        var checkoutConfig = window.checkoutConfig;
 
-      return {
-        validationErrors: [],
-        validate: function (address) {
-          var rules = validationRules.getRules(),
-              self = this;
+        return {
+            validationErrors: [],
+            validate: function (address) {
+                var rules = validationRules.getRules(),
+                self = this;
 
-          $.each(rules, function (field, rule) {
-            if (rule.required && utils.isEmpty(address[field])) {
-              var message = $t('Field ') + field + $t(' is required.');
-              self.validationErrors.push(message);
+                $.each(
+                    rules, function (field, rule) {
+                        if (rule.required && utils.isEmpty(address[field])) {
+                            var message = $t('Field ') + field + $t(' is required.');
+                            self.validationErrors.push(message);
+                        }
+                    }
+                );
+
+                if (!Boolean(this.validationErrors.length)) {
+                    if (address.country_id == checkoutConfig.originCountryCode) {
+                        return !utils.isEmpty(address.postcode);
+                    }
+                    return true;
+                }
+                return false;
             }
-          });
-
-          if (!Boolean(this.validationErrors.length)) {
-            if (address.country_id == checkoutConfig.originCountryCode) {
-              return !utils.isEmpty(address.postcode);
-            }
-            return true;
-          }
-          return false;
-        }
-      };
+        };
     }
 );

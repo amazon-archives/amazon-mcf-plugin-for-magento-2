@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -35,14 +36,15 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_ResponseMetadata extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_ResponseMetadata extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'RequestId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'RequestId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -58,7 +60,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the RequestId property.
      *
-     * @param string requestId
+     * @param  string requestId
      * @return this instance
      */
     public function setRequestId($value)
@@ -75,7 +77,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetRequestId()
     {
                 return !is_null($this->_fields['RequestId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of RequestId, return this.

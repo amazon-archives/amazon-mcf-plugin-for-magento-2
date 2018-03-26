@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,7 +12,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Cron;
@@ -25,45 +24,47 @@ namespace Amazon\MCF\Cron;
  *
  * @package Amazon\MCF\Cron
  */
-class GetInventoryStatus {
+class GetInventoryStatus
+{
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_helper;
+    private $helper;
 
     /**
      * @var \Amazon\MCF\Helper\Conversion
      */
-    protected $_conversionHelper;
+    private $conversionHelper;
 
     /**
      * @var \Amazon\MCF\Model\Service\Inventory
      */
-    protected $_inventory;
+    private $inventory;
 
     /**
      * @var \Magento\Framework\Notification\NotifierPool
      */
-    protected $_notifierPool;
+    private $notifierPool;
 
     /**
      * GetInventoryStatus constructor.
      *
-     * @param \Amazon\MCF\Helper\Data $helper
-     * @param \Amazon\MCF\Helper\Conversion $conversionHelper
-     * @param \Amazon\MCF\Model\Service\Inventory $inventory
+     * @param \Amazon\MCF\Helper\Data                      $helper
+     * @param \Amazon\MCF\Helper\Conversion                $conversionHelper
+     * @param \Amazon\MCF\Model\Service\Inventory          $inventory
      * @param \Magento\Framework\Notification\NotifierPool $notifierPool
      */
     public function __construct(\Amazon\MCF\Helper\Data $helper,
-                                \Amazon\MCF\Helper\Conversion $conversionHelper,
-                                \Amazon\MCF\Model\Service\Inventory $inventory,
-                                \Magento\Framework\Notification\NotifierPool $notifierPool) {
+        \Amazon\MCF\Helper\Conversion $conversionHelper,
+        \Amazon\MCF\Model\Service\Inventory $inventory,
+        \Magento\Framework\Notification\NotifierPool $notifierPool
+    ) {
 
-        $this->_helper = $helper;
-        $this->_conversionHelper = $conversionHelper;
-        $this->_inventory = $inventory;
-        $this->_notifierPool = $notifierPool;
+        $this->helper = $helper;
+        $this->conversionHelper = $conversionHelper;
+        $this->inventory = $inventory;
+        $this->notifierPool = $notifierPool;
     }
 
     /**
@@ -72,17 +73,17 @@ class GetInventoryStatus {
      *
      * see crontab.xml for setup details
      */
-    public function cronCurrentInventoryStatus() {
+    public function cronCurrentInventoryStatus() 
+    {
 
         // check if next token exists before proceeding with regular call.
-        if ($this->_helper->getInventoryNextToken()) {
-            $response = $this->_inventory->getListInventorySupplyByNextToken($this->_helper->getInventoryNextToken());
-        }
-        else {
+        if ($this->helper->getInventoryNextToken()) {
+            $response = $this->inventory->getListInventorySupplyByNextToken($this->helper->getInventoryNextToken());
+        } else {
             // used -1 day since inventory changes are from given time to present,
             // current time would not return data.
             $startTime = gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", strtotime('-1 day'));
-            $response = $this->_inventory->getFulfillmentInventoryList([], $startTime);
+            $response = $this->inventory->getFulfillmentInventoryList([], $startTime);
         }
 
         if ($response) {
@@ -97,16 +98,14 @@ class GetInventoryStatus {
             $nextToken = $response->getListInventorySupplyResult()->getNextToken();
 
             if ($nextToken) {
-                $this->_helper->setInventoryNextToken($nextToken);
+                $this->helper->setInventoryNextToken($nextToken);
+            } else {
+                $this->helper->setInventoryNextToken('');
             }
-            else {
-                $this->_helper->setInventoryNextToken('');
-            }
-        }
-        else {
+        } else {
             // If no response, make sure next token is set to empty string for future calls.
             // It's possible call was made with invalid token
-            $this->_helper->setInventoryNextToken('');
+            $this->helper->setInventoryNextToken('');
         }
     }
 
@@ -116,10 +115,11 @@ class GetInventoryStatus {
      *
      * see crontab.xml for setup details
      */
-    public function cronFullInventoryStatus() {
+    public function cronFullInventoryStatus() 
+    {
 
-        $this->_helper->logInventory('cronFullInventoryStatus() status called');
-        if (!$this->_helper->getInventoryProcessStatus()) {
+        $this->helper->logInventory('cronFullInventoryStatus() status called');
+        if (!$this->helper->getInventoryProcessStatus()) {
             $skus = [];
             $skuData = $this->getAmazonFulfilledSkus();
 
@@ -128,14 +128,13 @@ class GetInventoryStatus {
                 foreach ($skuData as $entityId => $data) {
                     if (isset($data['alt_sku'])) {
                         $skus[] = $data['alt_sku'];
-                    }
-                    else {
+                    } else {
                         $skus[] = $data['sku'];
                     }
                 }
 
                 if ($skus) {
-                    $response = $this->_inventory->getFulfillmentInventoryList(['member' => $skus]);
+                    $response = $this->inventory->getFulfillmentInventoryList(['member' => $skus]);
 
                     if ($response) {
                         // if there is a list of updates to provided skus, process them.
@@ -147,11 +146,10 @@ class GetInventoryStatus {
                         }
                     }
                 }
-            }
-            else {
+            } else {
                 // turn off process and reset start row
-                $this->_helper->setInventoryProcessStatus(TRUE);
-                $this->_helper->setInventoryProcessRow(0);
+                $this->helper->setInventoryProcessStatus(true);
+                $this->helper->setInventoryProcessRow(0);
             }
         }
     }
@@ -163,7 +161,8 @@ class GetInventoryStatus {
      * @param $supplyList
      * @param $skuData
      */
-    protected function processSupplyListData($supplyList, $skuData) {
+    protected function processSupplyListData($supplyList, $skuData) 
+    {
         $skuQuantities = [];
         $updates = [];
 
@@ -192,16 +191,15 @@ class GetInventoryStatus {
                     'sku' => $data['sku'],
                 ];
                 // found a match in Magento so item is flagged accordingly.
-                $skuData[$entityId]['hasData'] = TRUE;
-            }
-            elseif (isset($data['alt_sku']) && isset($skuQuantities[$data['alt_sku']]) && $skuQuantities[$data['alt_sku']]) {
+                $skuData[$entityId]['hasData'] = true;
+            } elseif (isset($data['alt_sku']) && isset($skuQuantities[$data['alt_sku']]) && $skuQuantities[$data['alt_sku']]) {
                 // if returned data was keyed on the alternative manufacturer sku, need to relate the update to the Magento SKU
                 $updates[$entityId] = [
                     'qty' => $skuQuantities[$data['alt_sku']],
                     'sku' => $data['sku'],
                 ];
                 // found a match in Magento so item is flagged accordingly.
-                $skuData[$entityId]['hasData'] = TRUE;
+                $skuData[$entityId]['hasData'] = true;
             }
         }
 
@@ -211,20 +209,16 @@ class GetInventoryStatus {
             $stockRegistry = $objectManager->create('Magento\CatalogInventory\Api\StockRegistryInterface');
 
             foreach ($updates as $entityId => $stockValue) {
-
                 $stockItem = $stockRegistry->getStockItem($entityId);
                 $stockItem->setData('qty', $stockValue['qty']);
 
                 // make sure to set item in/out of stock if there is/isn't inventory. This will hide/show it on the front end
                 if ($stockValue['qty'] > 0) {
-                    $stockItem->setData('is_in_stock', TRUE);
+                    $stockItem->setData('is_in_stock', true);
+                } else {
+                    $stockItem->setData('is_in_stock', false);
                 }
-                else {
-                    $stockItem->setData('is_in_stock', FALSE);
-                }
-
                 $stockRegistry->updateStockItemBySku($stockValue['sku'], $stockItem);
-
             }
 
             // items that are not flagged as having inventory data will be added to a notification showing mismatches.
@@ -238,15 +232,15 @@ class GetInventoryStatus {
      *
      * @return array
      */
-    protected function getAmazonFulfilledSkus() {
-        $rowCount = $this->_helper->getInventoryRowCount();
-        $startRow = $this->_helper->getInventoryProcessRow();
+    protected function getAmazonFulfilledSkus() 
+    {
+        $rowCount = $this->helper->getInventoryRowCount();
+        $startRow = $this->helper->getInventoryProcessRow();
         $skus = [];
 
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
         $connection = $resource->getConnection();
-
 
         // Get 40 records at a time so that it falls within limit returned by Amazon MCF without paging.
         // Get all items that have amazon mcf related fields set
@@ -263,14 +257,16 @@ class GetInventoryStatus {
             []
         )->where(
             "ea.attribute_code = 'amazon_mcf_asin_enabled' AND ev.value = 1"
-        )->order('pe.entity_id ASC'
-        )->limit($rowCount, $startRow
+        )->order(
+            'pe.entity_id ASC'
+        )->limit(
+            $rowCount, $startRow
         );
 
         $result = $connection->fetchAll($select);
 
         foreach ($result as $row) {
-            $skus[$row['entity_id']] = ['sku' => $row['sku'], 'hasData' => FALSE];
+            $skus[$row['entity_id']] = ['sku' => $row['sku'], 'hasData' => false];
         }
 
         if ($skus) {
@@ -288,20 +284,21 @@ class GetInventoryStatus {
                 []
             )->where(
                 "ea.attribute_code = 'amazon_mcf_merchant_sku' AND ev.value != 1 AND ev.value IS NOT NULL"
-            )->order('pe.entity_id ASC'
-            )->limit($rowCount, $startRow
+            )->order(
+                'pe.entity_id ASC'
+            )->limit(
+                $rowCount, $startRow
             );
 
             $result = $connection->fetchAll($select);
 
             foreach ($result as $row) {
-
                 if ($row['value']) {
                     $skus[$row['entity_id']]['alt_sku'] = $row['value'];
                 }
             }
 
-            $this->_helper->setInventoryProcessRow($startRow + count($skus));
+            $this->helper->setInventoryProcessRow($startRow + count($skus));
         }
 
         return $skus;
@@ -313,14 +310,14 @@ class GetInventoryStatus {
      *
      * @param $supplyList
      */
-    protected function updateInventoryProcessStatus($supplyList) {
+    protected function updateInventoryProcessStatus($supplyList) 
+    {
         $skuQuantities = $this->getSkuQuantities($supplyList);
 
         if ($skuQuantities) {
             $matches = $this->getMagentoInventoryData($skuQuantities);
 
             if ($matches) {
-
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $stockRegistry = $objectManager->create('Magento\CatalogInventory\Api\StockRegistryInterface');
 
@@ -331,7 +328,7 @@ class GetInventoryStatus {
                 }
             }
 
-            $this->_createMissingInventoryNotifications($skuQuantities, $matches);
+            $this->createMissingInventoryNotifications($skuQuantities, $matches);
         }
     }
 
@@ -342,7 +339,8 @@ class GetInventoryStatus {
      *
      * @return array
      */
-    protected function getMagentoInventoryData($skuQuantities) {
+    protected function getMagentoInventoryData($skuQuantities) 
+    {
         $matches = [];
 
         $skus = [];
@@ -424,7 +422,8 @@ class GetInventoryStatus {
      *
      * @return array
      */
-    protected function getSkuQuantities($supplyList) {
+    protected function getSkuQuantities($supplyList) 
+    {
         $skuQuantities = [];
 
         foreach ($supplyList as $item) {
@@ -434,7 +433,6 @@ class GetInventoryStatus {
 
             $inStock = $item->getInStockSupplyQuantity();
             $skuQuantities[$sku] = $inStock;
-
         }
 
         return $skuQuantities;
@@ -447,7 +445,8 @@ class GetInventoryStatus {
      *
      * @param $skuData
      */
-    private function _createInventoryNotifications($skuData) {
+    private function _createInventoryNotifications($skuData) 
+    {
         $skus = [];
 
         foreach ($skuData as $entity_id => $data) {
@@ -455,27 +454,38 @@ class GetInventoryStatus {
             if (!$data['hasData']) {
                 if (isset($data['alt_sku'])) {
                     $skus[] = $data['alt_sku'];
-                }
-                else {
+                } else {
                     $skus[] = $data['sku'];
                 }
             }
         }
 
         if ($skus) {
-            $this->_notifierPool->addNotice('Amazon Fulfillment Inventory Status', 'The following SKUs have no associated Amazon Fulfillment data or no available inventory: ' . implode(', ', $skus) . '. The stock quantities for these SKUs has been set to 0. If this is incorrect, please disable Amazon Fulfillment for these products or ensure Amazon Merchant SKU is correct.');
-        }
-        else {
-            $this->_notifierPool->addNotice('Amazon Fulfillment Inventory Status', 'All products marked \'Fulfilled by Amazon\' have successfully had inventory updated. No missing or mismatched products found.');
-
+            $this->notifierPool->addNotice(
+                'Amazon Fulfillment Inventory Status', 
+                'The following SKUs have no associated Amazon Fulfillment data or no available inventory: ' 
+                . implode(', ', $skus) . '. The stock quantities for these SKUs has been set to 0. 
+                If this is incorrect, please disable Amazon Fulfillment for these products or ensure 
+                Amazon Merchant SKU is correct.'
+            );
+        } else {
+            $this->notifierPool->addNotice(
+                'Amazon Fulfillment Inventory Status', 
+                'All products marked \'Fulfilled by Amazon\' have successfully had inventory updated. 
+                No missing or mismatched products found.'
+            );
         }
     }
 
     /**
-     * Creates appropriate notification explaining that Amazon returned values for SKUs/Products that do not exist in Magento
+     * Creates appropriate notification explaining that Amazon returned values for SKUs/Products that do not 
+     * exist in Magento
+     *
+     * @param $skuQuantities
+     * @param $matches
      */
-    private function _createMissingInventoryNotifications($skuQuantities, $matches) {
-
+    private function createMissingInventoryNotifications($skuQuantities, $matches) 
+    {
         $updated = [];
         $skus = [];
 
@@ -490,8 +500,12 @@ class GetInventoryStatus {
         }
 
         if ($skus) {
-            $this->_notifierPool->addNotice('Amazon Fulfillment Inventory Status', 'The following SKUs have no associated Magento Product: ' . implode(', ', $skus) . '. Please create these products and assign the Amazon Sku to the Merchant Sku field and enable the product for Amazon Fulfillment.');
+            $this->notifierPool->addNotice(
+                'Amazon Fulfillment Inventory Status',
+                'The following SKUs have no associated Magento Product: ' . implode(', ', $skus)
+                . '. Please create these products and assign the Amazon Sku to the Merchant Sku field and enable 
+                the product for Amazon Fulfillment.'
+            );
         }
     }
-
 }

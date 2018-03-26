@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -46,25 +47,26 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsResult extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsResult extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'TrackingNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CarrierCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CarrierPhoneNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CarrierURL' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EstimatedArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ShipToAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingAddress'),
-    'CurrentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SignedForBy' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'AdditionalLocationInfo' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TrackingEvents' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingEventList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'TrackingNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'CarrierCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'CarrierPhoneNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'CarrierURL' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EstimatedArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ShipToAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingAddress'),
+        'CurrentStatus' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SignedForBy' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'AdditionalLocationInfo' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'TrackingEvents' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingEventList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -80,7 +82,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PackageNumber property.
      *
-     * @param int packageNumber
+     * @param  int packageNumber
      * @return this instance
      */
     public function setPackageNumber($value)
@@ -97,7 +99,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPackageNumber()
     {
                 return !is_null($this->_fields['PackageNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PackageNumber, return this.
@@ -126,7 +128,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the TrackingNumber property.
      *
-     * @param string trackingNumber
+     * @param  string trackingNumber
      * @return this instance
      */
     public function setTrackingNumber($value)
@@ -143,7 +145,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetTrackingNumber()
     {
                 return !is_null($this->_fields['TrackingNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of TrackingNumber, return this.
@@ -172,7 +174,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CarrierCode property.
      *
-     * @param string carrierCode
+     * @param  string carrierCode
      * @return this instance
      */
     public function setCarrierCode($value)
@@ -189,7 +191,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCarrierCode()
     {
                 return !is_null($this->_fields['CarrierCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CarrierCode, return this.
@@ -218,7 +220,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CarrierPhoneNumber property.
      *
-     * @param string carrierPhoneNumber
+     * @param  string carrierPhoneNumber
      * @return this instance
      */
     public function setCarrierPhoneNumber($value)
@@ -235,7 +237,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCarrierPhoneNumber()
     {
                 return !is_null($this->_fields['CarrierPhoneNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CarrierPhoneNumber, return this.
@@ -264,7 +266,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CarrierURL property.
      *
-     * @param string carrierURL
+     * @param  string carrierURL
      * @return this instance
      */
     public function setCarrierURL($value)
@@ -281,7 +283,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCarrierURL()
     {
                 return !is_null($this->_fields['CarrierURL']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CarrierURL, return this.
@@ -310,7 +312,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShipDate property.
      *
-     * @param string shipDate
+     * @param  string shipDate
      * @return this instance
      */
     public function setShipDate($value)
@@ -327,7 +329,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShipDate()
     {
                 return !is_null($this->_fields['ShipDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShipDate, return this.
@@ -356,7 +358,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedArrivalDate property.
      *
-     * @param string estimatedArrivalDate
+     * @param  string estimatedArrivalDate
      * @return this instance
      */
     public function setEstimatedArrivalDate($value)
@@ -373,7 +375,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedArrivalDate()
     {
                 return !is_null($this->_fields['EstimatedArrivalDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedArrivalDate, return this.
@@ -402,7 +404,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShipToAddress property.
      *
-     * @param FBAOutboundServiceMWS_Model_TrackingAddress shipToAddress
+     * @param  FBAOutboundServiceMWS_Model_TrackingAddress shipToAddress
      * @return this instance
      */
     public function setShipToAddress($value)
@@ -419,7 +421,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShipToAddress()
     {
                 return !is_null($this->_fields['ShipToAddress']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShipToAddress, return this.
@@ -448,7 +450,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CurrentStatus property.
      *
-     * @param string currentStatus
+     * @param  string currentStatus
      * @return this instance
      */
     public function setCurrentStatus($value)
@@ -465,7 +467,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCurrentStatus()
     {
                 return !is_null($this->_fields['CurrentStatus']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CurrentStatus, return this.
@@ -494,7 +496,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SignedForBy property.
      *
-     * @param string signedForBy
+     * @param  string signedForBy
      * @return this instance
      */
     public function setSignedForBy($value)
@@ -511,7 +513,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSignedForBy()
     {
                 return !is_null($this->_fields['SignedForBy']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SignedForBy, return this.
@@ -540,7 +542,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the AdditionalLocationInfo property.
      *
-     * @param string additionalLocationInfo
+     * @param  string additionalLocationInfo
      * @return this instance
      */
     public function setAdditionalLocationInfo($value)
@@ -557,7 +559,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAdditionalLocationInfo()
     {
                 return !is_null($this->_fields['AdditionalLocationInfo']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of AdditionalLocationInfo, return this.
@@ -586,7 +588,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the TrackingEvents property.
      *
-     * @param FBAOutboundServiceMWS_Model_TrackingEventList trackingEvents
+     * @param  FBAOutboundServiceMWS_Model_TrackingEventList trackingEvents
      * @return this instance
      */
     public function setTrackingEvents($value)
@@ -603,7 +605,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetTrackingEvents()
     {
                 return !is_null($this->_fields['TrackingEvents']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of TrackingEvents, return this.

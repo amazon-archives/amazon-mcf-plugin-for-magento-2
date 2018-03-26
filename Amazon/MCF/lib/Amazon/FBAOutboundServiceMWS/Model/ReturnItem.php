@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -45,24 +46,25 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_ReturnItem extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_ReturnItem extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerReturnItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'AmazonShipmentId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ReturnComment' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'AmazonReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'StatusChangedDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ReturnAuthorizationId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ReturnReceivedCondition' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerReturnItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'AmazonShipmentId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SellerReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ReturnComment' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'AmazonReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Status' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'StatusChangedDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ReturnAuthorizationId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ReturnReceivedCondition' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -78,7 +80,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerReturnItemId property.
      *
-     * @param string sellerReturnItemId
+     * @param  string sellerReturnItemId
      * @return this instance
      */
     public function setSellerReturnItemId($value)
@@ -95,7 +97,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerReturnItemId()
     {
                 return !is_null($this->_fields['SellerReturnItemId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerReturnItemId, return this.
@@ -124,7 +126,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerFulfillmentOrderItemId property.
      *
-     * @param string sellerFulfillmentOrderItemId
+     * @param  string sellerFulfillmentOrderItemId
      * @return this instance
      */
     public function setSellerFulfillmentOrderItemId($value)
@@ -141,7 +143,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerFulfillmentOrderItemId()
     {
                 return !is_null($this->_fields['SellerFulfillmentOrderItemId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerFulfillmentOrderItemId, return this.
@@ -170,7 +172,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the AmazonShipmentId property.
      *
-     * @param string amazonShipmentId
+     * @param  string amazonShipmentId
      * @return this instance
      */
     public function setAmazonShipmentId($value)
@@ -187,7 +189,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAmazonShipmentId()
     {
                 return !is_null($this->_fields['AmazonShipmentId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of AmazonShipmentId, return this.
@@ -216,7 +218,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerReturnReasonCode property.
      *
-     * @param string sellerReturnReasonCode
+     * @param  string sellerReturnReasonCode
      * @return this instance
      */
     public function setSellerReturnReasonCode($value)
@@ -233,7 +235,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerReturnReasonCode()
     {
                 return !is_null($this->_fields['SellerReturnReasonCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerReturnReasonCode, return this.
@@ -262,7 +264,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnComment property.
      *
-     * @param string returnComment
+     * @param  string returnComment
      * @return this instance
      */
     public function setReturnComment($value)
@@ -279,7 +281,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnComment()
     {
                 return !is_null($this->_fields['ReturnComment']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnComment, return this.
@@ -308,7 +310,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the AmazonReturnReasonCode property.
      *
-     * @param string amazonReturnReasonCode
+     * @param  string amazonReturnReasonCode
      * @return this instance
      */
     public function setAmazonReturnReasonCode($value)
@@ -325,7 +327,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAmazonReturnReasonCode()
     {
                 return !is_null($this->_fields['AmazonReturnReasonCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of AmazonReturnReasonCode, return this.
@@ -354,7 +356,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Status property.
      *
-     * @param string status
+     * @param  string status
      * @return this instance
      */
     public function setStatus($value)
@@ -371,7 +373,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetStatus()
     {
                 return !is_null($this->_fields['Status']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Status, return this.
@@ -400,7 +402,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the StatusChangedDate property.
      *
-     * @param string statusChangedDate
+     * @param  string statusChangedDate
      * @return this instance
      */
     public function setStatusChangedDate($value)
@@ -417,7 +419,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetStatusChangedDate()
     {
                 return !is_null($this->_fields['StatusChangedDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of StatusChangedDate, return this.
@@ -446,7 +448,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnAuthorizationId property.
      *
-     * @param string returnAuthorizationId
+     * @param  string returnAuthorizationId
      * @return this instance
      */
     public function setReturnAuthorizationId($value)
@@ -463,7 +465,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnAuthorizationId()
     {
                 return !is_null($this->_fields['ReturnAuthorizationId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnAuthorizationId, return this.
@@ -492,7 +494,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnReceivedCondition property.
      *
-     * @param string returnReceivedCondition
+     * @param  string returnReceivedCondition
      * @return this instance
      */
     public function setReturnReceivedCondition($value)
@@ -509,7 +511,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnReceivedCondition()
     {
                 return !is_null($this->_fields['ReturnReceivedCondition']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnReceivedCondition, return this.
@@ -538,7 +540,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentCenterId property.
      *
-     * @param string fulfillmentCenterId
+     * @param  string fulfillmentCenterId
      * @return this instance
      */
     public function setFulfillmentCenterId($value)
@@ -555,7 +557,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentCenterId()
     {
                 return !is_null($this->_fields['FulfillmentCenterId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentCenterId, return this.

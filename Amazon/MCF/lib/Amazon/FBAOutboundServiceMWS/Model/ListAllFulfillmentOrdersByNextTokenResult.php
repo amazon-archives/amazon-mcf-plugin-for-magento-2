@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -36,15 +37,16 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenResult extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenResult extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentOrders' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentOrderList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'NextToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentOrders' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentOrderList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -60,7 +62,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the NextToken property.
      *
-     * @param string nextToken
+     * @param  string nextToken
      * @return this instance
      */
     public function setNextToken($value)
@@ -77,7 +79,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetNextToken()
     {
                 return !is_null($this->_fields['NextToken']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of NextToken, return this.
@@ -106,7 +108,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentOrders property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentOrderList fulfillmentOrders
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentOrderList fulfillmentOrders
      * @return this instance
      */
     public function setFulfillmentOrders($value)
@@ -123,7 +125,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentOrders()
     {
                 return !is_null($this->_fields['FulfillmentOrders']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentOrders, return this.

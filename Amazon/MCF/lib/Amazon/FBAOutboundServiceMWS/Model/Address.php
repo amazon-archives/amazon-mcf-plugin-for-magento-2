@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -44,23 +45,24 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_Address extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_Address extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'Name' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Line1' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Line2' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Line3' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DistrictOrCounty' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'City' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'StateOrProvinceCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CountryCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'PostalCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'PhoneNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'Name' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Line1' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Line2' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Line3' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DistrictOrCounty' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'City' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'StateOrProvinceCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'CountryCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'PostalCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'PhoneNumber' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -76,7 +78,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Name property.
      *
-     * @param string name
+     * @param  string name
      * @return this instance
      */
     public function setName($value)
@@ -93,7 +95,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetName()
     {
                 return !is_null($this->_fields['Name']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Name, return this.
@@ -122,7 +124,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Line1 property.
      *
-     * @param string line1
+     * @param  string line1
      * @return this instance
      */
     public function setLine1($value)
@@ -139,7 +141,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetLine1()
     {
                 return !is_null($this->_fields['Line1']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Line1, return this.
@@ -168,7 +170,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Line2 property.
      *
-     * @param string line2
+     * @param  string line2
      * @return this instance
      */
     public function setLine2($value)
@@ -185,7 +187,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetLine2()
     {
                 return !is_null($this->_fields['Line2']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Line2, return this.
@@ -214,7 +216,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Line3 property.
      *
-     * @param string line3
+     * @param  string line3
      * @return this instance
      */
     public function setLine3($value)
@@ -231,7 +233,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetLine3()
     {
                 return !is_null($this->_fields['Line3']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Line3, return this.
@@ -260,7 +262,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DistrictOrCounty property.
      *
-     * @param string districtOrCounty
+     * @param  string districtOrCounty
      * @return this instance
      */
     public function setDistrictOrCounty($value)
@@ -277,7 +279,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDistrictOrCounty()
     {
                 return !is_null($this->_fields['DistrictOrCounty']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DistrictOrCounty, return this.
@@ -306,7 +308,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the City property.
      *
-     * @param string city
+     * @param  string city
      * @return this instance
      */
     public function setCity($value)
@@ -323,7 +325,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCity()
     {
                 return !is_null($this->_fields['City']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of City, return this.
@@ -352,7 +354,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the StateOrProvinceCode property.
      *
-     * @param string stateOrProvinceCode
+     * @param  string stateOrProvinceCode
      * @return this instance
      */
     public function setStateOrProvinceCode($value)
@@ -369,7 +371,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetStateOrProvinceCode()
     {
                 return !is_null($this->_fields['StateOrProvinceCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of StateOrProvinceCode, return this.
@@ -398,7 +400,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CountryCode property.
      *
-     * @param string countryCode
+     * @param  string countryCode
      * @return this instance
      */
     public function setCountryCode($value)
@@ -415,7 +417,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCountryCode()
     {
                 return !is_null($this->_fields['CountryCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CountryCode, return this.
@@ -444,7 +446,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PostalCode property.
      *
-     * @param string postalCode
+     * @param  string postalCode
      * @return this instance
      */
     public function setPostalCode($value)
@@ -461,7 +463,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPostalCode()
     {
                 return !is_null($this->_fields['PostalCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PostalCode, return this.
@@ -490,7 +492,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PhoneNumber property.
      *
-     * @param string phoneNumber
+     * @param  string phoneNumber
      * @return this instance
      */
     public function setPhoneNumber($value)
@@ -507,7 +509,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPhoneNumber()
     {
                 return !is_null($this->_fields['PhoneNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PhoneNumber, return this.

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,7 +12,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Model\Service;
@@ -27,7 +26,8 @@ use Amazon\MCF\Helper\Data;
  * @package Amazon\MCF\Model\Service
  */
 
-class Inventory extends MCFAbstract {
+class Inventory extends MCFAbstract
+{
 
     const SERVICE_NAME = '/FulfillmentInventory/';
 
@@ -36,22 +36,24 @@ class Inventory extends MCFAbstract {
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_helper;
+    protected $helper;
 
     /**
      * Outbound constructor.
      *
      * @param \Amazon\MCF\Helper\Data $helper
-     * @param \Amazon\MCF\Helper\Conversion $conversionHelper
      */
-    public function __construct(Data $helper) {
+    public function __construct(Data $helper)
+    {
         parent::__construct($helper);
+        $this->helper = $helper;
 
-        $this->_helper = $helper;
-
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Exception.php');
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Client.php');
-        require_once($this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon' . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Mock.php');
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Exception.php';
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Client.php';
+        include_once $this->getModulePath() . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Amazon'
+            . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Mock.php';
     }
 
 
@@ -62,12 +64,13 @@ class Inventory extends MCFAbstract {
      *
      * @return mixed
      */
-    public function getFulfillmentInventoryList($sellerSKUs = [], $startTime = '') {
+    public function getFulfillmentInventoryList($sellerSKUs = [], $startTime = '')
+    {
 
         $client = $this->getClient();
 
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'SellerSkus' => $sellerSKUs
         ];
 
@@ -78,8 +81,8 @@ class Inventory extends MCFAbstract {
         try {
             $inventory = $client->listInventorySupply($request);
         } catch (\FBAInventoryServiceMWS_Exception $e) {
-            $this->_helper->logInventory($this->_getErrorDebugMessage($e));
-            $inventory = NULL;
+            $this->helper->logInventory($this->getErrorDebugMessage($e));
+            $inventory = null;
         }
 
         return $inventory;
@@ -90,7 +93,8 @@ class Inventory extends MCFAbstract {
      *
      * @return mixed
      */
-    public function checkCredentials() {
+    public function checkCredentials()
+    {
 
         $result = ['result' => 'success'];
 
@@ -100,15 +104,18 @@ class Inventory extends MCFAbstract {
         $startTime = gmdate("Y-m-d\TH:i:s.\\0\\0\\0\\Z", strtotime('-1 day'));
 
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'QueryStartDateTime' => $startTime
         ];
 
         try {
             $data = $client->listInventorySupply($request);
         } catch (\FBAInventoryServiceMWS_Exception $e) {
-            $this->_helper->logInventory($this->_getErrorDebugMessage($e));
-            $message = __('Your Amazon MWS API developer credentials are not valid. Please verify keys were entered correctly, and check user guide for more details on obtaining keys.');
+            $this->helper->logInventory($this->getErrorDebugMessage($e));
+            $message = __(
+                'Your Amazon MWS API developer credentials are not valid. Please verify keys were entered correctly, 
+                and check user guide for more details on obtaining keys.'
+            );
             $result['result'] = 'fail';
         }
 
@@ -124,20 +131,21 @@ class Inventory extends MCFAbstract {
      *
      * @return null
      */
-    public function getListInventorySupplyByNextToken($nextToken) {
+    public function getListInventorySupplyByNextToken($nextToken)
+    {
 
         $client = $this->getClient();
 
         $request = [
-            'SellerId' => $this->_helper->getSellerId(),
+            'SellerId' => $this->helper->getSellerId(),
             'NextToken' => $nextToken,
         ];
 
         try {
             $inventory = $client->listInventorySupplyByNextToken($request);
         } catch (\FBAInventoryServiceMWS_Exception $e) {
-            $this->_helper->logInventory($this->_getErrorDebugMessage($e));
-            $inventory = NULL;
+            $this->helper->logInventory($this->getErrorDebugMessage($e));
+            $inventory = null;
         }
 
         return $inventory;
@@ -150,7 +158,8 @@ class Inventory extends MCFAbstract {
      *
      * @return string
      */
-    private function _getErrorDebugMessage(\FBAInventoryServiceMWS_Exception $e) {
+    private function getErrorDebugMessage(\FBAInventoryServiceMWS_Exception $e)
+    {
 
         $message = "Caught Exception: " . $e->getMessage() . ' ';
         $message .= "Response Status Code: " . $e->getStatusCode() . ' ';

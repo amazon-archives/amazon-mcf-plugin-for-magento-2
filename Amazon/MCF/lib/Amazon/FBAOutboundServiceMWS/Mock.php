@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,9 +19,9 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Interface
+ * @see FBAOutboundServiceMWS_Interface
  */
-require_once(dirname(__FILE__) . '/Interface.php');
+require_once dirname(__FILE__) . '/Interface.php';
 
 class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
 {
@@ -33,15 +34,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   items that haven't already shipped, but cannot guarantee success.
      *   Note: Items that have already shipped cannot be cancelled.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CancelFulfillmentOrder request or FBAOutboundServiceMWS_Model_CancelFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_CancelFulfillmentOrder
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CancelFulfillmentOrder request or FBAOutboundServiceMWS_Model_CancelFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_CancelFulfillmentOrder
      * @return FBAOutboundServiceMWS_Model_CancelFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function cancelFulfillmentOrder($request)
     {
-        require_once(dirname(__FILE__) . '/Model/CancelFulfillmentOrderResponse.php');
+        include_once dirname(__FILE__) . '/Model/CancelFulfillmentOrderResponse.php';
         return FBAOutboundServiceMWS_Model_CancelFulfillmentOrderResponse::fromXML($this->_invoke('CancelFulfillmentOrder'));
     }
 
@@ -98,15 +99,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   e-mails are customer-facing e-mails sent by FBA on behalf of 
      *   the seller.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentOrder request or FBAOutboundServiceMWS_Model_CreateFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_CreateFulfillmentOrder
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentOrder request or FBAOutboundServiceMWS_Model_CreateFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_CreateFulfillmentOrder
      * @return FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function createFulfillmentOrder($request)
     {
-        require_once(dirname(__FILE__) . '/Model/CreateFulfillmentOrderResponse.php');
+        include_once dirname(__FILE__) . '/Model/CreateFulfillmentOrderResponse.php';
         return FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse::fromXML($this->_invoke('CreateFulfillmentOrder'));
     }
 
@@ -123,15 +124,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   the items are invalid for a return, ReturnItemList will be empty. 
      *   If all the items are invalid for a return, ReturnItemList will be empty.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentReturn request or FBAOutboundServiceMWS_Model_CreateFulfillmentReturn object itself
-     * @see FBAOutboundServiceMWS_Model_CreateFulfillmentReturn
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentReturn request or FBAOutboundServiceMWS_Model_CreateFulfillmentReturn object itself
+     * @see    FBAOutboundServiceMWS_Model_CreateFulfillmentReturn
      * @return FBAOutboundServiceMWS_Model_CreateFulfillmentReturnResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function createFulfillmentReturn($request)
     {
-        require_once(dirname(__FILE__) . '/Model/CreateFulfillmentReturnResponse.php');
+        include_once dirname(__FILE__) . '/Model/CreateFulfillmentReturnResponse.php';
         return FBAOutboundServiceMWS_Model_CreateFulfillmentReturnResponse::fromXML($this->_invoke('CreateFulfillmentReturn'));
     }
 
@@ -142,15 +143,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   items in Amazon's fulfillment network, and the shipments that have been
      *   generated to fulfill the order.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentOrder request or FBAOutboundServiceMWS_Model_GetFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_GetFulfillmentOrder
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentOrder request or FBAOutboundServiceMWS_Model_GetFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_GetFulfillmentOrder
      * @return FBAOutboundServiceMWS_Model_GetFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function getFulfillmentOrder($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetFulfillmentOrderResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetFulfillmentOrderResponse.php';
         return FBAOutboundServiceMWS_Model_GetFulfillmentOrderResponse::fromXML($this->_invoke('GetFulfillmentOrder'));
     }
 
@@ -167,15 +168,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   The service will return the fulfillment estimates for a set of Seller 
      *   SKUs and quantities.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentPreview request or FBAOutboundServiceMWS_Model_GetFulfillmentPreview object itself
-     * @see FBAOutboundServiceMWS_Model_GetFulfillmentPreview
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentPreview request or FBAOutboundServiceMWS_Model_GetFulfillmentPreview object itself
+     * @see    FBAOutboundServiceMWS_Model_GetFulfillmentPreview
      * @return FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function getFulfillmentPreview($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetFulfillmentPreviewResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetFulfillmentPreviewResponse.php';
         return FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse::fromXML($this->_invoke('GetFulfillmentPreview'));
     }
 
@@ -183,15 +184,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      * Get Package Tracking Details
      * Gets the tracking details for a shipment package.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetPackageTrackingDetails request or FBAOutboundServiceMWS_Model_GetPackageTrackingDetails object itself
-     * @see FBAOutboundServiceMWS_Model_GetPackageTrackingDetails
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetPackageTrackingDetails request or FBAOutboundServiceMWS_Model_GetPackageTrackingDetails object itself
+     * @see    FBAOutboundServiceMWS_Model_GetPackageTrackingDetails
      * @return FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function getPackageTrackingDetails($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetPackageTrackingDetailsResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetPackageTrackingDetailsResponse.php';
         return FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsResponse::fromXML($this->_invoke('GetPackageTrackingDetails'));
     }
 
@@ -202,15 +203,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   GREEN: The service section is operating normally.
      *   RED: The service section disruption.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetServiceStatus request or FBAOutboundServiceMWS_Model_GetServiceStatus object itself
-     * @see FBAOutboundServiceMWS_Model_GetServiceStatus
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetServiceStatus request or FBAOutboundServiceMWS_Model_GetServiceStatus object itself
+     * @see    FBAOutboundServiceMWS_Model_GetServiceStatus
      * @return FBAOutboundServiceMWS_Model_GetServiceStatusResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function getServiceStatus($request)
     {
-        require_once(dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetServiceStatusResponse.php';
         return FBAOutboundServiceMWS_Model_GetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
     }
 
@@ -228,15 +229,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   currently being fulfilled, and all orders that were being fulfilled
      *   since that date and time.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders object itself
-     * @see FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders object itself
+     * @see    FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders
      * @return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function listAllFulfillmentOrders($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListAllFulfillmentOrdersResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListAllFulfillmentOrdersResponse.php';
         return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersResponse::fromXML($this->_invoke('ListAllFulfillmentOrders'));
     }
 
@@ -248,15 +249,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      * 
      *   If a NextToken is not returned, it indicates the end-of-data.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken object itself
-     * @see FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken object itself
+     * @see    FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken
      * @return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function listAllFulfillmentOrdersByNextToken($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListAllFulfillmentOrdersByNextTokenResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListAllFulfillmentOrdersByNextTokenResponse.php';
         return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenResponse::fromXML($this->_invoke('ListAllFulfillmentOrdersByNextToken'));
     }
 
@@ -266,15 +267,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   a given SKU and original ordering country. The eligible return reasons 
      *   may vary from country to country.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListReturnReasonCodes request or FBAOutboundServiceMWS_Model_ListReturnReasonCodes object itself
-     * @see FBAOutboundServiceMWS_Model_ListReturnReasonCodes
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListReturnReasonCodes request or FBAOutboundServiceMWS_Model_ListReturnReasonCodes object itself
+     * @see    FBAOutboundServiceMWS_Model_ListReturnReasonCodes
      * @return FBAOutboundServiceMWS_Model_ListReturnReasonCodesResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function listReturnReasonCodes($request)
     {
-        require_once(dirname(__FILE__) . '/Model/ListReturnReasonCodesResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListReturnReasonCodesResponse.php';
         return FBAOutboundServiceMWS_Model_ListReturnReasonCodesResponse::fromXML($this->_invoke('ListReturnReasonCodes'));
     }
 
@@ -325,15 +326,15 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
      *   e-mails are customer-facing e-mails sent by FBA on behalf of 
      *   the seller.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder request or FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder request or FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder
      * @return FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
      */
     public function updateFulfillmentOrder($request)
     {
-        require_once(dirname(__FILE__) . '/Model/UpdateFulfillmentOrderResponse.php');
+        include_once dirname(__FILE__) . '/Model/UpdateFulfillmentOrderResponse.php';
         return FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderResponse::fromXML($this->_invoke('UpdateFulfillmentOrder'));
     }
 
@@ -341,7 +342,12 @@ class FBAOutboundServiceMWS_Mock implements FBAOutboundServiceMWS_Interface
 
     private function _invoke($actionName)
     {
-        return $xml = file_get_contents(dirname(__FILE__) . '/Mock/' . $actionName . 'Response.xml', /** search include path */ TRUE);
+        return $xml = file_get_contents(
+            dirname(__FILE__) . '/Mock/' . $actionName . 'Response.xml', /**
+            * 
+            * search include path 
+            */ true
+        );
     }
 
 }

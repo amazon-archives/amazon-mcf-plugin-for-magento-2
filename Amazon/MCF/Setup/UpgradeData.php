@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,7 +12,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Setup;
@@ -35,7 +34,7 @@ class UpgradeData implements UpgradeDataInterface
     /**
      * @var SalesSetupFactory
      */
-    protected $_salesSetupFactory;
+    private $salesSetupFactory;
 
     /**
      * UpgradeData constructor.
@@ -45,18 +44,23 @@ class UpgradeData implements UpgradeDataInterface
     public function __construct(
         SalesSetupFactory $salesSetupFactory
     ) {
-        $this->_salesSetupFactory = $salesSetupFactory;
+        $this->salesSetupFactory = $salesSetupFactory;
     }
 
     /**
-     * @param \Magento\Framework\Setup\ModuleDataSetupInterface $setup
-     * @param \Magento\Framework\Setup\ModuleContextInterface $context
+     * @inheritdoc
      */
-    public function upgrade(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
-    {
+    public function upgrade(
+        ModuleDataSetupInterface $setup,
+        ModuleContextInterface $context
+    ) {
 
-        /** @var \Magento\Sales\Setup\SalesSetup $salesInstaller */
-        $salesInstaller = $this->_salesSetupFactory->create(['resourceName' => 'sales_setup', 'setup' => $setup]);
+        /**
+* 
+         *
+ * @var \Magento\Sales\Setup\SalesSetup $salesInstaller 
+*/
+        $salesInstaller = $this->salesSetupFactory->create(['resourceName' => 'sales_setup', 'setup' => $setup]);
 
         $setup->startSetup();
 
@@ -68,11 +72,18 @@ class UpgradeData implements UpgradeDataInterface
         ];
 
         foreach ($entityAttributesCodes as $code => $type) {
-            $salesInstaller->addAttribute('order', $code, ['type' => $type, 'length'=> 255, 'visible' => true,'nullable' => true,]);
-            $salesInstaller->addAttribute('invoice', $code, ['type' => $type, 'length'=> 255, 'visible' => true,'nullable' => true,]);
+            $salesInstaller->addAttribute(
+                'order',
+                $code,
+                ['type' => $type, 'length'=> 255, 'visible' => true,'nullable' => true]
+            );
+            $salesInstaller->addAttribute(
+                'invoice',
+                $code,
+                ['type' => $type, 'length'=> 255, 'visible' => true,'nullable' => true]
+            );
         }
 
         $setup->endSetup();
     }
-
 }

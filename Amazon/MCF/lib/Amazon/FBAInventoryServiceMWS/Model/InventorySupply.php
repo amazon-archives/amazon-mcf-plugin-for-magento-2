@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -42,21 +43,22 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_InventorySupply extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_InventorySupply extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FNSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ASIN' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Condition' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TotalSupplyQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'InStockSupplyQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'EarliestAvailability' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
-    'SupplyDetail' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_InventorySupplyDetailList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FNSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ASIN' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Condition' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'TotalSupplyQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'InStockSupplyQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'EarliestAvailability' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_Timepoint'),
+        'SupplyDetail' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_InventorySupplyDetailList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -72,7 +74,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerSKU property.
      *
-     * @param string sellerSKU
+     * @param  string sellerSKU
      * @return this instance
      */
     public function setSellerSKU($value)
@@ -89,7 +91,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetSellerSKU()
     {
                 return !is_null($this->_fields['SellerSKU']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerSKU, return this.
@@ -118,7 +120,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FNSKU property.
      *
-     * @param string fnsku
+     * @param  string fnsku
      * @return this instance
      */
     public function setFNSKU($value)
@@ -135,7 +137,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetFNSKU()
     {
                 return !is_null($this->_fields['FNSKU']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FNSKU, return this.
@@ -164,7 +166,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ASIN property.
      *
-     * @param string asin
+     * @param  string asin
      * @return this instance
      */
     public function setASIN($value)
@@ -181,7 +183,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetASIN()
     {
                 return !is_null($this->_fields['ASIN']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ASIN, return this.
@@ -210,7 +212,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Condition property.
      *
-     * @param string condition
+     * @param  string condition
      * @return this instance
      */
     public function setCondition($value)
@@ -227,7 +229,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetCondition()
     {
                 return !is_null($this->_fields['Condition']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Condition, return this.
@@ -256,7 +258,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the TotalSupplyQuantity property.
      *
-     * @param int totalSupplyQuantity
+     * @param  int totalSupplyQuantity
      * @return this instance
      */
     public function setTotalSupplyQuantity($value)
@@ -273,7 +275,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetTotalSupplyQuantity()
     {
                 return !is_null($this->_fields['TotalSupplyQuantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of TotalSupplyQuantity, return this.
@@ -302,7 +304,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the InStockSupplyQuantity property.
      *
-     * @param int inStockSupplyQuantity
+     * @param  int inStockSupplyQuantity
      * @return this instance
      */
     public function setInStockSupplyQuantity($value)
@@ -319,7 +321,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetInStockSupplyQuantity()
     {
                 return !is_null($this->_fields['InStockSupplyQuantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of InStockSupplyQuantity, return this.
@@ -348,7 +350,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EarliestAvailability property.
      *
-     * @param FBAInventoryServiceMWS_Model_Timepoint earliestAvailability
+     * @param  FBAInventoryServiceMWS_Model_Timepoint earliestAvailability
      * @return this instance
      */
     public function setEarliestAvailability($value)
@@ -365,7 +367,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetEarliestAvailability()
     {
                 return !is_null($this->_fields['EarliestAvailability']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EarliestAvailability, return this.
@@ -394,7 +396,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SupplyDetail property.
      *
-     * @param FBAInventoryServiceMWS_Model_InventorySupplyDetailList supplyDetail
+     * @param  FBAInventoryServiceMWS_Model_InventorySupplyDetailList supplyDetail
      * @return this instance
      */
     public function setSupplyDetail($value)
@@ -411,7 +413,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetSupplyDetail()
     {
                 return !is_null($this->_fields['SupplyDetail']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SupplyDetail, return this.

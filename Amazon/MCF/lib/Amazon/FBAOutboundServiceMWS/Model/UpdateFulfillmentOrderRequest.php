@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -50,29 +51,30 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderRequest extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderRequest extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Marketplace' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerFulfillmentOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DisplayableOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DisplayableOrderDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DisplayableOrderComment' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ShippingSpeedCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DestinationAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
-    'FulfillmentAction' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentPolicy' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ShipFromCountryCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'NotificationEmailList' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_NotificationEmailList'),
-    'Items' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderItemList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Marketplace' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SellerFulfillmentOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DisplayableOrderId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DisplayableOrderDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DisplayableOrderComment' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ShippingSpeedCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DestinationAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
+        'FulfillmentAction' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentPolicy' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentMethod' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ShipFromCountryCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'NotificationEmailList' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_NotificationEmailList'),
+        'Items' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderItemList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -88,7 +90,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerId property.
      *
-     * @param string sellerId
+     * @param  string sellerId
      * @return this instance
      */
     public function setSellerId($value)
@@ -105,7 +107,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerId()
     {
                 return !is_null($this->_fields['SellerId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerId, return this.
@@ -134,7 +136,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MWSAuthToken property.
      *
-     * @param string mwsAuthToken
+     * @param  string mwsAuthToken
      * @return this instance
      */
     public function setMWSAuthToken($value)
@@ -151,7 +153,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMWSAuthToken()
     {
                 return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MWSAuthToken, return this.
@@ -180,7 +182,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Marketplace property.
      *
-     * @param string marketplace
+     * @param  string marketplace
      * @return this instance
      */
     public function setMarketplace($value)
@@ -197,7 +199,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplace()
     {
                 return !is_null($this->_fields['Marketplace']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Marketplace, return this.
@@ -226,7 +228,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MarketplaceId property.
      *
-     * @param string marketplaceId
+     * @param  string marketplaceId
      * @return this instance
      */
     public function setMarketplaceId($value)
@@ -243,7 +245,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplaceId()
     {
                 return !is_null($this->_fields['MarketplaceId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MarketplaceId, return this.
@@ -272,7 +274,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerFulfillmentOrderId property.
      *
-     * @param string sellerFulfillmentOrderId
+     * @param  string sellerFulfillmentOrderId
      * @return this instance
      */
     public function setSellerFulfillmentOrderId($value)
@@ -289,7 +291,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerFulfillmentOrderId()
     {
                 return !is_null($this->_fields['SellerFulfillmentOrderId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerFulfillmentOrderId, return this.
@@ -318,7 +320,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DisplayableOrderId property.
      *
-     * @param string displayableOrderId
+     * @param  string displayableOrderId
      * @return this instance
      */
     public function setDisplayableOrderId($value)
@@ -335,7 +337,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDisplayableOrderId()
     {
                 return !is_null($this->_fields['DisplayableOrderId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DisplayableOrderId, return this.
@@ -364,7 +366,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DisplayableOrderDateTime property.
      *
-     * @param string displayableOrderDateTime
+     * @param  string displayableOrderDateTime
      * @return this instance
      */
     public function setDisplayableOrderDateTime($value)
@@ -381,7 +383,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDisplayableOrderDateTime()
     {
                 return !is_null($this->_fields['DisplayableOrderDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DisplayableOrderDateTime, return this.
@@ -410,7 +412,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DisplayableOrderComment property.
      *
-     * @param string displayableOrderComment
+     * @param  string displayableOrderComment
      * @return this instance
      */
     public function setDisplayableOrderComment($value)
@@ -427,7 +429,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDisplayableOrderComment()
     {
                 return !is_null($this->_fields['DisplayableOrderComment']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DisplayableOrderComment, return this.
@@ -456,7 +458,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShippingSpeedCategory property.
      *
-     * @param string shippingSpeedCategory
+     * @param  string shippingSpeedCategory
      * @return this instance
      */
     public function setShippingSpeedCategory($value)
@@ -473,7 +475,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShippingSpeedCategory()
     {
                 return !is_null($this->_fields['ShippingSpeedCategory']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShippingSpeedCategory, return this.
@@ -502,7 +504,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DestinationAddress property.
      *
-     * @param FBAOutboundServiceMWS_Model_Address destinationAddress
+     * @param  FBAOutboundServiceMWS_Model_Address destinationAddress
      * @return this instance
      */
     public function setDestinationAddress($value)
@@ -519,7 +521,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDestinationAddress()
     {
                 return !is_null($this->_fields['DestinationAddress']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DestinationAddress, return this.
@@ -548,7 +550,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentAction property.
      *
-     * @param string fulfillmentAction
+     * @param  string fulfillmentAction
      * @return this instance
      */
     public function setFulfillmentAction($value)
@@ -565,7 +567,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentAction()
     {
                 return !is_null($this->_fields['FulfillmentAction']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentAction, return this.
@@ -594,7 +596,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentPolicy property.
      *
-     * @param string fulfillmentPolicy
+     * @param  string fulfillmentPolicy
      * @return this instance
      */
     public function setFulfillmentPolicy($value)
@@ -611,7 +613,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentPolicy()
     {
                 return !is_null($this->_fields['FulfillmentPolicy']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentPolicy, return this.
@@ -640,7 +642,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentMethod property.
      *
-     * @param string fulfillmentMethod
+     * @param  string fulfillmentMethod
      * @return this instance
      */
     public function setFulfillmentMethod($value)
@@ -657,7 +659,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentMethod()
     {
                 return !is_null($this->_fields['FulfillmentMethod']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentMethod, return this.
@@ -686,7 +688,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShipFromCountryCode property.
      *
-     * @param string shipFromCountryCode
+     * @param  string shipFromCountryCode
      * @return this instance
      */
     public function setShipFromCountryCode($value)
@@ -703,7 +705,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShipFromCountryCode()
     {
                 return !is_null($this->_fields['ShipFromCountryCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShipFromCountryCode, return this.
@@ -732,7 +734,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the NotificationEmailList property.
      *
-     * @param FBAOutboundServiceMWS_Model_NotificationEmailList notificationEmailList
+     * @param  FBAOutboundServiceMWS_Model_NotificationEmailList notificationEmailList
      * @return this instance
      */
     public function setNotificationEmailList($value)
@@ -749,7 +751,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetNotificationEmailList()
     {
                 return !is_null($this->_fields['NotificationEmailList']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of NotificationEmailList, return this.
@@ -778,7 +780,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Items property.
      *
-     * @param FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderItemList items
+     * @param  FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderItemList items
      * @return this instance
      */
     public function setItems($value)
@@ -795,7 +797,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetItems()
     {
                 return !is_null($this->_fields['Items']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Items, return this.

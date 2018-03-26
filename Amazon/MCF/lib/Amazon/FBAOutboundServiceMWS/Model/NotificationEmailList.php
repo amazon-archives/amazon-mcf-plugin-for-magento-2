@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -35,14 +36,15 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_NotificationEmailList extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_NotificationEmailList extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'member' => array('FieldValue' => array(), 'FieldType' => array('string')),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'member' => array('FieldValue' => array(), 'FieldType' => array('string')),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -52,8 +54,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
      */
     public function getmember()
     {
-        if ($this->_fields['member']['FieldValue'] == null)
-        {
+        if ($this->_fields['member']['FieldValue'] == null) {
             $this->_fields['member']['FieldValue'] = array();
         }
         return $this->_fields['member']['FieldValue'];
@@ -62,7 +63,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the member property.
      *
-     * @param array member
+     * @param  array member
      * @return this instance
      */
     public function setmember($value)
@@ -90,7 +91,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetmember()
     {
                 return !empty($this->_fields['member']['FieldValue']);
-            }
+    }
 
     /**
      * Add values for member, return this.

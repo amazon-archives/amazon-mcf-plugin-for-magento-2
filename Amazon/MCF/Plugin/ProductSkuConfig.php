@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,53 +12,59 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 namespace Amazon\MCF\Plugin;
 
-
-class ProductSkuConfig {
+/**
+ * Class ProductSkuConfig
+ *
+ * @package Amazon\MCF\Plugin
+ */
+class ProductSkuConfig
+{
 
     /**
      * @var \Amazon\MCF\Model\Service\Inventory
      */
-    protected $_inventory;
+    private $inventory;
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_configHelper;
+    private $configHelper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
-    protected $_messageManager;
+    private $messageManager;
 
     /**
      * @var \Magento\CatalogInventory\Api\StockRegistryInterface
      */
-    protected $_stockRegistry;
+    private $stockRegistry;
 
     /**
      * ConfigPlugin constructor.
      *
-     * @param \Amazon\MCF\Model\Service\Inventory $inventory
-     * @param \Amazon\MCF\Helper\Data $data
+     * @param \Amazon\MCF\Model\Service\Inventory         $inventory
+     * @param \Amazon\MCF\Helper\Data                     $data
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         \Amazon\MCF\Model\Service\Inventory $inventory,
         \Amazon\MCF\Helper\Data $data,
         \Magento\CatalogInventory\Api\StockRegistryInterface $stockRegistry,
-        \Magento\Framework\Message\ManagerInterface $messageManager) {
+        \Magento\Framework\Message\ManagerInterface $messageManager
+    ) {
 
-        $this->_stockRegistry = $stockRegistry;
-        $this->_configHelper = $data;
-        $this->_messageManager = $messageManager;
-        $this->_inventory = $inventory;
+        $this->stockRegistry = $stockRegistry;
+        $this->configHelper = $data;
+        $this->messageManager = $messageManager;
+        $this->inventory = $inventory;
     }
 
-    public function afterSave(\Magento\Catalog\Model\Product $product) {
+    public function afterSave(\Magento\Catalog\Model\Product $product) 
+    {
         $skus = [];
 
         if ($product && $product->getAmazonMcfAsinEnabled()) {
@@ -70,8 +76,8 @@ class ProductSkuConfig {
             }
 
             if ($skus) {
-                $exists = FALSE;
-                $response = $this->_inventory->getFulfillmentInventoryList(['member' => $skus]);
+                $exists = false;
+                $response = $this->inventory->getFulfillmentInventoryList(['member' => $skus]);
 
                 if ($response) {
                     $supplyList = $response->getListInventorySupplyResult()
@@ -85,7 +91,7 @@ class ProductSkuConfig {
                         foreach ($supplyList as $item) {
 
                             if ($item->getASIN()) {
-                                $exists = TRUE;
+                                $exists = true;
                             }
 
                             $quantities += $item->getInStockSupplyQuantity();
@@ -94,23 +100,28 @@ class ProductSkuConfig {
                 }
 
                 if ($exists) {
-                    $stockItem = $this->_stockRegistry->getStockItem($product->getId());
+                    $stockItem = $this->stockRegistry->getStockItem($product->getId());
                     $stockItem->setData('qty', $quantities);
 
                     // make sure to set item in/out of stock if there is/isn't inventory. This will hide/show it on the front end
                     if ($quantities > 0) {
-                        $stockItem->setData('is_in_stock', TRUE);
-                    }
-                    else {
-                        $stockItem->setData('is_in_stock', FALSE);
+                        $stockItem->setData('is_in_stock', true);
+                    } else {
+                        $stockItem->setData('is_in_stock', false);
                     }
 
-                    $this->_stockRegistry->updateStockItemBySku($product->getSku(), $stockItem);
+                    $this->stockRegistry->updateStockItemBySku($product->getSku(), $stockItem);
 
-                    $this->_messageManager->addSuccessMessage('The SKU or alternate Merchant SKU has an associated Seller Sku at Amazon. ' . $quantities . ' item(s) are in stock. The amount of inventory has been updated.');
-                }
-                else {
-                    $this->_messageManager->addErrorMessage('The SKU entered "' . $product->getSku() . '" does not have an associated Seller Sku at Amazon. Please check the SKU value matches between systems.');
+                    $this->messageManager->addSuccessMessage(
+                        'The SKU or alternate Merchant SKU has an associated Seller Sku at Amazon. '
+                        . $quantities . ' item(s) are in stock. The amount of inventory has been updated.'
+                    );
+                } else {
+                    $this->messageManager->addErrorMessage(
+                        'The SKU entered "' . $product->getSku()
+                        . '" does not have an associated Seller Sku at Amazon. 
+                        Please check the SKU value matches between systems.'
+                    );
                 }
             }
         }

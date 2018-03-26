@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsRequest extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsRequest extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'PackageNumber' => array('FieldValue' => null, 'FieldType' => 'int'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerId property.
      *
-     * @param string sellerId
+     * @param  string sellerId
      * @return this instance
      */
     public function setSellerId($value)
@@ -79,7 +81,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerId()
     {
                 return !is_null($this->_fields['SellerId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerId, return this.
@@ -108,7 +110,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MWSAuthToken property.
      *
-     * @param string mwsAuthToken
+     * @param  string mwsAuthToken
      * @return this instance
      */
     public function setMWSAuthToken($value)
@@ -125,7 +127,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMWSAuthToken()
     {
                 return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MWSAuthToken, return this.
@@ -154,7 +156,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PackageNumber property.
      *
-     * @param int packageNumber
+     * @param  int packageNumber
      * @return this instance
      */
     public function setPackageNumber($value)
@@ -171,7 +173,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPackageNumber()
     {
                 return !is_null($this->_fields['PackageNumber']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PackageNumber, return this.

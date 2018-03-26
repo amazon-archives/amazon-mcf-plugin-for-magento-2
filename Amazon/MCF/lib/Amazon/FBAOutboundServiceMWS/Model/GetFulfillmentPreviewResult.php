@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -35,14 +36,15 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResult extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResult extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'FulfillmentPreviews' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'FulfillmentPreviews' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -58,7 +60,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentPreviews property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentPreviewList fulfillmentPreviews
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentPreviewList fulfillmentPreviews
      * @return this instance
      */
     public function setFulfillmentPreviews($value)
@@ -75,7 +77,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentPreviews()
     {
                 return !is_null($this->_fields['FulfillmentPreviews']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentPreviews, return this.

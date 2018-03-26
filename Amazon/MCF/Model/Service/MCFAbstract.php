@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,7 +12,6 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Model\Service;
@@ -26,11 +25,17 @@ use Amazon\MCF\Helper\Data;
  *
  * @package Amazon\MCF\Model\Service
  */
-class MCFAbstract {
+class MCFAbstract
+{
+    /**
+     * @var Data
+     */
+    protected $helper;
 
-    protected $_helper;
-
-    protected $_modulePath;
+    /**
+     * @var string
+     */
+    private $modulePath;
 
     const SERVICE_NAME = null;
     const SERVICE_CLASS = null;
@@ -40,12 +45,9 @@ class MCFAbstract {
      *
      * @param \Amazon\MCF\Helper\Data $helper
      */
-    public function __construct(Data $helper) {
-        $this->_helper = $helper;
-
-        $om = \Magento\Framework\App\ObjectManager::getInstance();
-        $reader = $om->get('Magento\Framework\Module\Dir\Reader');
-        $this->_modulePath = $reader->getModuleDir('', 'Amazon_MCF');
+    public function __construct(Data $helper)
+    {
+        $this->helper = $helper;
     }
 
     /**
@@ -58,8 +60,19 @@ class MCFAbstract {
         return '2017-01-01';
     }
 
-    protected function getModulePath() {
-        return $this->_modulePath;
+    /**
+     * @return mixed
+     */
+    protected function getModulePath()
+    {
+        if (!$this->modulePath) {
+            // used object manager because injection did not work
+            $om = \Magento\Framework\App\ObjectManager::getInstance();
+            $reader = $om->get('Magento\Framework\Module\Dir\Reader');
+            $this->modulePath = $reader->getModuleDir('', 'Amazon_MCF');
+        }
+
+        return $this->modulePath;
     }
 
     /**
@@ -69,9 +82,8 @@ class MCFAbstract {
      */
     protected function getServiceUrl($store = null)
     {
-        return $this->_helper->getEndpoint($store) . $this::SERVICE_NAME . $this->getServiceVersion();
+        return $this->helper->getEndpoint($store) . $this::SERVICE_NAME . $this->getServiceVersion();
     }
-
 
     /**
      * Returns appropriate client class based on debug settings
@@ -80,7 +92,7 @@ class MCFAbstract {
      */
     protected function getServiceClass()
     {
-        return $this::SERVICE_CLASS . ($this->_helper->isDebug() ? '_Mock' : '_Client');
+        return $this::SERVICE_CLASS . ($this->helper->isDebug() ? '_Mock' : '_Client');
     }
 
     /**
@@ -88,7 +100,8 @@ class MCFAbstract {
      *
      * @return mixed
      */
-    protected function getClient() {
+    protected function getClient()
+    {
         $config = [
             'ServiceURL' => $this->getServiceUrl(),
         ];
@@ -96,25 +109,27 @@ class MCFAbstract {
         $serviceClass = $this->getServiceClass();
 
         $client = new $serviceClass(
-            $this->_helper->getAccessKeyId(),
-            $this->_helper->getSecretAccessKey(),
+            $this->helper->getAccessKeyId(),
+            $this->helper->getSecretAccessKey(),
             $config,
-            $this->_helper->getApplicationName(),
-            $this->_helper->getApplicationVersion()
+            $this->helper->getApplicationName(),
+            $this->helper->getApplicationVersion()
         );
 
         return $client;
     }
 
     /**
+     * @param array $params
+     * @param null  $store
      * @return array
      */
-    protected function getRequest($params = array(), $store = null)
+    protected function getRequest($params = [], $store = null)
     {
         return array_merge(
-            array(
-                'SellerId' => $this->_helper->getSellerId($store)
-            ),
+            [
+                'SellerId' => $this->helper->getSellerId($store)
+            ],
             $params
         );
     }

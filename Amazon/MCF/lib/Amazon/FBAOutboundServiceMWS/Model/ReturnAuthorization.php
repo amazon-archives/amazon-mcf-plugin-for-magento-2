@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -39,18 +40,19 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_ReturnAuthorization extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_ReturnAuthorization extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'ReturnAuthorizationId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ReturnToAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
-    'AmazonRmaId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'RmaPageURL' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'ReturnAuthorizationId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentCenterId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ReturnToAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
+        'AmazonRmaId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'RmaPageURL' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -66,7 +68,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnAuthorizationId property.
      *
-     * @param string returnAuthorizationId
+     * @param  string returnAuthorizationId
      * @return this instance
      */
     public function setReturnAuthorizationId($value)
@@ -83,7 +85,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnAuthorizationId()
     {
                 return !is_null($this->_fields['ReturnAuthorizationId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnAuthorizationId, return this.
@@ -112,7 +114,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentCenterId property.
      *
-     * @param string fulfillmentCenterId
+     * @param  string fulfillmentCenterId
      * @return this instance
      */
     public function setFulfillmentCenterId($value)
@@ -129,7 +131,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentCenterId()
     {
                 return !is_null($this->_fields['FulfillmentCenterId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentCenterId, return this.
@@ -158,7 +160,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnToAddress property.
      *
-     * @param FBAOutboundServiceMWS_Model_Address returnToAddress
+     * @param  FBAOutboundServiceMWS_Model_Address returnToAddress
      * @return this instance
      */
     public function setReturnToAddress($value)
@@ -175,7 +177,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnToAddress()
     {
                 return !is_null($this->_fields['ReturnToAddress']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnToAddress, return this.
@@ -204,7 +206,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the AmazonRmaId property.
      *
-     * @param string amazonRmaId
+     * @param  string amazonRmaId
      * @return this instance
      */
     public function setAmazonRmaId($value)
@@ -221,7 +223,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAmazonRmaId()
     {
                 return !is_null($this->_fields['AmazonRmaId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of AmazonRmaId, return this.
@@ -250,7 +252,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the RmaPageURL property.
      *
-     * @param string rmaPageURL
+     * @param  string rmaPageURL
      * @return this instance
      */
     public function setRmaPageURL($value)
@@ -267,7 +269,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetRmaPageURL()
     {
                 return !is_null($this->_fields['RmaPageURL']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of RmaPageURL, return this.

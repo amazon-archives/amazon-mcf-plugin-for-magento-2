@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -44,23 +45,24 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_FulfillmentPreview extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_FulfillmentPreview extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'ShippingSpeedCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'ScheduledDeliveryInfo' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_ScheduledDeliveryInfo'),
-    'IsFulfillable' => array('FieldValue' => null, 'FieldType' => 'bool'),
-    'IsCODCapable' => array('FieldValue' => null, 'FieldType' => 'bool'),
-    'EstimatedShippingWeight' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Weight'),
-    'EstimatedFees' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FeeList'),
-    'FulfillmentPreviewShipments' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewShipmentList'),
-    'UnfulfillablePreviewItems' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_UnfulfillablePreviewItemList'),
-    'OrderUnfulfillableReasons' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_StringList'),
-    'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'ShippingSpeedCategory' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'ScheduledDeliveryInfo' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_ScheduledDeliveryInfo'),
+        'IsFulfillable' => array('FieldValue' => null, 'FieldType' => 'bool'),
+        'IsCODCapable' => array('FieldValue' => null, 'FieldType' => 'bool'),
+        'EstimatedShippingWeight' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Weight'),
+        'EstimatedFees' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FeeList'),
+        'FulfillmentPreviewShipments' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewShipmentList'),
+        'UnfulfillablePreviewItems' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_UnfulfillablePreviewItemList'),
+        'OrderUnfulfillableReasons' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_StringList'),
+        'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -76,7 +78,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShippingSpeedCategory property.
      *
-     * @param string shippingSpeedCategory
+     * @param  string shippingSpeedCategory
      * @return this instance
      */
     public function setShippingSpeedCategory($value)
@@ -93,7 +95,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShippingSpeedCategory()
     {
                 return !is_null($this->_fields['ShippingSpeedCategory']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShippingSpeedCategory, return this.
@@ -122,7 +124,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ScheduledDeliveryInfo property.
      *
-     * @param FBAOutboundServiceMWS_Model_ScheduledDeliveryInfo scheduledDeliveryInfo
+     * @param  FBAOutboundServiceMWS_Model_ScheduledDeliveryInfo scheduledDeliveryInfo
      * @return this instance
      */
     public function setScheduledDeliveryInfo($value)
@@ -139,7 +141,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetScheduledDeliveryInfo()
     {
                 return !is_null($this->_fields['ScheduledDeliveryInfo']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ScheduledDeliveryInfo, return this.
@@ -178,7 +180,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the IsFulfillable property.
      *
-     * @param bool isFulfillable
+     * @param  bool isFulfillable
      * @return this instance
      */
     public function setIsFulfillable($value)
@@ -195,7 +197,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetIsFulfillable()
     {
                 return !is_null($this->_fields['IsFulfillable']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of IsFulfillable, return this.
@@ -234,7 +236,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the IsCODCapable property.
      *
-     * @param bool isCODCapable
+     * @param  bool isCODCapable
      * @return this instance
      */
     public function setIsCODCapable($value)
@@ -251,7 +253,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetIsCODCapable()
     {
                 return !is_null($this->_fields['IsCODCapable']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of IsCODCapable, return this.
@@ -280,7 +282,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedShippingWeight property.
      *
-     * @param FBAOutboundServiceMWS_Model_Weight estimatedShippingWeight
+     * @param  FBAOutboundServiceMWS_Model_Weight estimatedShippingWeight
      * @return this instance
      */
     public function setEstimatedShippingWeight($value)
@@ -297,7 +299,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedShippingWeight()
     {
                 return !is_null($this->_fields['EstimatedShippingWeight']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedShippingWeight, return this.
@@ -326,7 +328,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedFees property.
      *
-     * @param FBAOutboundServiceMWS_Model_FeeList estimatedFees
+     * @param  FBAOutboundServiceMWS_Model_FeeList estimatedFees
      * @return this instance
      */
     public function setEstimatedFees($value)
@@ -343,7 +345,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedFees()
     {
                 return !is_null($this->_fields['EstimatedFees']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedFees, return this.
@@ -372,7 +374,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentPreviewShipments property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentPreviewShipmentList fulfillmentPreviewShipments
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentPreviewShipmentList fulfillmentPreviewShipments
      * @return this instance
      */
     public function setFulfillmentPreviewShipments($value)
@@ -389,7 +391,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentPreviewShipments()
     {
                 return !is_null($this->_fields['FulfillmentPreviewShipments']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentPreviewShipments, return this.
@@ -418,7 +420,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the UnfulfillablePreviewItems property.
      *
-     * @param FBAOutboundServiceMWS_Model_UnfulfillablePreviewItemList unfulfillablePreviewItems
+     * @param  FBAOutboundServiceMWS_Model_UnfulfillablePreviewItemList unfulfillablePreviewItems
      * @return this instance
      */
     public function setUnfulfillablePreviewItems($value)
@@ -435,7 +437,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetUnfulfillablePreviewItems()
     {
                 return !is_null($this->_fields['UnfulfillablePreviewItems']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of UnfulfillablePreviewItems, return this.
@@ -464,7 +466,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the OrderUnfulfillableReasons property.
      *
-     * @param FBAOutboundServiceMWS_Model_StringList orderUnfulfillableReasons
+     * @param  FBAOutboundServiceMWS_Model_StringList orderUnfulfillableReasons
      * @return this instance
      */
     public function setOrderUnfulfillableReasons($value)
@@ -481,7 +483,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetOrderUnfulfillableReasons()
     {
                 return !is_null($this->_fields['OrderUnfulfillableReasons']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of OrderUnfulfillableReasons, return this.
@@ -510,7 +512,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MarketplaceId property.
      *
-     * @param string marketplaceId
+     * @param  string marketplaceId
      * @return this instance
      */
     public function setMarketplaceId($value)
@@ -527,7 +529,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplaceId()
     {
                 return !is_null($this->_fields['MarketplaceId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MarketplaceId, return this.

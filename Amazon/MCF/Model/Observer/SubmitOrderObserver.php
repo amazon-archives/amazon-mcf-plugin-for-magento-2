@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -30,33 +30,36 @@ use Magento\Framework\Event\ObserverInterface;
  *
  * @package Amazon\MCF\Model\Observer
  */
-class SubmitOrderObserver implements ObserverInterface {
+class SubmitOrderObserver implements ObserverInterface
+{
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_helper;
+    private $helper;
 
     /**
      * @var \Amazon\MCF\Model\Service\Outbound
      */
-    protected $_outbound;
+    private $outbound;
 
     /**
      * ShippingObserver constructor.
      *
-     * @param \Amazon\MCF\Helper\Data $helper
+     * @param \Amazon\MCF\Helper\Data            $helper
      * @param \Amazon\MCF\Model\Service\Outbound $outbound
      */
-    public function __construct(Data $helper, Outbound $outbound) {
-        $this->_helper = $helper;
-        $this->_outbound = $outbound;
+    public function __construct(Data $helper, Outbound $outbound)
+    {
+        $this->helper = $helper;
+        $this->outbound = $outbound;
     }
 
     /**
      * @param \Magento\Framework\Event\Observer $observer
      */
-    public function execute(Observer $observer) {
+    public function execute(Observer $observer)
+    {
 
         $order = $observer->getData('order');
 
@@ -71,19 +74,18 @@ class SubmitOrderObserver implements ObserverInterface {
             }
         }
 
-        if (!$this->_helper->isEnabled() || !$amazonItemInOrder) {
+        if (!$this->helper->isEnabled() || !$amazonItemInOrder) {
             return;
         }
 
-        $response = $this->_outbound->createFulfillmentOrder($order);
+        $response = $this->outbound->createFulfillmentOrder($order);
 
         if (!empty($response)) {
-            $order->setAmazonOrderStatus($this->_helper::ORDER_STATUS_RECEIVED);
+            $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_RECEIVED);
             $order->setAmazonSubmissionCount(0);
         } else {
-            $order->setAmazonOrderStatus($this->_helper::ORDER_STATUS_ATTEMPTED);
+            $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_ATTEMPTED);
             $order->setAmazonSubmissionCount(1);
         }
     }
-
 }

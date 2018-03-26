@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -48,27 +49,28 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_FulfillmentOrderItem extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_FulfillmentOrderItem extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Quantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'GiftMessage' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'DisplayableComment' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentNetworkSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'OrderItemDisposition' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'CancelledQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'UnfulfillableQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
-    'EstimatedShipDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'PerUnitPrice' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
-    'PerUnitTax' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
-    'PerUnitDeclaredValue' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Quantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'GiftMessage' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'DisplayableComment' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentNetworkSKU' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'OrderItemDisposition' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'CancelledQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'UnfulfillableQuantity' => array('FieldValue' => null, 'FieldType' => 'int'),
+        'EstimatedShipDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EstimatedArrivalDateTime' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'PerUnitPrice' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
+        'PerUnitTax' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
+        'PerUnitDeclaredValue' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -84,7 +86,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerSKU property.
      *
-     * @param string sellerSKU
+     * @param  string sellerSKU
      * @return this instance
      */
     public function setSellerSKU($value)
@@ -101,7 +103,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerSKU()
     {
                 return !is_null($this->_fields['SellerSKU']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerSKU, return this.
@@ -130,7 +132,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerFulfillmentOrderItemId property.
      *
-     * @param string sellerFulfillmentOrderItemId
+     * @param  string sellerFulfillmentOrderItemId
      * @return this instance
      */
     public function setSellerFulfillmentOrderItemId($value)
@@ -147,7 +149,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerFulfillmentOrderItemId()
     {
                 return !is_null($this->_fields['SellerFulfillmentOrderItemId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerFulfillmentOrderItemId, return this.
@@ -176,7 +178,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Quantity property.
      *
-     * @param int quantity
+     * @param  int quantity
      * @return this instance
      */
     public function setQuantity($value)
@@ -193,7 +195,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetQuantity()
     {
                 return !is_null($this->_fields['Quantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Quantity, return this.
@@ -222,7 +224,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the GiftMessage property.
      *
-     * @param string giftMessage
+     * @param  string giftMessage
      * @return this instance
      */
     public function setGiftMessage($value)
@@ -239,7 +241,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetGiftMessage()
     {
                 return !is_null($this->_fields['GiftMessage']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of GiftMessage, return this.
@@ -268,7 +270,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the DisplayableComment property.
      *
-     * @param string displayableComment
+     * @param  string displayableComment
      * @return this instance
      */
     public function setDisplayableComment($value)
@@ -285,7 +287,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDisplayableComment()
     {
                 return !is_null($this->_fields['DisplayableComment']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of DisplayableComment, return this.
@@ -314,7 +316,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentNetworkSKU property.
      *
-     * @param string fulfillmentNetworkSKU
+     * @param  string fulfillmentNetworkSKU
      * @return this instance
      */
     public function setFulfillmentNetworkSKU($value)
@@ -331,7 +333,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentNetworkSKU()
     {
                 return !is_null($this->_fields['FulfillmentNetworkSKU']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentNetworkSKU, return this.
@@ -360,7 +362,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the OrderItemDisposition property.
      *
-     * @param string orderItemDisposition
+     * @param  string orderItemDisposition
      * @return this instance
      */
     public function setOrderItemDisposition($value)
@@ -377,7 +379,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetOrderItemDisposition()
     {
                 return !is_null($this->_fields['OrderItemDisposition']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of OrderItemDisposition, return this.
@@ -406,7 +408,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the CancelledQuantity property.
      *
-     * @param int cancelledQuantity
+     * @param  int cancelledQuantity
      * @return this instance
      */
     public function setCancelledQuantity($value)
@@ -423,7 +425,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCancelledQuantity()
     {
                 return !is_null($this->_fields['CancelledQuantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of CancelledQuantity, return this.
@@ -452,7 +454,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the UnfulfillableQuantity property.
      *
-     * @param int unfulfillableQuantity
+     * @param  int unfulfillableQuantity
      * @return this instance
      */
     public function setUnfulfillableQuantity($value)
@@ -469,7 +471,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetUnfulfillableQuantity()
     {
                 return !is_null($this->_fields['UnfulfillableQuantity']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of UnfulfillableQuantity, return this.
@@ -498,7 +500,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedShipDateTime property.
      *
-     * @param string estimatedShipDateTime
+     * @param  string estimatedShipDateTime
      * @return this instance
      */
     public function setEstimatedShipDateTime($value)
@@ -515,7 +517,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedShipDateTime()
     {
                 return !is_null($this->_fields['EstimatedShipDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedShipDateTime, return this.
@@ -544,7 +546,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EstimatedArrivalDateTime property.
      *
-     * @param string estimatedArrivalDateTime
+     * @param  string estimatedArrivalDateTime
      * @return this instance
      */
     public function setEstimatedArrivalDateTime($value)
@@ -561,7 +563,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEstimatedArrivalDateTime()
     {
                 return !is_null($this->_fields['EstimatedArrivalDateTime']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EstimatedArrivalDateTime, return this.
@@ -590,7 +592,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PerUnitPrice property.
      *
-     * @param FBAOutboundServiceMWS_Model_Currency perUnitPrice
+     * @param  FBAOutboundServiceMWS_Model_Currency perUnitPrice
      * @return this instance
      */
     public function setPerUnitPrice($value)
@@ -607,7 +609,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPerUnitPrice()
     {
                 return !is_null($this->_fields['PerUnitPrice']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PerUnitPrice, return this.
@@ -636,7 +638,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PerUnitTax property.
      *
-     * @param FBAOutboundServiceMWS_Model_Currency perUnitTax
+     * @param  FBAOutboundServiceMWS_Model_Currency perUnitTax
      * @return this instance
      */
     public function setPerUnitTax($value)
@@ -653,7 +655,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPerUnitTax()
     {
                 return !is_null($this->_fields['PerUnitTax']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PerUnitTax, return this.
@@ -682,7 +684,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the PerUnitDeclaredValue property.
      *
-     * @param FBAOutboundServiceMWS_Model_Currency perUnitDeclaredValue
+     * @param  FBAOutboundServiceMWS_Model_Currency perUnitDeclaredValue
      * @return this instance
      */
     public function setPerUnitDeclaredValue($value)
@@ -699,7 +701,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetPerUnitDeclaredValue()
     {
                 return !is_null($this->_fields['PerUnitDeclaredValue']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of PerUnitDeclaredValue, return this.

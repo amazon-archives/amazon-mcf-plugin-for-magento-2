@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,9 +19,9 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Interface
+ * @see FBAInventoryServiceMWS_Interface
  */
-require_once (dirname(__FILE__) . '/Interface.php'); 
+require_once dirname(__FILE__) . '/Interface.php'; 
 
 class FBAInventoryServiceMWS_Mock implements FBAInventoryServiceMWS_Interface
 {
@@ -33,15 +34,15 @@ class FBAInventoryServiceMWS_Mock implements FBAInventoryServiceMWS_Interface
      *     GREEN: The service section is operating normally.
      *     RED: The service section disruption.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_GetServiceStatus request or FBAInventoryServiceMWS_Model_GetServiceStatus object itself
-     * @see FBAInventoryServiceMWS_Model_GetServiceStatus
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_GetServiceStatus request or FBAInventoryServiceMWS_Model_GetServiceStatus object itself
+     * @see    FBAInventoryServiceMWS_Model_GetServiceStatus
      * @return FBAInventoryServiceMWS_Model_GetServiceStatusResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
      */
     public function getServiceStatus($request)
     {
-        require_once (dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetServiceStatusResponse.php';
         return FBAInventoryServiceMWS_Model_GetServiceStatusResponse::fromXML($this->_invoke('GetServiceStatus'));
     }
 
@@ -78,15 +79,15 @@ class FBAInventoryServiceMWS_Mock implements FBAInventoryServiceMWS_Interface
      *     passing in the NextToken value from the previous result), until the returned NextToken
      *     is null, indicating no further results are available.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupply request or FBAInventoryServiceMWS_Model_ListInventorySupply object itself
-     * @see FBAInventoryServiceMWS_Model_ListInventorySupply
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupply request or FBAInventoryServiceMWS_Model_ListInventorySupply object itself
+     * @see    FBAInventoryServiceMWS_Model_ListInventorySupply
      * @return FBAInventoryServiceMWS_Model_ListInventorySupplyResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
      */
     public function listInventorySupply($request)
     {
-        require_once (dirname(__FILE__) . '/Model/ListInventorySupplyResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListInventorySupplyResponse.php';
         return FBAInventoryServiceMWS_Model_ListInventorySupplyResponse::fromXML($this->_invoke('ListInventorySupply'));
     }
 
@@ -98,15 +99,15 @@ class FBAInventoryServiceMWS_Mock implements FBAInventoryServiceMWS_Interface
      *     This operation is used in conjunction with ListUpdatedInventorySupply.
      *     Please refer to documentation for that operation for further details.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken request or FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken object itself
-     * @see FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken request or FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken object itself
+     * @see    FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken
      * @return FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
      */
     public function listInventorySupplyByNextToken($request)
     {
-        require_once (dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenResponse.php';
         return FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenResponse::fromXML($this->_invoke('ListInventorySupplyByNextToken'));
     }
 
@@ -114,7 +115,12 @@ class FBAInventoryServiceMWS_Mock implements FBAInventoryServiceMWS_Interface
 
     private function _invoke($actionName)
     {
-        return $xml = file_get_contents(dirname(__FILE__) . '/Mock/' . $actionName . 'Response.xml', /** search include path */ TRUE);
+        return $xml = file_get_contents(
+            dirname(__FILE__) . '/Mock/' . $actionName . 'Response.xml', /**
+            * 
+            * search include path 
+            */ true
+        );
     }
 
 }

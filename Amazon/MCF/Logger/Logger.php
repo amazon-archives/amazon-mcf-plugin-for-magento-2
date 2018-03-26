@@ -17,7 +17,11 @@
 
 namespace Amazon\MCF\Logger;
 
-
+/**
+ * Class Logger
+ *
+ * @package Amazon\MCF\Logger
+ */
 class Logger extends \Monolog\Logger
 {
 }

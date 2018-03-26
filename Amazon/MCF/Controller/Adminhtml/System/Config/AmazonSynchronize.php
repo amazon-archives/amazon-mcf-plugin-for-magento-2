@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -24,24 +24,24 @@ namespace Amazon\MCF\Controller\Adminhtml\System\Config;
  *
  * @package Amazon\MCF\Controller\Adminhtml\System\Config
  */
-class AmazonSynchronize extends \Magento\Backend\App\Action {
+class AmazonSynchronize extends \Magento\Backend\App\Action
+{
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_configHelper;
+    private $configHelper;
 
     /**
      * @var \Magento\Framework\Controller\Result\JsonFactory
      */
-    protected $_resultJsonFactory;
-
-
+    private $resultJsonFactory;
+    
     /**
      * AmazonSynchronize constructor.
      *
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Amazon\MCF\Helper\Data $helper
+     * @param \Magento\Backend\App\Action\Context              $context
+     * @param \Amazon\MCF\Helper\Data                          $helper
      * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
      */
     public function __construct(
@@ -50,8 +50,8 @@ class AmazonSynchronize extends \Magento\Backend\App\Action {
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
     ) {
 
-        $this->_configHelper = $helper;
-        $this->_resultJsonFactory = $resultJsonFactory;
+        $this->configHelper = $helper;
+        $this->resultJsonFactory = $resultJsonFactory;
         parent::__construct($context);
     }
 
@@ -62,12 +62,15 @@ class AmazonSynchronize extends \Magento\Backend\App\Action {
      *
      * @return void
      */
-    public function execute() {
-        $responseText = __('Inventory Synchronization has been flagged to begin running each inventory cron job until completed.');
+    public function execute() 
+    {
+        $responseText = __('Inventory Synchronization has been flagged to begin running each inventory 
+        cron job until completed.');
+
         $this->messageManager->addSuccessMessage($responseText);
-        $this->_configHelper->setInventoryProcessStatus(false);
-        $this->_configHelper->setInventoryProcessRow(0);
-        $result = $this->_resultJsonFactory->create();
-        return $result->setData(['success' => TRUE, 'responseMessage' => $responseText]);
+        $this->configHelper->setInventoryProcessStatus(false);
+        $this->configHelper->setInventoryProcessRow(0);
+        $result = $this->resultJsonFactory->create();
+        return $result->setData(['success' => true, 'responseMessage' => $responseText]);
     }
 }

@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_ReasonCodeDetails extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_ReasonCodeDetails extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'ReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Description' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'TranslatedDescription' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'ReturnReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Description' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'TranslatedDescription' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ReturnReasonCode property.
      *
-     * @param string returnReasonCode
+     * @param  string returnReasonCode
      * @return this instance
      */
     public function setReturnReasonCode($value)
@@ -79,7 +81,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetReturnReasonCode()
     {
                 return !is_null($this->_fields['ReturnReasonCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ReturnReasonCode, return this.
@@ -108,7 +110,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Description property.
      *
-     * @param string description
+     * @param  string description
      * @return this instance
      */
     public function setDescription($value)
@@ -125,7 +127,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDescription()
     {
                 return !is_null($this->_fields['Description']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Description, return this.
@@ -154,7 +156,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the TranslatedDescription property.
      *
-     * @param string translatedDescription
+     * @param  string translatedDescription
      * @return this instance
      */
     public function setTranslatedDescription($value)
@@ -171,7 +173,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetTranslatedDescription()
     {
                 return !is_null($this->_fields['TranslatedDescription']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of TranslatedDescription, return this.

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -12,44 +12,48 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- *
  */
 
 namespace Amazon\MCF\Plugin;
 
-
-class ConfigPlugin {
+/**
+ * Class ConfigPlugin
+ *
+ * @package Amazon\MCF\Plugin
+ */
+class ConfigPlugin
+{
 
     /**
      * @var \Amazon\MCF\Model\Service\Inventory
      */
-    protected $_inventory;
+    private $inventory;
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_configHelper;
+    private $configHelper;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
-    protected $_messageManager;
+    private $messageManager;
 
     /**
      * ConfigPlugin constructor.
      *
-     * @param \Amazon\MCF\Model\Service\Inventory $inventory
-     * @param \Amazon\MCF\Helper\Data $data
+     * @param \Amazon\MCF\Model\Service\Inventory         $inventory
+     * @param \Amazon\MCF\Helper\Data                     $data
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      */
     public function __construct(
         \Amazon\MCF\Model\Service\Inventory $inventory,
         \Amazon\MCF\Helper\Data $data,
-        \Magento\Framework\Message\ManagerInterface $messageManager) {
-
-        $this->_configHelper = $data;
-        $this->_messageManager = $messageManager;
-        $this->_inventory = $inventory;
+        \Magento\Framework\Message\ManagerInterface $messageManager
+    ) {
+        $this->configHelper = $data;
+        $this->messageManager = $messageManager;
+        $this->inventory = $inventory;
     }
 
     /**
@@ -63,19 +67,20 @@ class ConfigPlugin {
 
         // Only want to make the check in amazon fba section.
         if ($subject->getSection() == 'amazon_fba_connect') {
-            $result = $this->_inventory->checkCredentials();
+            $result = $this->inventory->checkCredentials();
             $message = $result['message'];
 
-            if ($result['result'] == 'success' && !$this->_configHelper->amazonCarrierEnabled($subject->getStore())) {
-                $message .= ' '.__('To enable Amazon Multi-Channel Fulfillment shipping speeds and rates for your customers at cart & checkout, please enable the FBA Shipping method in Sales > Shipping Methods');
+            if ($result['result'] == 'success' && !$this->configHelper->amazonCarrierEnabled($subject->getStore())) {
+                $message .= ' ' . __(
+                    'To enable Amazon Multi-Channel Fulfillment shipping speeds and rates for 
+                your customers at cart & checkout, please enable the FBA Shipping method in Sales > Shipping Methods'
+                );
             }
             if ($result['result'] == 'success') {
-                $this->_messageManager->addSuccessMessage($message);
-            }
-            else {
-                $this->_messageManager->addErrorMessage($message);
+                $this->messageManager->addSuccessMessage($message);
+            } else {
+                $this->messageManager->addErrorMessage($message);
             }
         }
-
     }
 }

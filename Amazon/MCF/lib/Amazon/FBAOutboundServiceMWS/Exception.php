@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -21,40 +22,62 @@
 /**
  * FBA Outbound Service MWS Exception provides details of errors
  * returned by FBA Outbound Service MWS service
- *
  */
 class FBAOutboundServiceMWS_Exception extends Exception
-
 {
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private $_message = null;
-    /** @var int */
+    /**
+     * 
+     *
+     * @var int 
+     */
     private $_statusCode = -1;
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private $_errorCode = null;
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private $_errorType = null;
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private $_requestId = null;
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private $_xml = null;
 
     private $_responseHeaderMetadata = null;
 
     /**
      * Constructs FBAOutboundServiceMWS_Exception
-     * @param array $errorInfo details of exception.
-     * Keys are:
-     * <ul>
-     * <li>Message - (string) text message for an exception</li>
-     * <li>StatusCode - (int) HTTP status code at the time of exception</li>
-     * <li>ErrorCode - (string) specific error code returned by the service</li>
-     * <li>ErrorType - (string) Possible types:  Sender, Receiver or Unknown</li>
-     * <li>RequestId - (string) request id returned by the service</li>
-     * <li>XML - (string) compete xml response at the time of exception</li>
-     * <li>Exception - (Exception) inner exception if any</li>
-     * </ul>
      *
+     * @param array $errorInfo details of exception.
+     *                         Keys are:
+     *                         <ul>
+     *                         <li>Message - (string) text message for an exception</li>
+     *                         <li>StatusCode - (int) HTTP status code at the time of exception</li>
+     *                         <li>ErrorCode - (string) specific error code returned by the service</li>
+     *                         <li>ErrorType - (string) Possible types:  Sender, Receiver or Unknown</li>
+     *                         <li>RequestId - (string) request id returned by the service</li>
+     *                         <li>XML - (string) compete xml response at the time of exception</li>
+     *                         <li>Exception - (Exception) inner exception if any</li>
+     *                         </ul>
      */
     public function __construct(array $errorInfo = array())
     {
@@ -80,7 +103,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
         }
     }
 
-    private function arr_val($arr, $key) {
+    private function arr_val($arr, $key) 
+    {
         if(array_key_exists($key, $arr)) {
             return $arr[$key];
         } else {
@@ -93,7 +117,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
      *
      * @return string Error Code returned by the service
      */
-    public function getErrorCode(){
+    public function getErrorCode()
+    {
         return $this->_errorCode;
     }
 
@@ -103,7 +128,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
      * @return string Error Type returned by the service.
      * Possible types:  Sender, Receiver or Unknown
      */
-    public function getErrorType(){
+    public function getErrorType()
+    {
         return $this->_errorType;
     }
 
@@ -112,7 +138,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
      *
      * @return string Error message
      */
-    public function getErrorMessage() {
+    public function getErrorMessage() 
+    {
         return $this->_message;
     }
 
@@ -123,7 +150,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
      *
      * @return int status code returned by the service
      */
-    public function getStatusCode() {
+    public function getStatusCode() 
+    {
         return $this->_statusCode;
     }
 
@@ -132,7 +160,8 @@ class FBAOutboundServiceMWS_Exception extends Exception
      *
      * @return string XML returned by the service
      */
-    public function getXML() {
+    public function getXML() 
+    {
         return $this->_xml;
     }
 
@@ -141,11 +170,13 @@ class FBAOutboundServiceMWS_Exception extends Exception
      *
      * @return string Request ID returned by the service
      */
-    public function getRequestId() {
+    public function getRequestId() 
+    {
         return $this->_requestId;
     }
 
-    public function getResponseHeaderMetadata() {
-      return $this->_responseHeaderMetadata;
+    public function getResponseHeaderMetadata() 
+    {
+        return $this->_responseHeaderMetadata;
     }
 }

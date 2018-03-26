@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_TrackingEvent extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_TrackingEvent extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'EventDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EventAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingAddress'),
-    'EventCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'EventDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EventAddress' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_TrackingAddress'),
+        'EventCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EventDate property.
      *
-     * @param string eventDate
+     * @param  string eventDate
      * @return this instance
      */
     public function setEventDate($value)
@@ -79,7 +81,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEventDate()
     {
                 return !is_null($this->_fields['EventDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EventDate, return this.
@@ -108,7 +110,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EventAddress property.
      *
-     * @param FBAOutboundServiceMWS_Model_TrackingAddress eventAddress
+     * @param  FBAOutboundServiceMWS_Model_TrackingAddress eventAddress
      * @return this instance
      */
     public function setEventAddress($value)
@@ -125,7 +127,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEventAddress()
     {
                 return !is_null($this->_fields['EventAddress']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EventAddress, return this.
@@ -154,7 +156,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EventCode property.
      *
-     * @param string eventCode
+     * @param  string eventCode
      * @return this instance
      */
     public function setEventCode($value)
@@ -171,7 +173,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEventCode()
     {
                 return !is_null($this->_fields['EventCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EventCode, return this.

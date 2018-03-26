@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -27,42 +27,45 @@ use Magento\Framework\Event\ObserverInterface;
  *
  * @package Amazon\MCF\Model\Observer
  */
-class CancelOrderObserver implements ObserverInterface {
+class CancelOrderObserver implements ObserverInterface
+{
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_helper;
+    private $helper;
 
     /**
      * @var \Amazon\MCF\Model\Service\Outbound
      */
-    protected $_outbound;
+    private $outbound;
 
     /**
      * ShippingObserver constructor.
      *
-     * @param \Amazon\MCF\Helper\Data $helper
+     * @param \Amazon\MCF\Helper\Data            $helper
      * @param \Amazon\MCF\Model\Service\Outbound $outbound
      */
     public function __construct(
         \Amazon\MCF\Helper\Data $helper,
-        \Amazon\MCF\Model\Service\Outbound $outbound) {
-        $this->_helper = $helper;
-        $this->_outbound = $outbound;
+        \Amazon\MCF\Model\Service\Outbound $outbound
+    ) {
+        $this->helper = $helper;
+        $this->outbound = $outbound;
     }
 
     /**
      * @param \Magento\Framework\Event\Observer $observer
      */
-    public function execute(\Magento\Framework\Event\Observer $observer) {
+    public function execute(\Magento\Framework\Event\Observer $observer)
+    {
 
-        if (!$this->_helper->isEnabled()) {
+        if (!$this->helper->isEnabled()) {
             return;
         }
 
         $order = $observer->getData('order');
-        $order->setAmazonOrderStatus($this->_helper::ORDER_STATUS_CANCELLED);
+        $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_CANCELLED);
         $order->save();
 
         // if order has transient property set, do not send to Amazon
@@ -70,6 +73,6 @@ class CancelOrderObserver implements ObserverInterface {
             return;
         }
 
-        $response = $this->_outbound->cancelFulfillmentOrder($order);
+        $response = $this->outbound->cancelFulfillmentOrder($order);
     }
 }

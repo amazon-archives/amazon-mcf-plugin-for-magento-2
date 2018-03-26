@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -28,24 +28,23 @@ use Magento\Framework\ObjectManagerInterface;
  *
  * @package Amazon\MCF\Block\System\Config
  */
-class AmazonSynchronize extends \Magento\Config\Block\System\Config\Form\Field {
+class AmazonSynchronize extends \Magento\Config\Block\System\Config\Form\Field
+{
 
     /**
      * AmazonSynchronize constructor.
      *
      * @param \Magento\Backend\Block\Template\Context $context
-     * @param array $data
+     * @param array                                   $data
      */
     public function __construct(Context $context,
-                                $data = array())
-    {
+        $data = array()
+    ) {
         parent::__construct($context, $data);
     }
 
     /**
-     * Set template to itself
-     *
-     * @return $this
+     * @inheritdoc
      */
     protected function _prepareLayout()
     {

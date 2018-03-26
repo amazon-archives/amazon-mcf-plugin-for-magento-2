@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -17,7 +17,11 @@
 
 namespace Amazon\MCF\Model\Config;
 
-
+/**
+ * Class Endpoints
+ *
+ * @package Amazon\MCF\Model\Config
+ */
 class Endpoints implements \Magento\Framework\Option\ArrayInterface
 {
     /**

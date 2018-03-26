@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -39,18 +40,19 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_FulfillmentPreviewShipment extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_FulfillmentPreviewShipment extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'EarliestShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'LatestShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'EarliestArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'LatestArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'FulfillmentPreviewItems' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewItemList'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'EarliestShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'LatestShipDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'EarliestArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'LatestArrivalDate' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'FulfillmentPreviewItems' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_FulfillmentPreviewItemList'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -66,7 +68,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EarliestShipDate property.
      *
-     * @param string earliestShipDate
+     * @param  string earliestShipDate
      * @return this instance
      */
     public function setEarliestShipDate($value)
@@ -83,7 +85,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEarliestShipDate()
     {
                 return !is_null($this->_fields['EarliestShipDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EarliestShipDate, return this.
@@ -112,7 +114,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the LatestShipDate property.
      *
-     * @param string latestShipDate
+     * @param  string latestShipDate
      * @return this instance
      */
     public function setLatestShipDate($value)
@@ -129,7 +131,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetLatestShipDate()
     {
                 return !is_null($this->_fields['LatestShipDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of LatestShipDate, return this.
@@ -158,7 +160,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the EarliestArrivalDate property.
      *
-     * @param string earliestArrivalDate
+     * @param  string earliestArrivalDate
      * @return this instance
      */
     public function setEarliestArrivalDate($value)
@@ -175,7 +177,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetEarliestArrivalDate()
     {
                 return !is_null($this->_fields['EarliestArrivalDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of EarliestArrivalDate, return this.
@@ -204,7 +206,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the LatestArrivalDate property.
      *
-     * @param string latestArrivalDate
+     * @param  string latestArrivalDate
      * @return this instance
      */
     public function setLatestArrivalDate($value)
@@ -221,7 +223,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetLatestArrivalDate()
     {
                 return !is_null($this->_fields['LatestArrivalDate']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of LatestArrivalDate, return this.
@@ -250,7 +252,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the FulfillmentPreviewItems property.
      *
-     * @param FBAOutboundServiceMWS_Model_FulfillmentPreviewItemList fulfillmentPreviewItems
+     * @param  FBAOutboundServiceMWS_Model_FulfillmentPreviewItemList fulfillmentPreviewItems
      * @return this instance
      */
     public function setFulfillmentPreviewItems($value)
@@ -267,7 +269,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetFulfillmentPreviewItems()
     {
                 return !is_null($this->_fields['FulfillmentPreviewItems']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of FulfillmentPreviewItems, return this.

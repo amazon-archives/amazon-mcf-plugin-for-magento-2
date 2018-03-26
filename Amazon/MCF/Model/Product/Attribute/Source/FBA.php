@@ -26,14 +26,19 @@ use Magento\Framework\Data\OptionSourceInterface;
  */
 class FBA extends AbstractSource implements SourceInterface, OptionSourceInterface
 {
-    /**#@+
+    /**
+* 
+* #@+
      * Product Status values
      */
     const FBA_ENABLED = 1;
 
     const FBA_DISABLED = 2;
 
-    /**#@-*/
+    /**
+     * 
+     * #@-
+     */
 
     /**
      * Retrieve Visible Status Ids
@@ -74,7 +79,7 @@ class FBA extends AbstractSource implements SourceInterface, OptionSourceInterfa
     /**
      * Retrieve option text by option value
      *
-     * @param string $optionId
+     * @param  string $optionId
      * @return string
      */
     public function getOptionText($optionId)
@@ -87,8 +92,8 @@ class FBA extends AbstractSource implements SourceInterface, OptionSourceInterfa
     /**
      * Add Value Sort To Collection Select
      *
-     * @param \Magento\Eav\Model\Entity\Collection\AbstractCollection $collection
-     * @param string $dir direction
+     * @param  \Magento\Eav\Model\Entity\Collection\AbstractCollection $collection
+     * @param  string                                                  $dir        direction
      * @return AbstractSource
      */
     public function addValueSortToCollection($collection, $dir = 'asc')

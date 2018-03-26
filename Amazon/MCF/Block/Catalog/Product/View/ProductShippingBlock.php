@@ -23,32 +23,33 @@ use Magento\Catalog\Model\Product;
  *
  * @package Amazon\MCF\Block\Catalog\Product\View
  */
-class ProductShippingBlock extends \Magento\Framework\View\Element\Template {
+class ProductShippingBlock extends \Magento\Framework\View\Element\Template
+{
 
     /**
      * @var Product
      */
-    protected $_product = null;
+    private $product = null;
 
     /**
      * Core registry
      *
      * @var \Magento\Framework\Registry
      */
-    protected $_coreRegistry = null;
+    private $coreRegistry = null;
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_configHelper;
+    private $configHelper;
 
     /**
      * ProductShippingBlock constructor.
      *
      * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Framework\Registry $registry
-     * @param \Amazon\MCF\Helper\Data $configHelper
-     * @param array $data
+     * @param \Magento\Framework\Registry                      $registry
+     * @param \Amazon\MCF\Helper\Data                          $configHelper
+     * @param array                                            $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -56,8 +57,8 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template {
         \Amazon\MCF\Helper\Data $configHelper,
         array $data = []
     ) {
-        $this->_coreRegistry = $registry;
-        $this->_configHelper = $configHelper;
+        $this->coreRegistry = $registry;
+        $this->configHelper = $configHelper;
         parent::__construct($context, $data);
     }
 
@@ -83,11 +84,11 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template {
      */
     public function getProduct()
     {
-        if (!$this->_product) {
-            $this->_product = $this->_coreRegistry->registry('product');
+        if (!$this->product) {
+            $this->product = $this->coreRegistry->registry('product');
         }
 
-        return $this->_product;
+        return $this->product;
     }
 
     /**
@@ -95,30 +96,35 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template {
      *
      * @return string
      */
-    public function getAjaxRateUrl() {
+    public function getAjaxRateUrl() 
+    {
         return $this->getUrl('amazonfba/Ajax/FBAData');
     }
 
     /**
      * Get's ID of product that the block is displayed on
+     *
      * @return int
      */
-    public function getProductId() {
+    public function getProductId() 
+    {
         return $this->getProduct()->getId();
     }
 
     /**
      * Checks to see if product is enabled for use with Amazon Fulfillment
+     *
      * @return bool
      */
-    public function isFBAEnabled() {
+    public function isFBAEnabled() 
+    {
         $product = $this->getProduct();
         $storeId = $this->_storeManager->getStore()->getId();
 
-        if ($product->getAmazonMcfAsinEnabled() && $this->_configHelper->displayDeliveryBlock($storeId)) {
-            return TRUE;
+        if ($product->getAmazonMcfAsinEnabled() && $this->configHelper->displayDeliveryBlock($storeId)) {
+            return true;
         }
 
-        return FALSE;
+        return false;
     }
 }

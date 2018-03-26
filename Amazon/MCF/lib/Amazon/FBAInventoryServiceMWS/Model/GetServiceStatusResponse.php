@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Model
+ * @see FBAInventoryServiceMWS_Model
  */
 
-require_once (dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once (dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAInventoryServiceMWS_Model_GetServiceStatusResponse extends FBAInventoryServiceMWS_Model {
+class FBAInventoryServiceMWS_Model_GetServiceStatusResponse extends FBAInventoryServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_GetServiceStatusResult'),
-    'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_ResponseMetadata'),
-    'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_ResponseHeaderMetadata'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'GetServiceStatusResult' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_GetServiceStatusResult'),
+        'ResponseMetadata' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_ResponseMetadata'),
+        'ResponseHeaderMetadata' => array('FieldValue' => null, 'FieldType' => 'FBAInventoryServiceMWS_Model_ResponseHeaderMetadata'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the GetServiceStatusResult property.
      *
-     * @param FBAInventoryServiceMWS_Model_GetServiceStatusResult getServiceStatusResult
+     * @param  FBAInventoryServiceMWS_Model_GetServiceStatusResult getServiceStatusResult
      * @return this instance
      */
     public function setGetServiceStatusResult($value)
@@ -79,7 +81,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetGetServiceStatusResult()
     {
                 return !is_null($this->_fields['GetServiceStatusResult']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of GetServiceStatusResult, return this.
@@ -108,7 +110,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ResponseMetadata property.
      *
-     * @param FBAInventoryServiceMWS_Model_ResponseMetadata responseMetadata
+     * @param  FBAInventoryServiceMWS_Model_ResponseMetadata responseMetadata
      * @return this instance
      */
     public function setResponseMetadata($value)
@@ -125,7 +127,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetResponseMetadata()
     {
                 return !is_null($this->_fields['ResponseMetadata']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ResponseMetadata, return this.
@@ -154,7 +156,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ResponseHeaderMetadata property.
      *
-     * @param FBAInventoryServiceMWS_Model_ResponseHeaderMetadata responseHeaderMetadata
+     * @param  FBAInventoryServiceMWS_Model_ResponseHeaderMetadata responseHeaderMetadata
      * @return this instance
      */
     public function setResponseHeaderMetadata($value)
@@ -171,7 +173,7 @@ require_once (dirname(__FILE__) . '/../Model.php');
     public function isSetResponseHeaderMetadata()
     {
                 return !is_null($this->_fields['ResponseHeaderMetadata']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ResponseHeaderMetadata, return this.
@@ -203,8 +205,10 @@ require_once (dirname(__FILE__) . '/../Model.php');
         if ($response->length == 1) {
             return new FBAInventoryServiceMWS_Model_GetServiceStatusResponse(($response->item(0))); 
         } else {
-            throw new Exception ("Unable to construct FBAInventoryServiceMWS_Model_GetServiceStatusResponse from provided XML. 
-                                  Make sure that GetServiceStatusResponse is a root element");
+            throw new Exception(
+                "Unable to construct FBAInventoryServiceMWS_Model_GetServiceStatusResponse from provided XML. 
+                                  Make sure that GetServiceStatusResponse is a root element"
+            );
         }
     }
     /**

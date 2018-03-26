@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -43,22 +44,23 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_GetFulfillmentPreviewRequest extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_GetFulfillmentPreviewRequest extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Marketplace' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Address' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
-    'Items' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_GetFulfillmentPreviewItemList'),
-    'ShippingSpeedCategories' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_ShippingSpeedCategoryList'),
-    'IncludeCODFulfillmentPreview' => array('FieldValue' => null, 'FieldType' => 'bool'),
-    'IncludeDeliveryWindows' => array('FieldValue' => null, 'FieldType' => 'bool'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'MWSAuthToken' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Marketplace' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'MarketplaceId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Address' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Address'),
+        'Items' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_GetFulfillmentPreviewItemList'),
+        'ShippingSpeedCategories' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_ShippingSpeedCategoryList'),
+        'IncludeCODFulfillmentPreview' => array('FieldValue' => null, 'FieldType' => 'bool'),
+        'IncludeDeliveryWindows' => array('FieldValue' => null, 'FieldType' => 'bool'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -74,7 +76,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerId property.
      *
-     * @param string sellerId
+     * @param  string sellerId
      * @return this instance
      */
     public function setSellerId($value)
@@ -91,7 +93,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerId()
     {
                 return !is_null($this->_fields['SellerId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerId, return this.
@@ -120,7 +122,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MWSAuthToken property.
      *
-     * @param string mwsAuthToken
+     * @param  string mwsAuthToken
      * @return this instance
      */
     public function setMWSAuthToken($value)
@@ -137,7 +139,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMWSAuthToken()
     {
                 return !is_null($this->_fields['MWSAuthToken']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MWSAuthToken, return this.
@@ -166,7 +168,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Marketplace property.
      *
-     * @param string marketplace
+     * @param  string marketplace
      * @return this instance
      */
     public function setMarketplace($value)
@@ -183,7 +185,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplace()
     {
                 return !is_null($this->_fields['Marketplace']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Marketplace, return this.
@@ -212,7 +214,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the MarketplaceId property.
      *
-     * @param string marketplaceId
+     * @param  string marketplaceId
      * @return this instance
      */
     public function setMarketplaceId($value)
@@ -229,7 +231,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetMarketplaceId()
     {
                 return !is_null($this->_fields['MarketplaceId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of MarketplaceId, return this.
@@ -258,7 +260,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Address property.
      *
-     * @param FBAOutboundServiceMWS_Model_Address address
+     * @param  FBAOutboundServiceMWS_Model_Address address
      * @return this instance
      */
     public function setAddress($value)
@@ -275,7 +277,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAddress()
     {
                 return !is_null($this->_fields['Address']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Address, return this.
@@ -304,7 +306,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Items property.
      *
-     * @param FBAOutboundServiceMWS_Model_GetFulfillmentPreviewItemList items
+     * @param  FBAOutboundServiceMWS_Model_GetFulfillmentPreviewItemList items
      * @return this instance
      */
     public function setItems($value)
@@ -321,7 +323,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetItems()
     {
                 return !is_null($this->_fields['Items']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Items, return this.
@@ -350,7 +352,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the ShippingSpeedCategories property.
      *
-     * @param FBAOutboundServiceMWS_Model_ShippingSpeedCategoryList shippingSpeedCategories
+     * @param  FBAOutboundServiceMWS_Model_ShippingSpeedCategoryList shippingSpeedCategories
      * @return this instance
      */
     public function setShippingSpeedCategories($value)
@@ -367,7 +369,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetShippingSpeedCategories()
     {
                 return !is_null($this->_fields['ShippingSpeedCategories']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of ShippingSpeedCategories, return this.
@@ -406,7 +408,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the IncludeCODFulfillmentPreview property.
      *
-     * @param bool includeCODFulfillmentPreview
+     * @param  bool includeCODFulfillmentPreview
      * @return this instance
      */
     public function setIncludeCODFulfillmentPreview($value)
@@ -423,7 +425,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetIncludeCODFulfillmentPreview()
     {
                 return !is_null($this->_fields['IncludeCODFulfillmentPreview']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of IncludeCODFulfillmentPreview, return this.
@@ -462,7 +464,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the IncludeDeliveryWindows property.
      *
-     * @param bool includeDeliveryWindows
+     * @param  bool includeDeliveryWindows
      * @return this instance
      */
     public function setIncludeDeliveryWindows($value)
@@ -479,7 +481,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetIncludeDeliveryWindows()
     {
                 return !is_null($this->_fields['IncludeDeliveryWindows']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of IncludeDeliveryWindows, return this.

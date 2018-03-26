@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Inventory Service MWS
  * @version  2010-10-01
@@ -18,13 +19,12 @@
  */
 
 /**
- *  @see FBAInventoryServiceMWS_Interface
+ * @see FBAInventoryServiceMWS_Interface
  */
-require_once (dirname(__FILE__) . '/Interface.php');
+require_once dirname(__FILE__) . '/Interface.php';
 
 /**
  * FBAInventoryServiceMWS_Client is an implementation of FBAInventoryServiceMWS
- *
  */
 class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
 {
@@ -32,13 +32,25 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     const SERVICE_VERSION = '2010-10-01';
     const MWS_CLIENT_VERSION = '2014-09-30';
 
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private  $_awsAccessKeyId = null;
 
-    /** @var string */
+    /**
+     * 
+     *
+     * @var string 
+     */
     private  $_awsSecretAccessKey = null;
 
-    /** @var array */
+    /**
+     * 
+     *
+     * @var array 
+     */
     private  $_config = array ('ServiceURL' => null,
                                'UserAgent' => 'FBAInventoryServiceMWS PHP5 Library',
                                'SignatureVersion' => 2,
@@ -59,8 +71,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      *     GREEN: The service section is operating normally.
      *     RED: The service section disruption.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_GetServiceStatus request or FBAInventoryServiceMWS_Model_GetServiceStatus object itself
-     * @see FBAInventoryServiceMWS_Model_GetServiceStatusRequest
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_GetServiceStatus request or FBAInventoryServiceMWS_Model_GetServiceStatus object itself
+     * @see    FBAInventoryServiceMWS_Model_GetServiceStatusRequest
      * @return FBAInventoryServiceMWS_Model_GetServiceStatusResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
@@ -68,14 +80,14 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     public function getServiceStatus($request)
     {
         if (!($request instanceof FBAInventoryServiceMWS_Model_GetServiceStatusRequest)) {
-            require_once (dirname(__FILE__) . '/Model/GetServiceStatusRequest.php');
+            include_once dirname(__FILE__) . '/Model/GetServiceStatusRequest.php';
             $request = new FBAInventoryServiceMWS_Model_GetServiceStatusRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'GetServiceStatus';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once (dirname(__FILE__) . '/Model/GetServiceStatusResponse.php');
+        include_once dirname(__FILE__) . '/Model/GetServiceStatusResponse.php';
         $response = FBAInventoryServiceMWS_Model_GetServiceStatusResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -85,7 +97,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     /**
      * Convert GetServiceStatusRequest to name value pairs
      */
-    private function _convertGetServiceStatus($request) {
+    private function _convertGetServiceStatus($request) 
+    {
 
         $parameters = array();
         $parameters['Action'] = 'GetServiceStatus';
@@ -136,8 +149,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      *     passing in the NextToken value from the previous result), until the returned NextToken
      *     is null, indicating no further results are available.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupply request or FBAInventoryServiceMWS_Model_ListInventorySupply object itself
-     * @see FBAInventoryServiceMWS_Model_ListInventorySupplyRequest
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupply request or FBAInventoryServiceMWS_Model_ListInventorySupply object itself
+     * @see    FBAInventoryServiceMWS_Model_ListInventorySupplyRequest
      * @return FBAInventoryServiceMWS_Model_ListInventorySupplyResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
@@ -145,14 +158,14 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     public function listInventorySupply($request)
     {
         if (!($request instanceof FBAInventoryServiceMWS_Model_ListInventorySupplyRequest)) {
-            require_once (dirname(__FILE__) . '/Model/ListInventorySupplyRequest.php');
+            include_once dirname(__FILE__) . '/Model/ListInventorySupplyRequest.php';
             $request = new FBAInventoryServiceMWS_Model_ListInventorySupplyRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListInventorySupply';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once (dirname(__FILE__) . '/Model/ListInventorySupplyResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListInventorySupplyResponse.php';
         $response = FBAInventoryServiceMWS_Model_ListInventorySupplyResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -162,7 +175,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     /**
      * Convert ListInventorySupplyRequest to name value pairs
      */
-    private function _convertListInventorySupply($request) {
+    private function _convertListInventorySupply($request) 
+    {
 
         $parameters = array();
         $parameters['Action'] = 'ListInventorySupply';
@@ -203,8 +217,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      *     This operation is used in conjunction with ListUpdatedInventorySupply.
      *     Please refer to documentation for that operation for further details.
      *
-     * @param mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken request or FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken object itself
-     * @see FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenRequest
+     * @param  mixed $request array of parameters for FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken request or FBAInventoryServiceMWS_Model_ListInventorySupplyByNextToken object itself
+     * @see    FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenRequest
      * @return FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenResponse
      *
      * @throws FBAInventoryServiceMWS_Exception
@@ -212,14 +226,14 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     public function listInventorySupplyByNextToken($request)
     {
         if (!($request instanceof FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenRequest)) {
-            require_once (dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenRequest.php');
+            include_once dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenRequest.php';
             $request = new FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenRequest($request);
         }
         $parameters = $request->toQueryParameterArray();
         $parameters['Action'] = 'ListInventorySupplyByNextToken';
         $httpResponse = $this->_invoke($parameters);
 
-        require_once (dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenResponse.php');
+        include_once dirname(__FILE__) . '/Model/ListInventorySupplyByNextTokenResponse.php';
         $response = FBAInventoryServiceMWS_Model_ListInventorySupplyByNextTokenResponse::fromXML($httpResponse['ResponseBody']);
         $response->setResponseHeaderMetadata($httpResponse['ResponseHeaderMetadata']);
         return $response;
@@ -229,7 +243,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     /**
      * Convert ListInventorySupplyByNextTokenRequest to name value pairs
      */
-    private function _convertListInventorySupplyByNextToken($request) {
+    private function _convertListInventorySupplyByNextToken($request) 
+    {
 
         $parameters = array();
         $parameters['Action'] = 'ListInventorySupplyByNextToken';
@@ -254,25 +269,25 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     /**
      * Construct new Client
      *
-     * @param string $awsAccessKeyId AWS Access Key ID
+     * @param string $awsAccessKeyId     AWS Access Key ID
      * @param string $awsSecretAccessKey AWS Secret Access Key
-     * @param array $config configuration options.
-     * Valid configuration options are:
-     * <ul>
-     * <li>ServiceURL</li>
-     * <li>UserAgent</li>
-     * <li>SignatureVersion</li>
-     * <li>TimesRetryOnError</li>
-     * <li>ProxyHost</li>
-     * <li>ProxyPort</li>
-     * <li>ProxyUsername<li>
-     * <li>ProxyPassword<li>
-     * <li>MaxErrorRetry</li>
-     * </ul>
+     * @param array  $config             configuration options.
+     *                                   Valid configuration
+     *                                   options are: <ul>
+     *                                   <li>ServiceURL</li>
+     *                                   <li>UserAgent</li>
+     *                                   <li>SignatureVersion</li>
+     *                                   <li>TimesRetryOnError</li>
+     *                                   <li>ProxyHost</li>
+     *                                   <li>ProxyPort</li>
+     *                                   <li>ProxyUsername<li>
+     *                                   <li>ProxyPassword<li>
+     *                                   <li>MaxErrorRetry</li>
+     *                                   </ul>
      */
     public function __construct(
-    $awsAccessKeyId, $awsSecretAccessKey, $config, $applicationName, $applicationVersion, $attributes = null)
-    {
+        $awsAccessKeyId, $awsSecretAccessKey, $config, $applicationName, $applicationVersion, $attributes = null
+    ) {
         if (PHP_VERSION_ID < 50600) {
             iconv_set_encoding('output_encoding', 'UTF-8');
             iconv_set_encoding('input_encoding', 'UTF-8');
@@ -284,14 +299,16 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         $this->_awsAccessKeyId = $awsAccessKeyId;
         $this->_awsSecretAccessKey = $awsSecretAccessKey;
         $this->_serviceVersion = $applicationVersion;
-        if (!is_null($config)) $this->_config = array_merge($this->_config, $config);
+        if (!is_null($config)) { $this->_config = array_merge($this->_config, $config);
+        }
         $this->setUserAgentHeader($applicationName, $applicationVersion, $attributes);
     }
 
     public function setUserAgentHeader(
         $applicationName,
         $applicationVersion,
-        $attributes = null) {
+        $attributes = null
+    ) {
 
         if (is_null($attributes)) {
             $attributes = array ();
@@ -301,7 +318,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
             $this->constructUserAgentHeader($applicationName, $applicationVersion, $attributes);
     }
 
-    private function constructUserAgentHeader($applicationName, $applicationVersion, $attributes = null) {
+    private function constructUserAgentHeader($applicationName, $applicationVersion, $attributes = null) 
+    {
         if (is_null($applicationName) || $applicationName === "") {
             throw new InvalidArgumentException('$applicationName cannot be null');
         }
@@ -338,22 +356,26 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         return $userAgent;
     }
 
-   /**
-    * Collapse multiple whitespace characters into a single ' ' character.
-    * @param $s
-    * @return string
-    */
-   private function collapseWhitespace($s) {
-       return preg_replace('/ {2,}|\s/', ' ', $s);
-   }
+    /**
+     * Collapse multiple whitespace characters into a single ' ' character.
+     *
+     * @param  $s
+     * @return string
+     */
+    private function collapseWhitespace($s) 
+    {
+        return preg_replace('/ {2,}|\s/', ' ', $s);
+    }
 
     /**
      * Collapse multiple whitespace characters into a single ' ' and backslash escape '\',
      * and '/' characters from a string.
-     * @param $s
+     *
+     * @param  $s
      * @return string
      */
-    private function quoteApplicationName($s) {
+    private function quoteApplicationName($s) 
+    {
         $quotedString = $this->collapseWhitespace($s);
         $quotedString = preg_replace('/\\\\/', '\\\\\\\\', $quotedString);
         $quotedString = preg_replace('/\//', '\\/', $quotedString);
@@ -365,10 +387,11 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      * Collapse multiple whitespace characters into a single ' ' and backslash escape '\',
      * and '(' characters from a string.
      *
-     * @param $s
+     * @param  $s
      * @return string
      */
-    private function quoteApplicationVersion($s) {
+    private function quoteApplicationVersion($s) 
+    {
         $quotedString = $this->collapseWhitespace($s);
         $quotedString = preg_replace('/\\\\/', '\\\\\\\\', $quotedString);
         $quotedString = preg_replace('/\\(/', '\\(', $quotedString);
@@ -380,10 +403,11 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      * Collapse multiple whitespace characters into a single ' ' and backslash escape '\',
      * and '=' characters from a string.
      *
-     * @param $s
+     * @param  $s
      * @return unknown_type
      */
-    private function quoteAttributeName($s) {
+    private function quoteAttributeName($s) 
+    {
         $quotedString = $this->collapseWhitespace($s);
         $quotedString = preg_replace('/\\\\/', '\\\\\\\\', $quotedString);
         $quotedString = preg_replace('/\\=/', '\\=', $quotedString);
@@ -395,10 +419,11 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      * Collapse multiple whitespace characters into a single ' ' and backslash escape ';', '\',
      * and ')' characters from a string.
      *
-     * @param $s
+     * @param  $s
      * @return unknown_type
      */
-    private function quoteAttributeValue($s) {
+    private function quoteAttributeValue($s) 
+    {
         $quotedString = $this->collapseWhitespace($s);
         $quotedString = preg_replace('/\\\\/', '\\\\\\\\', $quotedString);
         $quotedString = preg_replace('/\\;/', '\\;', $quotedString);
@@ -417,10 +442,11 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
     {
         try {
             if (empty($this->_config['ServiceURL'])) {
-                require_once (dirname(__FILE__) . '/Exception.php');
+                include_once dirname(__FILE__) . '/Exception.php';
                 throw new FBAInventoryServiceMWS_Exception(
                     array ('ErrorCode' => 'InvalidServiceURL',
-                           'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library."));
+                    'Message' => "Missing serviceUrl configuration value. You may obtain a list of valid MWS URLs by consulting the MWS Developer's Guide, or reviewing the sample code published along side this library.")
+                );
             }
             $parameters = $this->_addRequiredParameters($parameters);
             $retries = 0;
@@ -434,13 +460,15 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
                 if ($status == 500 && $this->_pauseOnRetry(++$retries)) {
                     continue;
                 }
-                throw $this->_reportAnyErrors($response['ResponseBody'],
-                    $status, $response['ResponseHeaderMetadata']);
+                throw $this->_reportAnyErrors(
+                    $response['ResponseBody'],
+                    $status, $response['ResponseHeaderMetadata']
+                );
             }
         } catch (FBAInventoryServiceMWS_Exception $se) {
             throw $se;
         } catch (Exception $t) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            include_once dirname(__FILE__) . '/Exception.php';
             throw new FBAInventoryServiceMWS_Exception(array('Exception' => $t, 'Message' => $t->getMessage()));
         }
     }
@@ -467,7 +495,7 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
             $exProps["Message"] = "Internal Error";
         }
 
-        require_once (dirname(__FILE__) . '/Exception.php');
+        include_once dirname(__FILE__) . '/Exception.php';
         return new FBAInventoryServiceMWS_Exception($exProps);
     }
 
@@ -475,26 +503,25 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
 
     /**
      * Perform HTTP post with exponential retries on error 500 and 503
-     *
      */
     private function _httpPost(array $parameters)
     {
         $config = $this->_config;
         $query = $this->_getParametersAsString($parameters);
-        $url = parse_url ($config['ServiceURL']);
+        $url = parse_url($config['ServiceURL']);
         $uri = array_key_exists('path', $url) ? $url['path'] : null;
-        if (!isset ($uri)) {
+        if (!isset($uri)) {
                 $uri = "/";
         }
 
         switch ($url['scheme']) {
-            case 'https':
-                $scheme = 'https://';
-                $port = isset($url['port']) ? $url['port'] : 443;
-                break;
-            default:
-                $scheme = 'http://';
-                $port = isset($url['port']) ? $url['port'] : 80;
+        case 'https':
+            $scheme = 'https://';
+            $port = isset($url['port']) ? $url['port'] : 443;
+            break;
+        default:
+            $scheme = 'http://';
+            $port = isset($url['port']) ? $url['port'] : 80;
         }
 
         $allHeaders = $config['Headers'];
@@ -519,12 +546,10 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         curl_setopt($ch, CURLOPT_HTTPHEADER, $allHeadersStr);
         curl_setopt($ch, CURLOPT_HEADER, true); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        if ($config['ProxyHost'] != null && $config['ProxyPort'] != -1)
-        {
+        if ($config['ProxyHost'] != null && $config['ProxyPort'] != -1) {
             curl_setopt($ch, CURLOPT_PROXY, $config['ProxyHost'] . ':' . $config['ProxyPort']);
         }
-        if ($config['ProxyUsername'] != null && $config['ProxyPassword'] != null)
-        {
+        if ($config['ProxyUsername'] != null && $config['ProxyPassword'] != null) {
             curl_setopt($ch, CURLOPT_PROXYUSERPWD, $config['ProxyUsername'] . ':' . $config['ProxyPassword']);
         }
 
@@ -532,7 +557,7 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         $response = curl_exec($ch);
 
         if($response === false) {
-            require_once (dirname(__FILE__) . '/Exception.php');
+            include_once dirname(__FILE__) . '/Exception.php';
             $exProps["Message"] = curl_error($ch);
             $exProps["ErrorType"] = "HTTP";
             curl_close($ch);
@@ -562,7 +587,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      *
      * return [status, body, ResponseHeaderMetadata]
      */
-    private function _extractHeadersAndBody($response){
+    private function _extractHeadersAndBody($response)
+    {
         //First split by 2 'CRLF'
         $responseComponents = preg_split("/(?:\r?\n){2}/", $response, 2);
         $body = null;
@@ -573,8 +599,9 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
             $headers = $responseComponents[$count];
             $responseStatus = $this->_extractHttpStatusCode($headers);
             
-            if($responseStatus != null && 
-                    $this->_httpHeadersHaveContent($headers)){
+            if($responseStatus != null  
+                && $this->_httpHeadersHaveContent($headers)
+            ) {
                 
                 $responseHeaderMetadata = $this->_extractResponseHeaderMetadata($headers);
                 //The body will be the next item in the responseComponents array
@@ -583,8 +610,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         }
         
         //If the body is null here then we were unable to parse the response and will throw an exception
-        if($body == null){
-            require_once (dirname(__FILE__) . '/Exception.php');
+        if($body == null) {
+            include_once dirname(__FILE__) . '/Exception.php';
             $exProps["Message"] = "Failed to parse valid HTTP response (" . $response . ")";
             $exProps["ErrorType"] = "HTTP";
             throw new FBAInventoryServiceMWS_Exception($exProps);
@@ -604,10 +631,11 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      * ...
      * returns String statusCode or null if the status line can't be parsed
      */
-    private function _extractHttpStatusCode($headers){
-    	$statusCode = null; 
+    private function _extractHttpStatusCode($headers)
+    {
+        $statusCode = null; 
         if (1 === preg_match("/(\\S+) +(\\d+) +([^\n\r]+)(?:\r?\n|\r)/", $headers, $matches)) {
-        	//The matches array [entireMatchString, protocol, statusCode, the rest]
+            //The matches array [entireMatchString, protocol, statusCode, the rest]
             $statusCode = $matches[2]; 
         }
         return $statusCode;
@@ -618,15 +646,17 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      * has content.  In this case
      * return true if there is a valid "Content-Length" or "Transfer-Encoding" header
      */
-    private function _httpHeadersHaveContent($headers){
+    private function _httpHeadersHaveContent($headers)
+    {
         return (1 === preg_match("/[cC]ontent-[lL]ength: +(?:\\d+)(?:\\r?\\n|\\r|$)/", $headers) ||
                 1 === preg_match("/Transfer-Encoding: +(?!identity[\r\n;= ])(?:[^\r\n]+)(?:\r?\n|\r|$)/i", $headers));
     }
     
     /**
-    *  extract a ResponseHeaderMetadata object from the raw headers
-    */
-    private function _extractResponseHeaderMetadata($rawHeaders){
+     *  extract a ResponseHeaderMetadata object from the raw headers
+     */
+    private function _extractResponseHeaderMetadata($rawHeaders)
+    {
         $inputHeaders = preg_split("/\r\n|\n|\r/", $rawHeaders);
         $headers = array();
         $headers['x-mws-request-id'] = null;
@@ -637,7 +667,7 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         $headers['x-mws-quota-resetsOn'] = null;
 
         foreach ($inputHeaders as $currentHeader) {
-            $keyValue = explode (': ', $currentHeader);
+            $keyValue = explode(': ', $currentHeader);
             if (isset($keyValue[1])) {
                 list ($key, $value) = $keyValue;
                 if (isset($headers[$key]) && $headers[$key]!==null) {
@@ -648,21 +678,24 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
             }
         }
  
-        require_once(dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php');
+        include_once dirname(__FILE__) . '/Model/ResponseHeaderMetadata.php';
         return new FBAInventoryServiceMWS_Model_ResponseHeaderMetadata(
-          $headers['x-mws-request-id'],
-          $headers['x-mws-response-context'],
-          $headers['x-mws-timestamp'],
-          $headers['x-mws-quota-max'],
-          $headers['x-mws-quota-remaining'],
-          $headers['x-mws-quota-resetsOn']);
+            $headers['x-mws-request-id'],
+            $headers['x-mws-response-context'],
+            $headers['x-mws-timestamp'],
+            $headers['x-mws-quota-max'],
+            $headers['x-mws-quota-remaining'],
+            $headers['x-mws-quota-resetsOn']
+        );
     }
 
     /**
      * Set curl options relating to SSL. Protected to allow overriding.
+     *
      * @param $ch curl handle
      */
-    protected function setSSLCurlOptions($ch) {
+    protected function setSSLCurlOptions($ch) 
+    {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     }
@@ -740,9 +773,9 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
      *       Parameter names are separated from their values by the '=' character
      *       (ASCII character 61), even if the value is empty.
      *       Pairs of parameter and values are separated by the '&' character (ASCII code 38).
-     *
      */
-    private function _signParameters(array $parameters, $key) {
+    private function _signParameters(array $parameters, $key) 
+    {
         $signatureVersion = $parameters['SignatureVersion'];
         $algorithm = "HmacSHA1";
         $stringToSign = null;
@@ -758,17 +791,19 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
 
     /**
      * Calculate String to Sign for SignatureVersion 2
-     * @param array $parameters request parameters
+     *
+     * @param  array $parameters request parameters
      * @return String to Sign
      */
-    private function _calculateStringToSignV2(array $parameters) {
+    private function _calculateStringToSignV2(array $parameters) 
+    {
         $data = 'POST';
         $data .= "\n";
-        $endpoint = parse_url ($this->_config['ServiceURL']);
+        $endpoint = parse_url($this->_config['ServiceURL']);
         $data .= $endpoint['host'];
         $data .= "\n";
         $uri = array_key_exists('path', $endpoint) ? $endpoint['path'] : null;
-        if (!isset ($uri)) {
+        if (!isset($uri)) {
             $uri = "/";
         }
         $uriencoded = implode("/", array_map(array($this, "_urlencode"), explode("/", $uri)));
@@ -779,7 +814,8 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         return $data;
     }
 
-    private function _urlencode($value) {
+    private function _urlencode($value) 
+    {
         return str_replace('%7E', '~', rawurlencode($value));
     }
 
@@ -794,7 +830,7 @@ class FBAInventoryServiceMWS_Client implements FBAInventoryServiceMWS_Interface
         } else if ($algorithm === 'HmacSHA256') {
             $hash = 'sha256';
         } else {
-            throw new Exception ("Non-supported signing method specified");
+            throw new Exception("Non-supported signing method specified");
         }
         return base64_encode(
             hash_hmac($hash, $data, $key, true)

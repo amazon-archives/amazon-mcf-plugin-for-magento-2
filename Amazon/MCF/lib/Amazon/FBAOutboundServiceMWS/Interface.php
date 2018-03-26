@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -27,8 +28,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   items that haven't already shipped, but cannot guarantee success.
      *   Note: Items that have already shipped cannot be cancelled.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CancelFulfillmentOrder request or FBAOutboundServiceMWS_Model_CancelFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_CancelFulfillmentOrderRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CancelFulfillmentOrder request or FBAOutboundServiceMWS_Model_CancelFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_CancelFulfillmentOrderRequest
      * @return FBAOutboundServiceMWS_Model_CancelFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -89,8 +90,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   e-mails are customer-facing e-mails sent by FBA on behalf of 
      *   the seller.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentOrder request or FBAOutboundServiceMWS_Model_CreateFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_CreateFulfillmentOrderRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentOrder request or FBAOutboundServiceMWS_Model_CreateFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_CreateFulfillmentOrderRequest
      * @return FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -111,8 +112,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   the items are invalid for a return, ReturnItemList will be empty. 
      *   If all the items are invalid for a return, ReturnItemList will be empty.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentReturn request or FBAOutboundServiceMWS_Model_CreateFulfillmentReturn object itself
-     * @see FBAOutboundServiceMWS_Model_CreateFulfillmentReturnRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_CreateFulfillmentReturn request or FBAOutboundServiceMWS_Model_CreateFulfillmentReturn object itself
+     * @see    FBAOutboundServiceMWS_Model_CreateFulfillmentReturnRequest
      * @return FBAOutboundServiceMWS_Model_CreateFulfillmentReturnResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -127,8 +128,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   items in Amazon's fulfillment network, and the shipments that have been
      *   generated to fulfill the order.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentOrder request or FBAOutboundServiceMWS_Model_GetFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_GetFulfillmentOrderRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentOrder request or FBAOutboundServiceMWS_Model_GetFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_GetFulfillmentOrderRequest
      * @return FBAOutboundServiceMWS_Model_GetFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -149,8 +150,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   The service will return the fulfillment estimates for a set of Seller 
      *   SKUs and quantities.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentPreview request or FBAOutboundServiceMWS_Model_GetFulfillmentPreview object itself
-     * @see FBAOutboundServiceMWS_Model_GetFulfillmentPreviewRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetFulfillmentPreview request or FBAOutboundServiceMWS_Model_GetFulfillmentPreview object itself
+     * @see    FBAOutboundServiceMWS_Model_GetFulfillmentPreviewRequest
      * @return FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -162,8 +163,8 @@ interface  FBAOutboundServiceMWS_Interface
      * Get Package Tracking Details
      * Gets the tracking details for a shipment package.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetPackageTrackingDetails request or FBAOutboundServiceMWS_Model_GetPackageTrackingDetails object itself
-     * @see FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetPackageTrackingDetails request or FBAOutboundServiceMWS_Model_GetPackageTrackingDetails object itself
+     * @see    FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsRequest
      * @return FBAOutboundServiceMWS_Model_GetPackageTrackingDetailsResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -178,8 +179,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   GREEN: The service section is operating normally.
      *   RED: The service section disruption.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetServiceStatus request or FBAOutboundServiceMWS_Model_GetServiceStatus object itself
-     * @see FBAOutboundServiceMWS_Model_GetServiceStatusRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_GetServiceStatus request or FBAOutboundServiceMWS_Model_GetServiceStatus object itself
+     * @see    FBAOutboundServiceMWS_Model_GetServiceStatusRequest
      * @return FBAOutboundServiceMWS_Model_GetServiceStatusResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -201,8 +202,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   currently being fulfilled, and all orders that were being fulfilled
      *   since that date and time.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders object itself
-     * @see FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrders object itself
+     * @see    FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersRequest
      * @return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -218,8 +219,8 @@ interface  FBAOutboundServiceMWS_Interface
      * 
      *   If a NextToken is not returned, it indicates the end-of-data.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken object itself
-     * @see FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken request or FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextToken object itself
+     * @see    FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenRequest
      * @return FBAOutboundServiceMWS_Model_ListAllFulfillmentOrdersByNextTokenResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -233,8 +234,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   a given SKU and original ordering country. The eligible return reasons 
      *   may vary from country to country.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListReturnReasonCodes request or FBAOutboundServiceMWS_Model_ListReturnReasonCodes object itself
-     * @see FBAOutboundServiceMWS_Model_ListReturnReasonCodesRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_ListReturnReasonCodes request or FBAOutboundServiceMWS_Model_ListReturnReasonCodes object itself
+     * @see    FBAOutboundServiceMWS_Model_ListReturnReasonCodesRequest
      * @return FBAOutboundServiceMWS_Model_ListReturnReasonCodesResponse
      *
      * @throws FBAOutboundServiceMWS_Exception
@@ -289,8 +290,8 @@ interface  FBAOutboundServiceMWS_Interface
      *   e-mails are customer-facing e-mails sent by FBA on behalf of 
      *   the seller.
      *
-     * @param mixed $request array of parameters for FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder request or FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder object itself
-     * @see FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderRequest
+     * @param  mixed $request array of parameters for FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder request or FBAOutboundServiceMWS_Model_UpdateFulfillmentOrder object itself
+     * @see    FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderRequest
      * @return FBAOutboundServiceMWS_Model_UpdateFulfillmentOrderResponse
      *
      * @throws FBAOutboundServiceMWS_Exception

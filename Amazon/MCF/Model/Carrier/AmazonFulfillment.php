@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -17,7 +17,6 @@
 
 namespace Amazon\MCF\Model\Carrier;
 
-
 use Magento\Shipping\Model\Carrier\AbstractCarrier;
 use Magento\Shipping\Model\Carrier\CarrierInterface;
 
@@ -27,7 +26,8 @@ use Magento\Shipping\Model\Carrier\CarrierInterface;
  *
  * @package Amazon\MCF\Model\Carrier
  */
-class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
+class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
+{
 
     /**
      * Code of the carrier
@@ -46,51 +46,42 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
     /**
      * @var bool
      */
-    protected $_isFixed = FALSE;
-
-    /**
-     * @var array
-     */
-    protected $_methodTitles = [
-        'standard' => 'Standard',
-        'expedited' => 'Expedited',
-        'priority' => 'Priority',
-    ];
-
+    protected $_isFixed = false;
+    
     /**
      * @var \Amazon\MCF\Model\Service\Outbound
      */
-    protected $_outbound;
+    private $outbound;
 
     /**
      * @var
      */
-    protected $_request;
+    private $request;
 
     /**
      * @var
      */
-    protected $_address;
+    private $address;
 
     /**
      * @var \Amazon\MCF\Helper\Data
      */
-    protected $_configHelper;
+    private $configHelper;
 
     /**
      * @var \Amazon\MCF\Helper\Conversion
      */
-    protected $_conversionHelper;
+    private $conversionHelper;
 
     /**
      * @var \Magento\Shipping\Model\Rate\ResultFactory
      */
-    protected $_rateResultFactory;
+    private $rateResultFactory;
 
     /**
      * @var \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory
      */
-    protected $_rateMethodFactory;
+    private $rateMethodFactory;
 
     /**
      * @var \Magento\Framework\Logger\Monolog
@@ -100,21 +91,21 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
-    protected $_storeManager;
+    private $storeManager;
 
     /**
      * AmazonFulfillment constructor.
      *
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-     * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory $rateErrorFactory
-     * @param \Magento\Framework\Logger\Monolog $logger
-     * @param \Magento\Shipping\Model\Rate\ResultFactory $rateResultFactory
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface          $scopeConfig
+     * @param \Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory  $rateErrorFactory
+     * @param \Magento\Framework\Logger\Monolog                           $logger
+     * @param \Magento\Shipping\Model\Rate\ResultFactory                  $rateResultFactory
      * @param \Magento\Quote\Model\Quote\Address\RateResult\MethodFactory $rateMethodFactory
-     * @param \Amazon\MCF\Helper\Data $configHelper
-     * @param \Amazon\MCF\Helper\Conversion $conversionHelper
-     * @param \Amazon\MCF\Model\Service\Outbound $outbound
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param array $data
+     * @param \Amazon\MCF\Helper\Data                                     $configHelper
+     * @param \Amazon\MCF\Helper\Conversion                               $conversionHelper
+     * @param \Amazon\MCF\Model\Service\Outbound                          $outbound
+     * @param \Magento\Store\Model\StoreManagerInterface                  $storeManager
+     * @param array                                                       $data
      */
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -129,12 +120,12 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
         array $data = []
     ) {
         $this->_logger = $logger;
-        $this->_conversionHelper = $conversionHelper;
-        $this->_configHelper = $configHelper;
-        $this->_outbound = $outbound;
-        $this->_rateResultFactory = $rateResultFactory;
-        $this->_rateMethodFactory = $rateMethodFactory;
-        $this->_storeManager = $storeManager;
+        $this->conversionHelper = $conversionHelper;
+        $this->configHelper = $configHelper;
+        $this->outbound = $outbound;
+        $this->rateResultFactory = $rateResultFactory;
+        $this->rateMethodFactory = $rateMethodFactory;
+        $this->storeManager = $storeManager;
         parent::__construct($scopeConfig, $rateErrorFactory, $logger, $data);
     }
 
@@ -145,31 +136,30 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return \Magento\Shipping\Model\Rate\Result|bool
      */
-    public function collectRates(\Magento\Quote\Model\Quote\Address\RateRequest $request) {
+    public function collectRates(\Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
         if (!$this->getConfigFlag('active')) {
-            return FALSE;
+            return false;
         }
 
-        if ($this->_configHelper->isEnabled()) {
-            /** @var \Magento\Shipping\Model\Rate\Result $result */
-            $result = $this->_rateResultFactory->create();
+        if ($this->configHelper->isEnabled()) {
+            /**
+             * @var \Magento\Shipping\Model\Rate\Result $result
+             */
+            $result = $this->rateResultFactory->create();
             $this->prepareShippingRequest($request);
             $rates = $this->getShippingRates($request);
-            $storeId = $this->_storeManager->getStore()->getId();
-            $showDates = $this->_configHelper->displayEstimatedArrival($storeId);
-
+            $storeId = $this->storeManager->getStore()->getId();
+            $showDates = $this->configHelper->displayEstimatedArrival($storeId);
             if ($rates) {
-
                 foreach ($rates as $title => $values) {
-
                     if ($showDates && isset($values['date'])) {
                         $methodTitle = 'By ' . date('l, M. j', strtotime($values['date'])) . ' - ' . $title;
-                    }
-                    else {
+                    } else {
                         $methodTitle = $title;
                     }
 
-                    $method = $this->_rateMethodFactory->create();
+                    $method = $this->rateMethodFactory->create();
 
                     $method->setCarrier('amazonfulfillment');
                     $method->setCarrierTitle('Fulfillment By Amazon');
@@ -183,13 +173,10 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
                     $result->append($method);
                 }
             }
-
-        }
-        else {
+        } else {
             $this->_logger->addDebug('Cannot be fulfilled by Amazon - extension is not enabled.');
-            return FALSE;
+            return false;
         }
-
         return $result;
     }
 
@@ -201,10 +188,11 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return array
      */
-    protected function getItemsFromShippingRateRequest(\Magento\Quote\Model\Quote\Address\RateRequest $request) {
+    private function getItemsFromShippingRateRequest(\Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
         $items = $request->getAllItems();
 
-        return $this->_conversionHelper->getAmazonItemsArrayFromRateRequest($items);
+        return $this->conversionHelper->getAmazonItemsArrayFromRateRequest($items);
     }
 
     /**
@@ -214,7 +202,8 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return array|null
      */
-    protected function getShippingRates(\Magento\Quote\Model\Quote\Address\RateRequest $request) {
+    private function getShippingRates(\Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
         $rates = [];
         $items = $this->getItemsFromShippingRateRequest($request);
 
@@ -222,22 +211,29 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             return $rates;
         }
 
-        if ($this->_address) {
-
-            $fulfillmentPreview = $this->_outbound->getFulfillmentPreview($this->_address, $items);
-
+        if ($this->address) {
+            $fulfillmentPreview = $this->outbound->getFulfillmentPreview($this->address, $items);
             if (!empty($fulfillmentPreview)) {
                 $rates = $this->getRatesFromFulfillmentPreview($fulfillmentPreview);
             }
 
             if (empty($rates)) {
-                $rates = ['Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())]];
-            }
-            elseif (!$this->_configHelper->displayShippingCosts($request->getStoreId())) {
+                $rates = [
+                    'Standard' => [
+                        'price' => $this->configHelper->getDefaultStandardShippingCost($request->getStoreId())
+                    ]
+                ];
+            } elseif (!$this->configHelper->displayShippingCosts($request->getStoreId())) {
                 $defaultRates = [
-                    'Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())],
-                    'Expedited' => ['price' => $this->_configHelper->getDefaultExpeditedShippingCost($request->getStoreId())],
-                    'Priority' => ['price' => $this->_configHelper->getDefaultPriorityShippingCost($request->getStoreId())],
+                    'Standard' => [
+                        'price' => $this->configHelper->getDefaultStandardShippingCost($request->getStoreId())
+                    ],
+                    'Expedited' => [
+                        'price' => $this->configHelper->getDefaultExpeditedShippingCost($request->getStoreId())
+                    ],
+                    'Priority' => [
+                        'price' => $this->configHelper->getDefaultPriorityShippingCost($request->getStoreId())
+                    ],
                 ];
 
                 // Only update rates that are returned for the destination
@@ -247,25 +243,39 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
             }
         }
 
-        // check for non-FBA items in cart and prevent Amazon rates from being offered.
-        $isFBA = FALSE;
-        $nonFBA = FALSE;
+        $rates = $this->getNonFBAItemRates($rates, $request);
+
+        return $rates;
+    }
+
+    /**
+     * Check for non-FBA items in cart and prevent Amazon rates from being offered.
+     *
+     * @param  array                                          $rates
+     * @param  \Magento\Quote\Model\Quote\Address\RateRequest $request
+     * @return array
+     */
+    private function getNonFBAItemRates(array $rates, \Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
+        $isFBA = false;
+        $nonFBA = false;
 
         $items = $request->getAllItems();
         if ($items) {
             foreach ($items as $item) {
-
                 if ($item->getProduct()->getAmazonMcfAsinEnabled()) {
-                    $isFBA = TRUE;
-                }
-                else {
-                    $nonFBA = TRUE;
+                    $isFBA = true;
+                } else {
+                    $nonFBA = true;
                 }
             }
 
-
             if (!$rates && $isFBA && !$nonFBA) {
-                $rates = ['Standard' => ['price' => $this->_configHelper->getDefaultStandardShippingCost($request->getStoreId())]];
+                $rates = [
+                    'Standard' => [
+                        'price' => $this->configHelper->getDefaultStandardShippingCost($request->getStoreId())
+                    ]
+                ];
             }
 
             // if any non-fba items are in cart, offer no rates
@@ -284,13 +294,17 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return array
      */
-    protected function getRatesFromFulfillmentPreview(\FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse $fulfillmentPreview) {
+    private function getRatesFromFulfillmentPreview(
+        \FBAOutboundServiceMWS_Model_GetFulfillmentPreviewResponse $fulfillmentPreview
+    ) {
         $previews = $fulfillmentPreview->getGetFulfillmentPreviewResult()
             ->getFulfillmentPreviews()
             ->getmember();
         $rates = [];
 
-        /** @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview */
+        /**
+         * @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview
+         */
         foreach ($previews as $preview) {
             $shipDate = 0;
             $fulfillable = $preview->getIsFulfillable();
@@ -320,27 +334,25 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @return mixed
      */
-    protected function calculateShippingFee($fees) {
+    private function calculateShippingFee($fees)
+    {
         $feeAmount = 0;
         if ($fees && !empty($fees->getmember())) {
             foreach ($fees->getmember() as $fee) {
                 if ($fee->getName() == 'FBAPerUnitFulfillmentFee') {
-
                     $feeAmount += $fee->getAmount()
                         ->getValue();
                 }
-
             }
         }
-
         return $feeAmount;
     }
 
     /**
      * @return array
      */
-    public
-    function getAllowedMethods() {
+    public function getAllowedMethods()
+    {
         return [
             'standard' => 'Standard',
             'expedited' => 'Expedited',
@@ -353,27 +365,18 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
      *
      * @param \Magento\Quote\Model\Quote\Address\RateRequest $request
      *
-     * @return $this
+     * @return                                        $this
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      * @SuppressWarnings(PHPMD.NPathComplexity)
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
-    public
-    function prepareShippingRequest(\Magento\Quote\Model\Quote\Address\RateRequest $request) {
-        $this->_request = $request;
+    public function prepareShippingRequest(\Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
+        $this->request = $request;
 
         $r = [];
 
-        if ($request->getDestCountryId()) {
-            $r['CountryCode'] = $request->getDestCountryId();
-        }
-
-        if (!$r['CountryCode']) {
-            $country = $this->_configHelper->getStoreCountry($request->getStoreId());
-            if ($country) {
-                $r['CountryCode'] = $country;
-            }
-        }
+        $this->setCountry($r, $request);
 
         if (!empty($request->getDestPostcode())) {
             $r['PostalCode'] = $request->getDestPostcode();
@@ -390,7 +393,6 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
         if ($request->getDestStreet()) {
             $r['Line1'] = $request->getDestStreet();
         }
-
 
         if (isset($r['CountryCode']) && (isset($r['PostalCode']) || isset($r['StateOrProvinceCode']))) {
             // API requires a name but all other shipping methods function without out - using placeholder.
@@ -412,11 +414,27 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface {
                 $r['StateOrProvinceCode'] = 'WA';
             }
 
-            $this->_address = $r;
-        }
-        else {
-            $this->_address = [];
+            $this->address = $r;
+        } else {
+            $this->address = [];
         }
     }
 
+    /**
+     * @param array                                          $r
+     * @param \Magento\Quote\Model\Quote\Address\RateRequest $request
+     */
+    private function setCountry(array $r, \Magento\Quote\Model\Quote\Address\RateRequest $request)
+    {
+        if ($request->getDestCountryId()) {
+            $r['CountryCode'] = $request->getDestCountryId();
+        }
+
+        if (!$r['CountryCode']) {
+            $country = $this->configHelper->getStoreCountry($request->getStoreId());
+            if ($country) {
+                $r['CountryCode'] = $country;
+            }
+        }
+    }
 }

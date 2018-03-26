@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_TrackingAddress extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_TrackingAddress extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'City' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'State' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Country' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'City' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'State' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Country' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the City property.
      *
-     * @param string city
+     * @param  string city
      * @return this instance
      */
     public function setCity($value)
@@ -79,7 +81,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCity()
     {
                 return !is_null($this->_fields['City']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of City, return this.
@@ -108,7 +110,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the State property.
      *
-     * @param string state
+     * @param  string state
      * @return this instance
      */
     public function setState($value)
@@ -125,7 +127,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetState()
     {
                 return !is_null($this->_fields['State']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of State, return this.
@@ -154,7 +156,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Country property.
      *
-     * @param string country
+     * @param  string country
      * @return this instance
      */
     public function setCountry($value)
@@ -171,7 +173,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetCountry()
     {
                 return !is_null($this->_fields['Country']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Country, return this.

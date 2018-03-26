@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -36,15 +37,16 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_InvalidItemReason extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_InvalidItemReason extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'InvalidItemReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Description' => array('FieldValue' => null, 'FieldType' => 'string'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'InvalidItemReasonCode' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Description' => array('FieldValue' => null, 'FieldType' => 'string'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -60,7 +62,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the InvalidItemReasonCode property.
      *
-     * @param string invalidItemReasonCode
+     * @param  string invalidItemReasonCode
      * @return this instance
      */
     public function setInvalidItemReasonCode($value)
@@ -77,7 +79,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetInvalidItemReasonCode()
     {
                 return !is_null($this->_fields['InvalidItemReasonCode']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of InvalidItemReasonCode, return this.
@@ -106,7 +108,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Description property.
      *
-     * @param string description
+     * @param  string description
      * @return this instance
      */
     public function setDescription($value)
@@ -123,7 +125,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetDescription()
     {
                 return !is_null($this->_fields['Description']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Description, return this.

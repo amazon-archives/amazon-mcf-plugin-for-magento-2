@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -37,16 +38,17 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_InvalidReturnItem extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_InvalidReturnItem extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'SellerReturnItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'InvalidItemReason' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_InvalidItemReason'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'SellerReturnItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'SellerFulfillmentOrderItemId' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'InvalidItemReason' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_InvalidItemReason'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -62,7 +64,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerReturnItemId property.
      *
-     * @param string sellerReturnItemId
+     * @param  string sellerReturnItemId
      * @return this instance
      */
     public function setSellerReturnItemId($value)
@@ -79,7 +81,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerReturnItemId()
     {
                 return !is_null($this->_fields['SellerReturnItemId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerReturnItemId, return this.
@@ -108,7 +110,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the SellerFulfillmentOrderItemId property.
      *
-     * @param string sellerFulfillmentOrderItemId
+     * @param  string sellerFulfillmentOrderItemId
      * @return this instance
      */
     public function setSellerFulfillmentOrderItemId($value)
@@ -125,7 +127,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetSellerFulfillmentOrderItemId()
     {
                 return !is_null($this->_fields['SellerFulfillmentOrderItemId']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of SellerFulfillmentOrderItemId, return this.
@@ -154,7 +156,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the InvalidItemReason property.
      *
-     * @param FBAOutboundServiceMWS_Model_InvalidItemReason invalidItemReason
+     * @param  FBAOutboundServiceMWS_Model_InvalidItemReason invalidItemReason
      * @return this instance
      */
     public function setInvalidItemReason($value)
@@ -171,7 +173,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetInvalidItemReason()
     {
                 return !is_null($this->_fields['InvalidItemReason']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of InvalidItemReason, return this.

@@ -8,8 +8,9 @@
  * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR 
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the 
  * specific language governing permissions and limitations under the License.
- *******************************************************************************
+ * ******************************************************************************
  * PHP Version 5
+ *
  * @category Amazon
  * @package  FBA Outbound Service MWS
  * @version  2010-10-01
@@ -18,10 +19,10 @@
  */
 
 /**
- *  @see FBAOutboundServiceMWS_Model
+ * @see FBAOutboundServiceMWS_Model
  */
 
-require_once(dirname(__FILE__) . '/../Model.php');
+require_once dirname(__FILE__) . '/../Model.php';
 
 
 /**
@@ -36,15 +37,16 @@ require_once(dirname(__FILE__) . '/../Model.php');
  * </ul>
  */
 
- class FBAOutboundServiceMWS_Model_Fee extends FBAOutboundServiceMWS_Model {
+class FBAOutboundServiceMWS_Model_Fee extends FBAOutboundServiceMWS_Model
+{
 
     public function __construct($data = null)
     {
-    $this->_fields = array (
-    'Name' => array('FieldValue' => null, 'FieldType' => 'string'),
-    'Amount' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
-    );
-    parent::__construct($data);
+        $this->_fields = array (
+        'Name' => array('FieldValue' => null, 'FieldType' => 'string'),
+        'Amount' => array('FieldValue' => null, 'FieldType' => 'FBAOutboundServiceMWS_Model_Currency'),
+        );
+        parent::__construct($data);
     }
 
     /**
@@ -60,7 +62,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Name property.
      *
-     * @param string name
+     * @param  string name
      * @return this instance
      */
     public function setName($value)
@@ -77,7 +79,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetName()
     {
                 return !is_null($this->_fields['Name']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Name, return this.
@@ -106,7 +108,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     /**
      * Set the value of the Amount property.
      *
-     * @param FBAOutboundServiceMWS_Model_Currency amount
+     * @param  FBAOutboundServiceMWS_Model_Currency amount
      * @return this instance
      */
     public function setAmount($value)
@@ -123,7 +125,7 @@ require_once(dirname(__FILE__) . '/../Model.php');
     public function isSetAmount()
     {
                 return !is_null($this->_fields['Amount']['FieldValue']);
-            }
+    }
 
     /**
      * Set the value of Amount, return this.
