@@ -18,8 +18,6 @@
 namespace Amazon\MCF\Block\System\Config;
 
 use Magento\Backend\Block\Template\Context;
-use Magento\Customer\Model\Session;
-use Magento\Framework\ObjectManagerInterface;
 
 /**
  * Provides button markup on configuration page to flag items for inventory synchronization
@@ -109,5 +107,4 @@ class AmazonSynchronize extends \Magento\Config\Block\System\Config\Form\Field
 
         return $button->toHtml();
     }
-
 }

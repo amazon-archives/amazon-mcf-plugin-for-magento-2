@@ -516,56 +516,58 @@ class GetOrderStatus
             }
         }
 
-        $ordersToProcess = $this->orderCollectionFactory
-            ->create()
-            ->addFieldToSelect('*')
-            ->addFieldToFilter(
-                'store_id', [
-                'in' => [$enabledStores],
-                ]
-            )
-            ->addFieldToFilter(
-                'state', [
-                'in' => [
-                    \Magento\Sales\Model\Order::STATE_NEW,
-                    \Magento\Sales\Model\Order::STATE_PROCESSING,
-                ],
-                ]
-            )
-            ->addFieldToFilter('fulfilled_by_amazon', true)
-            ->addFieldToFilter(
-                'amazon_order_status', [
-                'in' => [
-                    $this->helper::ORDER_STATUS_NEW,
-                    $this->helper::ORDER_STATUS_ATTEMPTED,
-                ],
-                ]
-            )
-            ->setPageSize(self::NUM_ORDERS_TO_RESUBMIT)
-            ->setCurPage(1);
+        if ($enabledStores) {
+            $ordersToProcess = $this->orderCollectionFactory
+                ->create()
+                ->addFieldToSelect('*')
+                ->addFieldToFilter(
+                    'store_id', [
+                        'in' => [$enabledStores],
+                    ]
+                )
+                ->addFieldToFilter(
+                    'state', [
+                        'in' => [
+                            \Magento\Sales\Model\Order::STATE_NEW,
+                            \Magento\Sales\Model\Order::STATE_PROCESSING,
+                        ],
+                    ]
+                )
+                ->addFieldToFilter('fulfilled_by_amazon', true)
+                ->addFieldToFilter(
+                    'amazon_order_status', [
+                        'in' => [
+                            $this->helper::ORDER_STATUS_NEW,
+                            $this->helper::ORDER_STATUS_ATTEMPTED,
+                        ],
+                    ]
+                )
+                ->setPageSize(self::NUM_ORDERS_TO_RESUBMIT)
+                ->setCurPage(1);
 
-        if ($ordersToProcess->count()) {
-            foreach ($ordersToProcess as $order) {
-                $this->helper->logOrder('Retrying submission of order #' . $order->getIncrementId());
-                $currentAttempt = $order->getAmazonSubmissionCount() + 1;
-                /**
-                 * @var \FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse $result 
-                 */
-                $result = $this->outbound->createFulfillmentOrder($order);
-                $responseMetadata = $result->getResponseMetadata();
+            if ($ordersToProcess->count()) {
+                foreach ($ordersToProcess as $order) {
+                    $this->helper->logOrder('Retrying submission of order #' . $order->getIncrementId());
+                    $currentAttempt = $order->getAmazonSubmissionCount() + 1;
+                    /**
+                     * @var \FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse $result
+                     */
+                    $result = $this->outbound->createFulfillmentOrder($order);
+                    $responseMetadata = $result->getResponseMetadata();
 
-                if (!empty($result) && !empty($responseMetadata)) {
-                    $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_RECEIVED);
-                } elseif ($currentAttempt >= self::NUM_ORDER_RESUMIT_RETRYS) {
-                    $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_FAIL);
-                    $this->helper->logOrder(
-                        'Giving up on order #' . $order->getIncrementId() . "after $currentAttempt tries."
-                    );
-                } else {
-                    $order->setAmazonSubmissionCount($currentAttempt);
+                    if (!empty($result) && !empty($responseMetadata)) {
+                        $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_RECEIVED);
+                    } elseif ($currentAttempt >= self::NUM_ORDER_RESUMIT_RETRYS) {
+                        $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_FAIL);
+                        $this->helper->logOrder(
+                            'Giving up on order #' . $order->getIncrementId() . "after $currentAttempt tries."
+                        );
+                    } else {
+                        $order->setAmazonSubmissionCount($currentAttempt);
+                    }
+
+                    $order->save();
                 }
-
-                $order->save();
             }
         }
     }
