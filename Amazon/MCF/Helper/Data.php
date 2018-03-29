@@ -629,7 +629,7 @@ class Data extends AbstractHelper
         ) {
             return true;
         } else {
-            $this->notifierPool->info(
+            $this->notifierPool->addNotice(
                 'Amazon Multi-Channel Fulfillment',
                 'Seller Central keys or endpoint are not set correctly. Please check your configuration and try again.'
             );
