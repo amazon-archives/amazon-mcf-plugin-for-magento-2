@@ -76,7 +76,6 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template
         return $this;
     }
 
-
     /**
      * Get's an instance of product on which this block is currently displayed
      *
@@ -96,7 +95,7 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */
-    public function getAjaxRateUrl() 
+    public function getAjaxRateUrl()
     {
         return $this->getUrl('amazonfba/Ajax/FBAData');
     }
@@ -106,7 +105,7 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template
      *
      * @return int
      */
-    public function getProductId() 
+    public function getProductId()
     {
         return $this->getProduct()->getId();
     }
@@ -116,7 +115,7 @@ class ProductShippingBlock extends \Magento\Framework\View\Element\Template
      *
      * @return bool
      */
-    public function isFBAEnabled() 
+    public function isFBAEnabled()
     {
         $product = $this->getProduct();
         $storeId = $this->_storeManager->getStore()->getId();

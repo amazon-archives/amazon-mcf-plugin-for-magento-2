@@ -55,14 +55,13 @@ class AmazonSynchronize extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
-
     /**
      * Synchronize callback - when config synchronize button is pressed,
      * sets sync flag so that all inventory items will be processed during cron.
      *
      * @return void
      */
-    public function execute() 
+    public function execute()
     {
         $responseText = __('Inventory Synchronization has been flagged to begin running each inventory 
         cron job until completed.');

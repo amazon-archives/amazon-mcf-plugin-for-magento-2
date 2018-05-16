@@ -95,7 +95,6 @@ class GetOrderStatus
      */
     private $inventorySender;
 
-
     /**
      * GetOrderStatus constructor
      *
@@ -141,7 +140,7 @@ class GetOrderStatus
     /**
      * Cron callback for updating order status.
      */
-    public function orderUpdate() 
+    public function orderUpdate()
     {
         $this->helper->logOrder('Beginning Order Update.');
         $stores = $this->storeManager->getStores();
@@ -161,12 +160,14 @@ class GetOrderStatus
                 ->create()
                 ->addFieldToSelect('*')
                 ->addFieldToFilter(
-                    'store_id', [
+                    'store_id',
+                    [
                     'in' => [$enabledStores],
                     ]
                 )
                 ->addFieldToFilter(
-                    'state', [
+                    'state',
+                    [
                     'in' => [
                         \Magento\Sales\Model\Order::STATE_NEW,
                         \Magento\Sales\Model\Order::STATE_PROCESSING,
@@ -175,7 +176,8 @@ class GetOrderStatus
                 )
                 ->addFieldToFilter('fulfilled_by_amazon', true)
                 ->addFieldToFilter(
-                    'amazon_order_status', [
+                    'amazon_order_status',
+                    [
                     'in' => [
                         $this->helper::ORDER_STATUS_RECEIVED,
                         $this->helper::ORDER_STATUS_PLANNING,
@@ -184,13 +186,10 @@ class GetOrderStatus
                     ]
                 );
 
-
             if (!empty($ordersToProcess) && $ordersToProcess->count()) {
                 $this->helper->logOrder('Beginning Order Update for ' . $ordersToProcess->count() . ' orders.');
 
-
                 foreach ($ordersToProcess as $order) {
-
                     $this->helper->logOrder('Updating order #' . $order->getIncrementId());
 
                     $result = $this->outbound->getFulfillmentOrder($order);
@@ -213,16 +212,15 @@ class GetOrderStatus
 
                             if ($amazonStatus) {
                                 switch ($amazonStatus) {
-                                case 'COMPLETE':
-                                case 'COMPLETE_PARTIALLED':
-                                    $this->magentoOrderUpdate($order, $fulfillmentOrderResult);
-                                    break;
-                                case 'INVALID':
-                                case 'CANCELLED':
-                                case 'UNFULFILLABLE':
-                                    $this->cancelFBAShipment($order, $fulfillmentOrderResult);
-                                    break;
-
+                                    case 'COMPLETE':
+                                    case 'COMPLETE_PARTIALLED':
+                                        $this->magentoOrderUpdate($order, $fulfillmentOrderResult);
+                                        break;
+                                    case 'INVALID':
+                                    case 'CANCELLED':
+                                    case 'UNFULFILLABLE':
+                                        $this->cancelFBAShipment($order, $fulfillmentOrderResult);
+                                        break;
                                 }
                             }
                         }
@@ -373,10 +371,9 @@ class GetOrderStatus
      * @param \FBAOutboundServiceMWS_Model_FulfillmentOrder $fulfillmentOrder
      */
     private function createShipment(
-        \Magento\Sales\Model\Order $order, 
+        \Magento\Sales\Model\Order $order,
         \FBAOutboundServiceMWS_Model_GetFulfillmentOrderResult $fulfillmentOrder
     ) {
-
         if ($order->canShip()) {
             $shipmentItems = [];
             $shipments = [];
@@ -384,7 +381,6 @@ class GetOrderStatus
             // group shipments by package number
             foreach ($fulfillmentOrder->getFulfillmentShipment()
                 ->getmember() as $fulfillmentShipment) {
-
                 foreach ($fulfillmentShipment->getFulfillmentShipmentItem()
                     ->getmember() as $details) {
                     if ($details) {
@@ -401,20 +397,17 @@ class GetOrderStatus
 
                 // match each package with tracking information
                 foreach ($packages as $package) {
-
                     if (isset($shipments[$package->getPackageNumber()])) {
                         $shipments[$package->getPackageNumber()]['tracking'] = [
                             'carrierCode' => $this->conversionHelper->getCarrierCodeFromPackage($package),
                             'title' => $this->conversionHelper->getCarrierTitleFromPackage($package),
                         ];
                     }
-
                 }
 
                 // match order items with each shipment/package
                 // so that 1 shipment can have 1..n orders based on packaging information
                 foreach ($shipments as $packageNumber => $data) {
-
                     $convertOrder = $this->objectManager->create('Magento\Sales\Model\Convert\Order');
                     $shipment = $convertOrder->toShipment($order);
 
@@ -422,11 +415,10 @@ class GetOrderStatus
                         $product = $orderItem->getProduct();
 
                         foreach ($data as $index => $item) {
-                            if (isset($item['sellerSku']) 
+                            if (isset($item['sellerSku'])
                                 && (($item['sellerSku'] == $product->getSku())
                                 || $item['sellerSku'] == $product->getAamazonMcfMerchantSku())
                             ) {
-
                                 if ($orderItem->getQtyToShip() && !$orderItem->getIsVirtual()) {
                                     $shipmentItem = $convertOrder->itemToShipmentItem($orderItem)
                                         ->setQty($item['quantity']);
@@ -456,13 +448,11 @@ class GetOrderStatus
                         // Save created shipment and order
                         $shipment->save();
                         $shipment->getOrder()->save();
-
                     } catch (\Exception $e) {
                         $this->helper->logOrder(__($e->getMessage()));
                     }
                 }
             }
-
         } else {
             $this->helper->logOrder(
                 'Unable to create Amazon FBA Shipment for order: ' . $order->getRealOrderId() . '.'
@@ -479,21 +469,22 @@ class GetOrderStatus
         \FBAOutboundServiceMWS_Model_GetFulfillmentOrderResult $order
     ) {
         /**
-         * @var FBAOutboundServiceMWS_Model_FulfillmentShipmentList $shipments 
+         * @var FBAOutboundServiceMWS_Model_FulfillmentShipmentList $shipments
          */
         $shipments = $order->getFulfillmentShipment();
         $packages = [];
 
         if (!empty($shipments)) {
             /**
-             * @var FBAOutboundServiceMWS_Model_FulfillmentShipment $amazonShipment 
+             * @var FBAOutboundServiceMWS_Model_FulfillmentShipment $amazonShipment
              */
             foreach ($shipments->getmember() as $amazonShipment) {
                 /**
-                 * @var FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList $package 
+                 * @var FBAOutboundServiceMWS_Model_FulfillmentShipmentPackageList $package
                  */
                 $packages = array_merge(
-                    $packages, $amazonShipment->getFulfillmentShipmentPackage()
+                    $packages,
+                    $amazonShipment->getFulfillmentShipmentPackage()
                         ->getmember()
                 );
             }
@@ -505,7 +496,7 @@ class GetOrderStatus
     /**
      * Resubmits order to Amazon in event it did not go thorugh syncronously.
      */
-    public function resubmitOrdersToAmazon() 
+    public function resubmitOrdersToAmazon()
     {
         $stores = $this->storeManager->getStores();
         $enabledStores = [];
@@ -521,12 +512,14 @@ class GetOrderStatus
                 ->create()
                 ->addFieldToSelect('*')
                 ->addFieldToFilter(
-                    'store_id', [
+                    'store_id',
+                    [
                         'in' => [$enabledStores],
                     ]
                 )
                 ->addFieldToFilter(
-                    'state', [
+                    'state',
+                    [
                         'in' => [
                             \Magento\Sales\Model\Order::STATE_NEW,
                             \Magento\Sales\Model\Order::STATE_PROCESSING,
@@ -535,7 +528,8 @@ class GetOrderStatus
                 )
                 ->addFieldToFilter('fulfilled_by_amazon', true)
                 ->addFieldToFilter(
-                    'amazon_order_status', [
+                    'amazon_order_status',
+                    [
                         'in' => [
                             $this->helper::ORDER_STATUS_NEW,
                             $this->helper::ORDER_STATUS_ATTEMPTED,

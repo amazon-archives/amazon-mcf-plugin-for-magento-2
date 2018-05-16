@@ -27,18 +27,10 @@ use Magento\Framework\Data\OptionSourceInterface;
 class FBA extends AbstractSource implements SourceInterface, OptionSourceInterface
 {
     /**
-* 
-* #@+
      * Product Status values
      */
     const FBA_ENABLED = 1;
-
     const FBA_DISABLED = 2;
-
-    /**
-     * 
-     * #@-
-     */
 
     /**
      * Retrieve Visible Status Ids

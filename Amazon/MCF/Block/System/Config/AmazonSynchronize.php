@@ -35,8 +35,9 @@ class AmazonSynchronize extends \Magento\Config\Block\System\Config\Form\Field
      * @param \Magento\Backend\Block\Template\Context $context
      * @param array                                   $data
      */
-    public function __construct(Context $context,
-        $data = array()
+    public function __construct(
+        Context $context,
+        $data = []
     ) {
         parent::__construct($context, $data);
     }
@@ -77,7 +78,6 @@ class AmazonSynchronize extends \Magento\Config\Block\System\Config\Form\Field
     {
         return $this->_toHtml();
     }
-
 
     /**
      * Return ajax url for synchronize button

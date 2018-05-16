@@ -63,12 +63,11 @@ class ProductSkuConfig
         $this->inventory = $inventory;
     }
 
-    public function afterSave(\Magento\Catalog\Model\Product $product) 
+    public function afterSave(\Magento\Catalog\Model\Product $product)
     {
         $skus = [];
 
         if ($product && $product->getAmazonMcfAsinEnabled()) {
-
             $skus[] = $product->getSku();
 
             if ($product->getAmazonMcfMerchantSku()) {
@@ -85,11 +84,9 @@ class ProductSkuConfig
                         ->getmember();
 
                     if ($supplyList) {
-
                         $quantities = 0;
 
                         foreach ($supplyList as $item) {
-
                             if ($item->getASIN()) {
                                 $exists = true;
                             }
@@ -103,7 +100,8 @@ class ProductSkuConfig
                     $stockItem = $this->stockRegistry->getStockItem($product->getId());
                     $stockItem->setData('qty', $quantities);
 
-                    // make sure to set item in/out of stock if there is/isn't inventory. This will hide/show it on the front end
+                    // make sure to set item in/out of stock if there is/isn't inventory.
+                    // This will hide/show it on the front end
                     if ($quantities > 0) {
                         $stockItem->setData('is_in_stock', true);
                     } else {

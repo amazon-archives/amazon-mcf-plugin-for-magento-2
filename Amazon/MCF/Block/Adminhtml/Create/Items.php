@@ -39,7 +39,7 @@ class Items extends \Magento\Sales\Block\Adminhtml\Items\AbstractItems
     private $configHelper;
 
     /**
-     * @var \Magento\Catalog\Model\ProductFactory 
+     * @var \Magento\Catalog\Model\ProductFactory
      */
     private $productLoader;
 
@@ -87,7 +87,7 @@ class Items extends \Magento\Sales\Block\Adminhtml\Items\AbstractItems
      *
      * @return bool
      */
-    public function FBAEnabled() 
+    public function FBAEnabled()
     {
         return ($this->configHelper->isEnabled() && $this->configHelper->amazonCarrierEnabled());
     }
@@ -99,7 +99,7 @@ class Items extends \Magento\Sales\Block\Adminhtml\Items\AbstractItems
      *
      * @return string
      */
-    public function isFBAItem(\Magento\Sales\Model\Order\Shipment\Item $item) 
+    public function isFBAItem(\Magento\Sales\Model\Order\Shipment\Item $item)
     {
 
         if ($this->FBAEnabled()) {
@@ -119,7 +119,7 @@ class Items extends \Magento\Sales\Block\Adminhtml\Items\AbstractItems
      *
      * @return \Magento\Framework\Phrase|string
      */
-    public function getFBAWarningMessage() 
+    public function getFBAWarningMessage()
     {
         if ($this->FBAEnabled()) {
             return __('This item will be updated as shipped after FBA shipping completed, are you sure you want to 

@@ -56,7 +56,6 @@ class Inventory extends MCFAbstract
             . DIRECTORY_SEPARATOR . 'FBAInventoryServiceMWS' . DIRECTORY_SEPARATOR . 'Mock.php';
     }
 
-
     /**
      * Gets a list of inventory details based on Skus passed in an array
      *

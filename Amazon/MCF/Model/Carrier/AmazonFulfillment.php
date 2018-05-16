@@ -41,12 +41,12 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
      *
      * @var string
      */
-    protected $_code = self::CODE;
+    protected $code = self::CODE;
 
     /**
      * @var bool
      */
-    protected $_isFixed = false;
+    protected $isFixed = false;
     
     /**
      * @var \Amazon\MCF\Model\Service\Outbound
@@ -86,7 +86,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
     /**
      * @var \Magento\Framework\Logger\Monolog
      */
-    protected $_logger;
+    protected $logger;
 
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
@@ -119,7 +119,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     ) {
-        $this->_logger = $logger;
+        $this->logger = $logger;
         $this->conversionHelper = $conversionHelper;
         $this->configHelper = $configHelper;
         $this->outbound = $outbound;
@@ -174,7 +174,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
                 }
             }
         } else {
-            $this->_logger->addDebug('Cannot be fulfilled by Amazon - extension is not enabled.');
+            $this->logger->addDebug('Cannot be fulfilled by Amazon - extension is not enabled.');
             return false;
         }
         return $result;

@@ -56,10 +56,8 @@ class UpgradeData implements UpgradeDataInterface
     ) {
 
         /**
-* 
-         *
- * @var \Magento\Sales\Setup\SalesSetup $salesInstaller 
-*/
+         * @var \Magento\Sales\Setup\SalesSetup $salesInstaller
+         */
         $salesInstaller = $this->salesSetupFactory->create(['resourceName' => 'sales_setup', 'setup' => $setup]);
 
         $setup->startSetup();

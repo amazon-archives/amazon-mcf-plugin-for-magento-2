@@ -31,7 +31,8 @@ define(
                 self = this;
 
                 $.each(
-                    rules, function (field, rule) {
+                    rules,
+                    function (field, rule) {
                         if (rule.required && utils.isEmpty(address[field])) {
                             var message = $t('Field ') + field + $t(' is required.');
                             self.validationErrors.push(message);

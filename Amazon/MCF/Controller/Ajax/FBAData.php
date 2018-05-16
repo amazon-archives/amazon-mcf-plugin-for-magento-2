@@ -78,13 +78,12 @@ class FBAData extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
 
-
     /**
      * @param $product_id
      *
      * @return \Magento\Catalog\Model\Product
      */
-    protected function _getProduct($product_id) 
+    protected function getProduct($product_id)
     {
         // Note - used object manager rather than product repository because the class would not
         // load during constructor/use dependency injection.
@@ -97,10 +96,10 @@ class FBAData extends \Magento\Framework\App\Action\Action
      *
      * Expects a POST. ex for JSON {"pcode":"98101", "pid":"4", "qty": "1"}
      *
-     * @return                                       \Magento\Framework\Controller\ResultInterface
+     * @return \Magento\Framework\Controller\ResultInterface
      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
      */
-    public function execute() 
+    public function execute()
     {
         $params = null;
 
@@ -112,7 +111,6 @@ class FBAData extends \Magento\Framework\App\Action\Action
 
         try {
             $params = $this->_request->getParams();
-
         } catch (\Exception $e) {
             $response = [
                 'result' => false,
@@ -123,7 +121,6 @@ class FBAData extends \Magento\Framework\App\Action\Action
         if ($params && isset($params['pcode']) && $params['pcode'] && isset($params['pid'])
             && is_numeric($params['pid']) && isset($params['qty']) && is_numeric($params['qty'])
         ) {
-
             $storeId = $this->storeManager->getStore()->getId();
 
             $pcode = $params['pcode'];
@@ -139,7 +136,7 @@ class FBAData extends \Magento\Framework\App\Action\Action
                 'StateOrProvinceCode' => 'WA',
             ];
 
-            $product = $this->_getProduct($pid);
+            $product = $this->getProduct($pid);
             $items = [];
 
             if ($product) {

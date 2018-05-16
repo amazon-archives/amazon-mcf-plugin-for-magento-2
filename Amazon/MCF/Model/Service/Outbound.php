@@ -101,7 +101,6 @@ class Outbound extends MCFAbstract
         return $preview;
     }
 
-
     /**
      * Returns rate information for a single item for product page estimate
      *
@@ -124,8 +123,8 @@ class Outbound extends MCFAbstract
             $dates = [];
 
             /**
-         * @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview
-         */
+             * @var FBAOutboundServiceMWS_Model_FulfillmentPreview $preview
+             */
             $counter = 0;
             foreach ($previews as $preview) {
                 $shipDate = 0;
@@ -140,7 +139,6 @@ class Outbound extends MCFAbstract
                         $time = 0;
                         $shippingFee = 0;
                         $counter++;
-
 
                         if (!empty($preview->getEstimatedFees()->getmember())) {
                             foreach ($preview->getEstimatedFees()
@@ -301,7 +299,6 @@ class Outbound extends MCFAbstract
 
         // If it exists, cancel it.
         if ($response) {
-
             try {
                 $response = $client->cancelFulfillmentOrder($request);
             } catch (\FBAOutboundServiceMWS_Exception $e) {
