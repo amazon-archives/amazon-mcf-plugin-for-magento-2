@@ -1,14 +1,14 @@
 {
-  "name": "Amazon/MCF",
+  "name": "amzn/amazon-mcf-magento-2-module",
   "description": "Enables connection to Amazon Multi-Channel Fulfillment account.",
   "require": {
     "php": "7.0.2|7.0.4|~7.0.6|~7.1.0",
-    "magento/framework": "101.0.*",
-    "magento/module-store": "101.0.*",
-    "magento/module-sales": "101.0.*",
-    "magento/module-catalog": "102.0.*",
-    "magento/module-quote": "101.0.*",
-    "magento/module-sales-rule": "101.0.*"
+    "magento/framework": "^101.0.0",
+    "magento/module-store": "^100.1.0",
+    "magento/module-sales": "^101.0.0",
+    "magento/module-catalog": "^102.0.0",
+    "magento/module-quote": "^101.0.0",
+    "magento/module-sales-rule": "^101.0.0"
   },
   "type": "magento2-module",
   "version": "100.2.2",
