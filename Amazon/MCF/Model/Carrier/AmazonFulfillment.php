@@ -42,6 +42,7 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
      * @var string
      */
     protected $code = self::CODE;
+    protected $_code = self::CODE;
 
     /**
      * @var bool
