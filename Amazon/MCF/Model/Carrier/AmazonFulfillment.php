@@ -378,6 +378,10 @@ class AmazonFulfillment extends AbstractCarrier implements CarrierInterface
 
         $this->setCountry($r, $request);
 
+        if (!empty($request->getDestCountryId())) {
+            $r['CountryCode'] = $request->getDestCountryId();
+        }
+
         if (!empty($request->getDestPostcode())) {
             $r['PostalCode'] = $request->getDestPostcode();
         }
