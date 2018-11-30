@@ -203,7 +203,11 @@ class Conversion extends AbstractHelper
      */
     public function getCarrierCodeFromPackage($package)
     {
-        return $this->carriers[$package->getCarrierCode()]['carrier_code'];
+        $code = $package->getCarrierCode();
+        if (isset($this->carriers[$code]) && isset($this->carriers[$code]['carrier_code'])) {
+            return $this->carriers[code]['carrier_code'];
+        }
+        return strtolower(str_ireplace(' ', '_', $code));
     }
 
     /**
@@ -213,6 +217,10 @@ class Conversion extends AbstractHelper
      */
     public function getCarrierTitleFromPackage($package)
     {
-        return $this->carriers[$package->getCarrierCode()]['title'];
+        $code = $package->getCarrierCode();
+        if (isset($this->carriers[$code]) && isset($this->carriers[$code]['title'])) {
+            return $this->carriers[code]['title'];
+        }
+        return $code;
     }
 }
