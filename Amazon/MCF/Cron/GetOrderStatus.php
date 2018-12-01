@@ -300,6 +300,7 @@ class GetOrderStatus
         \Magento\Sales\Model\Order $order,
         \FBAOutboundServiceMWS_Model_GetFulfillmentOrderResult $fulfillmentOrderResult
     ) {
+        $this->invoiceOrder($order, $fulfillmentOrderResult);
         $this->createShipment($order, $fulfillmentOrderResult);
     }
 
