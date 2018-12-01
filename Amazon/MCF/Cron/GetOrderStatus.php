@@ -119,7 +119,8 @@ class GetOrderStatus
         \Magento\Sales\Api\OrderManagementInterface $orderManagement,
         StoreManagerInterface $storeManager,
         \Magento\Framework\DB\Transaction $transaction,
-        \Magento\Sales\Model\Order\Shipment\TrackFactory $trackFactory
+        \Magento\Sales\Model\Order\Shipment\TrackFactory $trackFactory,
+        \Magento\Sales\Model\Order\Email\Sender\ShipmentSender $shipmentSender
     ) {
 
         $this->helper = $helper;
@@ -132,6 +133,7 @@ class GetOrderStatus
         $this->orderManagement = $orderManagement;
         $this->trackFactory = $trackFactory;
         $this->invoiceSender = $invoiceSender;
+        $this->shipmentSender = $shipmentSender;
 
         $om = \Magento\Framework\App\ObjectManager::getInstance();
         $this->objectManager = $om;
@@ -447,6 +449,9 @@ class GetOrderStatus
                         $shipment->register();
                         $shipment->getOrder()->setIsInProcess(true);
                         // Save created shipment and order
+                        if ($shipment->getOrder()->getSendEmail()) {
+                            $this->shipmentSender->send($shipment);
+                        }
                         $shipment->save();
                         $shipment->getOrder()->save();
                     } catch (\Exception $e) {
