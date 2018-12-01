@@ -96,6 +96,11 @@ class GetOrderStatus
     private $invoiceSender;
 
     /**
+     * @var \Magento\Sales\Model\Order\Email\Sender\ShipmentSender
+     */
+    private $shipmentSender;
+
+    /**
      * GetOrderStatus constructor
      *
      * @param \Amazon\MCF\Helper\Data                                    $helper
