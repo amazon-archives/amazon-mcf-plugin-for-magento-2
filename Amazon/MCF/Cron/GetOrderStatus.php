@@ -93,7 +93,7 @@ class GetOrderStatus
     /**
      * @var \Magento\Sales\Model\Order\Email\Sender\InvoiceSender
      */
-    private $inventorySender;
+    private $invoiceSender;
 
     /**
      * GetOrderStatus constructor
@@ -131,7 +131,7 @@ class GetOrderStatus
         $this->transaction = $transaction;
         $this->orderManagement = $orderManagement;
         $this->trackFactory = $trackFactory;
-        $this->inventorySender = $invoiceSender;
+        $this->invoiceSender = $invoiceSender;
 
         $om = \Magento\Framework\App\ObjectManager::getInstance();
         $this->objectManager = $om;
