@@ -453,10 +453,9 @@ class GetOrderStatus
                     try {
                         $shipment->register();
                         $shipment->getOrder()->setIsInProcess(true);
+                        // Send shipment email
+                        $this->shipmentSender->send($shipment);
                         // Save created shipment and order
-                        if ($shipment->getOrder()->getSendEmail()) {
-                            $this->shipmentSender->send($shipment);
-                        }
                         $shipment->save();
                         $shipment->getOrder()->save();
                     } catch (\Exception $e) {
