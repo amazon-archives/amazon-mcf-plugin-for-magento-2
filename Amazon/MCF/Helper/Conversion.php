@@ -205,7 +205,7 @@ class Conversion extends AbstractHelper
     {
         $code = $package->getCarrierCode();
         if (isset($this->carriers[$code]) && isset($this->carriers[$code]['carrier_code'])) {
-            return $this->carriers[code]['carrier_code'];
+            return $this->carriers[$code]['carrier_code'];
         }
         return strtolower(str_ireplace(' ', '_', $code));
     }
@@ -219,7 +219,7 @@ class Conversion extends AbstractHelper
     {
         $code = $package->getCarrierCode();
         if (isset($this->carriers[$code]) && isset($this->carriers[$code]['title'])) {
-            return $this->carriers[code]['title'];
+            return $this->carriers[$code]['title'];
         }
         return $code;
     }
