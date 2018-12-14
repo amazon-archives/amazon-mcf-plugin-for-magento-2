@@ -558,7 +558,7 @@ class GetOrderStatus
                      * @var \FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse $result
                      */
                     $result = $this->outbound->createFulfillmentOrder($order);
-                    $responseMetadata = $result->getResponseMetadata();
+                    $responseMetadata = $result ? $result->getResponseMetadata() : null;
 
                     if (!empty($result) && !empty($responseMetadata)) {
                         $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_RECEIVED);
