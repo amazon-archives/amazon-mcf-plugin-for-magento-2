@@ -134,11 +134,16 @@ class Conversion extends AbstractHelper
         foreach ($items as $item) {
             $enabled = $item->getProduct()->getData('amazon_mcf_asin_enabled');
             $sku = $item->getProduct()->getData('amazon_mcf_merchant_sku');
+            $orderItem = ($item instanceof \Magento\Sales\Api\Data\OrderItemInterface);
+
+            // Check if order item can be shipped
+            if ($orderItem && !$item->canShip()) continue;
+
             if ($enabled) {
                 $qty = 0;
                 $id = '';
 
-                !empty($item->getQty()) ? $qty = $item->getQty() : $qty = $item->getQtyOrdered();
+                $qty = ($orderItem ? $item->getQtyToShip() : $item->getQty());
                 !empty($item->getQuoteId()) ? $id = $item->getQuoteId() : $id = $item->getQuoteItemId();
 
                 $itemData = [
@@ -203,7 +208,11 @@ class Conversion extends AbstractHelper
      */
     public function getCarrierCodeFromPackage($package)
     {
-        return $this->carriers[$package->getCarrierCode()]['carrier_code'];
+        $code = $package->getCarrierCode();
+        if (isset($this->carriers[$code]) && isset($this->carriers[$code]['carrier_code'])) {
+            return $this->carriers[$code]['carrier_code'];
+        }
+        return strtolower(str_ireplace(' ', '_', $code));
     }
 
     /**
@@ -213,6 +222,10 @@ class Conversion extends AbstractHelper
      */
     public function getCarrierTitleFromPackage($package)
     {
-        return $this->carriers[$package->getCarrierCode()]['title'];
+        $code = $package->getCarrierCode();
+        if (isset($this->carriers[$code]) && isset($this->carriers[$code]['title'])) {
+            return $this->carriers[$code]['title'];
+        }
+        return $code;
     }
 }
