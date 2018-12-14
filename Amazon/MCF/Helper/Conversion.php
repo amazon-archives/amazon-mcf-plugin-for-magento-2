@@ -134,11 +134,11 @@ class Conversion extends AbstractHelper
         foreach ($items as $item) {
             $enabled = $item->getProduct()->getData('amazon_mcf_asin_enabled');
             $sku = $item->getProduct()->getData('amazon_mcf_merchant_sku');
-            if ($enabled) {
+            if ($enabled && $item->canShip()) {
                 $qty = 0;
                 $id = '';
 
-                !empty($item->getQty()) ? $qty = $item->getQty() : $qty = $item->getQtyOrdered();
+                !empty($item->getQtyToShip()) ? $qty = $item->getQtyToShip() : $qty = $item->getQtyOrdered();
                 !empty($item->getQuoteId()) ? $id = $item->getQuoteId() : $id = $item->getQuoteItemId();
 
                 $itemData = [
