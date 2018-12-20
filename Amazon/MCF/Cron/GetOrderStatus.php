@@ -226,7 +226,7 @@ class GetOrderStatus
                                     case 'INVALID':
                                     case 'CANCELLED':
                                     case 'UNFULFILLABLE':
-                                        $this->cancelFBAShipment($order, $fulfillmentOrderResult);
+                                        $this->cancelFBAShipment($order, $fulfillmentOrderResult, $amazonStatus);
                                         break;
                                 }
                             }
