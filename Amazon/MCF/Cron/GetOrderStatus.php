@@ -93,7 +93,12 @@ class GetOrderStatus
     /**
      * @var \Magento\Sales\Model\Order\Email\Sender\InvoiceSender
      */
-    private $inventorySender;
+    private $invoiceSender;
+
+    /**
+     * @var \Magento\Sales\Model\Order\Email\Sender\ShipmentSender
+     */
+    private $shipmentSender;
 
     /**
      * GetOrderStatus constructor
@@ -119,7 +124,8 @@ class GetOrderStatus
         \Magento\Sales\Api\OrderManagementInterface $orderManagement,
         StoreManagerInterface $storeManager,
         \Magento\Framework\DB\Transaction $transaction,
-        \Magento\Sales\Model\Order\Shipment\TrackFactory $trackFactory
+        \Magento\Sales\Model\Order\Shipment\TrackFactory $trackFactory,
+        \Magento\Sales\Model\Order\Email\Sender\ShipmentSender $shipmentSender
     ) {
 
         $this->helper = $helper;
@@ -131,7 +137,8 @@ class GetOrderStatus
         $this->transaction = $transaction;
         $this->orderManagement = $orderManagement;
         $this->trackFactory = $trackFactory;
-        $this->inventorySender = $invoiceSender;
+        $this->invoiceSender = $invoiceSender;
+        $this->shipmentSender = $shipmentSender;
 
         $om = \Magento\Framework\App\ObjectManager::getInstance();
         $this->objectManager = $om;
@@ -219,7 +226,7 @@ class GetOrderStatus
                                     case 'INVALID':
                                     case 'CANCELLED':
                                     case 'UNFULFILLABLE':
-                                        $this->cancelFBAShipment($order, $fulfillmentOrderResult);
+                                        $this->cancelFBAShipment($order, $fulfillmentOrderResult, $amazonStatus);
                                         break;
                                 }
                             }
@@ -300,6 +307,7 @@ class GetOrderStatus
         \Magento\Sales\Model\Order $order,
         \FBAOutboundServiceMWS_Model_GetFulfillmentOrderResult $fulfillmentOrderResult
     ) {
+        $this->invoiceOrder($order, $fulfillmentOrderResult);
         $this->createShipment($order, $fulfillmentOrderResult);
     }
 
@@ -445,8 +453,11 @@ class GetOrderStatus
                     try {
                         $shipment->register();
                         $shipment->getOrder()->setIsInProcess(true);
-                        // Save created shipment and order
+                        // Save shipment
                         $shipment->save();
+                        // Send shipment email
+                        $this->shipmentSender->send($shipment);
+                        // Save order
                         $shipment->getOrder()->save();
                     } catch (\Exception $e) {
                         $this->helper->logOrder(__($e->getMessage()));
@@ -547,7 +558,7 @@ class GetOrderStatus
                      * @var \FBAOutboundServiceMWS_Model_CreateFulfillmentOrderResponse $result
                      */
                     $result = $this->outbound->createFulfillmentOrder($order);
-                    $responseMetadata = $result->getResponseMetadata();
+                    $responseMetadata = $result ? $result->getResponseMetadata() : null;
 
                     if (!empty($result) && !empty($responseMetadata)) {
                         $order->setAmazonOrderStatus($this->helper::ORDER_STATUS_RECEIVED);
